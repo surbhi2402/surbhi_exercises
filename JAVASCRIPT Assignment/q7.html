@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Color change</title>
+	<style>
+	div{height: 100px;}
+	</style>
+</head>
+	<body>
+		<center>
+		<h1>Color Change</h1>
+		<div id="id1" style="background-color: yellow" onmouseover="f1()" onmouseout="f2()">
+			<p>This is Div Tag</p>
+		</div>
+	</center>
+
+	<script type="text/javascript">
+
+			function f1()
+			{
+				document.getElementById("id1").style.backgroundColor = "green" ;
+			}
+
+			function f2()
+			{
+				document.getElementById("id1").style.backgroundColor = "yellow" ;
+		
+			}
+	</script>
+	</body>
+</html>
