@@ -1,3 +1,12 @@
+/*5. Groovy Truth: if('test')
+ { printlnn "test evaluated to true inside if" }
+  try replacing test with various objects and observe its behaviour. 
+  a) "Test" b)'null' c) null d) 100 e) 0 f) empty list g) list with all vaues as null List list = new ArrayList()
+*/
+
+
+
+
 if("Test")
 {
 println "test evaluated to be true!!!!"

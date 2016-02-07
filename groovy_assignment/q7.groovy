@@ -1,3 +1,8 @@
+//7. Print multiple of 3 upto 10 terms in at least three different ways using groovy special methods 
+
+
+
+
 for(int i=1;i<=10;i++)
 {
 int k=3*i

@@ -1,3 +1,7 @@
+//2. Extend the Person class in Groovy Add following fields to it:
+// empId, company, salary Access the fields in all known ways: like through getter , by dot operator, by @ operator. 
+
+
 class Employee extends Person
 {
         String empId,company 

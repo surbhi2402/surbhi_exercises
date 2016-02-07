@@ -1,3 +1,9 @@
+/*4. GString... override the toString() of the Person class to return something like...
+ "Sachin is a man aged 24 who lives at Delhi. He works for Intelligrape with employee id 12 
+ and draws $$$$$$$ lots of money !!!!." 
+*/
+
+
 class person
 {
 String name;

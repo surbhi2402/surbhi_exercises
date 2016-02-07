@@ -1,3 +1,12 @@
+/*3. Print this pattern : 
+*
+**
+**** 
+******** */
+
+
+
+
 //1.upto(10) {println it*3}
 
 

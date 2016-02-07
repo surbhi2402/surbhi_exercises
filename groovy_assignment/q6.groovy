@@ -1,3 +1,8 @@
+/* 6. Write a class HourMinute where the class stores hours and minutes
+ as separate fields. Overload + and - operator operator for this class 
+*/
+
+
 class HourMinute{
     int hours;
     int minutes;
