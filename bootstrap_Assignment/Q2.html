@@ -4,34 +4,43 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
 
+
+</style>
 
 </head>
 <body>
 
+<!--header nav bar-->
 <div class="container" style="height:100px">
 
-			<nav class="navbar header">
+			<nav class="navbar header" style="border:2px solid lightblue">
 				<a class="navbar-brand" href="#">Link sharing</a>
 				<form class="navbar-form navbar-right" role="search">
 					<span class="glyphicon glyphicon-search"></span>
 					<input type="text"class="form-control" placeholder="Search" >
 					<span class="badge" class="glyphicon glyphicon-remove"></span>
 					</input>
-					<a href="#myModal3" data-toggle="modal" class="glyphicon glyphicon-apple" style="font-size:20px"></a>
-					<a href="#myModal4" data-toggle="modal" class="glyphicon glyphicon-envelope" style="font-size:20px"></a>
-					<a href="#myModal" data-toggle="modal" class="glyphicon glyphicon-link" style="font-size:20px"></a>
-					<a href="#myModal2" data-toggle="modal" class="glyphicon glyphicon-floppy-open" style="font-size:20px"></a>
-
+				
+					<a href="#"><i class="fa fa-commenting-o fa-fw" style="font-size:20px"></i></a>
+					<a href="#"><i class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>
+					<a href="#"><i class="fa fa-link fa-fw" style="font-size:20px"></i></a>
+					<a href="#"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
+				
                     <a class="glyphicon glyphicon-user" style="font-size:30px"></a>
 					<div class="dropdown" style="float:right">
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Uday<span class="caret">
 							</span></button>
 						<ul class="dropdown-menu">
-							<li><a href="#">Home</a></li>
 							<li><a href="#">Profile</a></li>
+							<li><a href="#">Users</a></li>
+							<li><a href="#">Topics</a></li>
+							<li><a href="#">Posts</a></li>
+							<li><a href="#">Logout</a></li>
 						</ul>
 					</div>
 				</form>
@@ -39,179 +48,252 @@
 			</nav>
 
 </div>
+<!--header nav bar ends-->
 
+<!--a small panel on left side-->
 <div class="container-fluid">
 	<div class="col-xs-5">
-		<div class="well well-lg" style="height:120px">
-			<div class="glyphicon glyphicon-user" style="float:left;font-size:30px"></div>
+		<div class="well well-lg" style="height:130px">
+			<div class="glyphicon glyphicon-user" style="float:left;font-size:60px"></div>
 			<div class="col-xs-offset-3">
-				<p style="font-size:30px">Uday</p>
-                <a href="#">@Grails</a>
-                <a href="#">@Grails</a>
+				
+					<div style="color:black">Uday Pratap</div>
+					<div style="color:grey">@uday</div>
+			<br>
+			
+
+				<inline>
+					<div class="col-sm-4  " style="color:grey">Subscription</div>
+					<div class="col-sm-4" style="color:grey">Topics</div>
+				</inline>
+				<inline>
+					<div class="col-sm-3" style="color:grey; margin-left:55px"><a href="#">50</a></div>
+					<div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
+				</inline>
+
 			</div>
 		</div>
-	</div>
-	<div class="col-xs-7">
-	<div class="panel panel-default" style="height:350px">
-		<div class="panel panel-heading">Inbox</div>
-        <div class="panel-body" style="height:130px">
-            <div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
-            <div class="col-xs-offset-3">
-                <p style="font-size:30px">Uday</p>
-                <p>This is line 1....this is line 2</p>
 
-                <div class="form-group">
-                    <div class="col-xs-2">
-                        <div class="row">
-                            <select class="form-control" rows="3" id="topic">
-                                <option>A1</option>
-                                <option>A2</option>
-                                <option>A3</option>
-                                <option>A4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="row">
-                            <select class="form-control" rows="3" id="topic">
-                                <option>A1</option>
-                                <option>A2</option>
-                                <option>A3</option>
-                                <option>A4</option>
-                            </select>
-                        </div>
-                    </div>
+<!--Subscriptions Panel-->
+		<div class="panel panel-default">
+			<div class="panel panel-heading">Subscriptions</div>
+			<div class="panel-body">
+				<div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
 
-                </div>
+				<div class="col-xs-offset-3" class="row">
+					<a href="#" style="float:left"><u>Grails</u></a>
+					<br>
+					<br>
+				<div>
+					<a href="#" style="float:left;color:grey"><u>@Uday</u></a>
 
-            </div>
-        </div>
-        <div class="panel-body" style="height:130px">
-            <div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
-            <div class="col-xs-offset-3">
-                <p style="font-size:30px">Uday</p>
-                <p>This is line 1....this is line 2</p>
+					<inline>
+					<div class="col-sm-4  " style="color:grey">Subscription</div>
+					<div class="col-sm-4" style="color:grey">Topics</div>
+				</inline>
 
-                <div class="form-group">
-                    <div class="col-xs-2">
-                        <div class="row">
-                            <select class="form-control" rows="3" id="topic">
-                                <option>A1</option>
-                                <option>A2</option>
-                                <option>A3</option>
-                                <option>A4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="row">
-                            <select class="form-control" rows="3" id="topic">
-                                <option>A1</option>
-                                <option>A2</option>
-                                <option>A3</option>
-                                <option>A4</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-	</div>
-</div>
-</div>
-
-<div class="container">
-	<div class="row">
-		<div class="col-xs-5">
-			<div class="panel panel-default" style="height:200px">
-				<div class="panel panel-heading">Subscriptions</div>
-				<div class="panel-body">
-					<div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
-					<div class="col-xs-offset-3">
-						<p style="font-size:30px">Uday</p>
-						<p>This is line 1....this is line 2</p>
-
-						<div class="form-group">
-							<div class="col-xs-4">
-								<div class="row">
-									<select class="form-control" rows="4" id="topic">
-										<option>A1</option>
-										<option>A2</option>
-										<option>A3</option>
-										<option>A4</option>
-									</select>
-								</div>
+				<inline>
+					<div class="col-sm-3" style="color:grey; margin-left:90px"><a href="#">50</a></div>
+					<div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
+				</inline>
+				</div>
+					<br>
+					<!--Drop downs of subscription panel-->
+					<div class="form-group">
+						<div class="col-xs-4">
+							<div class="row">
+								<select class="form-control" rows="4" id="topic">
+									<option>Serious</option>
+									<option>A2</option>
+									<option>A3</option>
+									<option>A4</option>
+								</select>
 							</div>
-							<div class="col-xs-4">
-								<div class="row">
-									<select class="form-control" rows="4" id="topic">
-										<option>A1</option>
-										<option>A2</option>
-										<option>A3</option>
-										<option>A4</option>
-									</select>
-								</div>
-							</div>
-
 						</div>
 
-					</div>
-				</div>
 
+						<div class="col-xs-4">
+							<div class="row">
+								<select class="form-control" rows="4" id="topic">
+									<option>Private</option>
+									<option>A2</option>
+									<option>A3</option>
+									<option>A4</option>
+								</select>
+							</div>
+						</div>
+						<!--glyphicons-->
+						<div class="pull-right">
+							<i class="fa fa-trash fa-fw" style="font-size:20px"></i>
+							<i class="fa fa-envelope fa-fw" style="font-size:20px"></i>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<hr>
+			<!--Second div(same as above)-->
+			<div class="panel-body">
+				<div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
+
+				<div class="col-xs-offset-3" class="row">
+					<a href="#" style="float:left"><u>Grails</u></a>
+					<br>
+					<br>
+				<div>
+					<a href="#" style="float:left;color:grey"><u>@Uday</u></a>
+
+					<inline>
+					<div class="col-sm-4  " style="color:grey">Subscription</div>
+					<div class="col-sm-4" style="color:grey">Topics</div>
+				</inline>
+
+				<inline>
+					<div class="col-sm-3" style="color:grey; margin-left:90px"><a href="#">50</a></div>
+					<div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
+				</inline>
+				</div>
+				<br>
+					<div class="form-group">
+						<div class="col-xs-4">
+							<div class="row">
+								<select class="form-control" rows="4" id="topic" style="margin-left:170px">
+									<option>Serious</option>
+									<option>A2</option>
+									<option>A3</option>
+									<option>A4</option>
+								</select>
+							</div>
+						</div>
+						<div class="pull-right">
+							
+							<i class="fa fa-envelope fa-fw" style="font-size:20px"></i>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+<!--Trensing topics div starts here-->
+		<div class="panel panel-default">
+			<div class="panel panel-heading">Trending Topics</div>
+			<div class="panel-body">
+				<div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
+
+				<div class="col-xs-offset-3" class="row">
+					<a href="#" style="float:left"><u>Grails</u></a>
+					<br>
+				<div>
+					<a href="#" style="float:left;color:grey"><u>@Uday</u></a>
+
+				<inline>
+					<div class="col-sm-4  " style="color:grey">Subscription</div>
+					<div class="col-sm-4" style="color:grey">Topics</div>
+				</inline>
+
+				<inline>
+					<div class="col-sm-3" style="color:grey; margin-left:90px"><a href="#">50</a></div>
+					<div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
+				</inline>
+				<div><a href="#">Unsubscribe</a></div>
+				</div>
 			</div>
 
 		</div>
-		<div class="container">
-			<div class="row">
+			<hr>
+			<!--2nd div inside trending topics-->
+			<div class="panel-body">
+				<div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
 
-			</div>
-		</div>
+				<div class="col-xs-offset-3" class="row">
 
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-5">
-					<div class="panel panel-default" style="height:200px">
-						<div class="panel panel-heading">Trending Topics</div>
-                        <div class="panel-body">
-                            <div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
-                            <div class="col-xs-offset-3">
-                                <p style="font-size:30px">Uday</p>
-                                <p>This is line 1....this is line 2</p>
-
-                                <div class="form-group">
-                                    <div class="col-xs-4">
-                                        <div class="row">
-                                            <select class="form-control" rows="5" id="topic">
-                                                <option>A1</option>
-                                                <option>A2</option>
-                                                <option>A3</option>
-                                                <option>A4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="row">
-                                            <select class="form-control" rows="3" id="topic">
-                                                <option>A1</option>
-                                                <option>A2</option>
-                                                <option>A3</option>
-                                                <option>A4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+					<div class="btn">
+						<div class="row">
+							<div class="col-md-offset-1">
+								<input type="text">
+								<button class="btn btn-success" type="submit">Save</button>
+								<button class="btn btn-default" type="submit">Cancel</button>
+							</div>
+						</div>
 					</div>
+					<br>
+					<br>
+					<a href="#" style="float:left"><u>@Uday</u></a>
+					<br>
+					<br>
+					<div class="form-group">
+						<div class="col-xs-4">
+							<div class="row">
+								<select class="form-control" rows="4" id="topic">
+									<option>Serious</option>
+									<option>A2</option>
+									<option>A3</option>
+									<option>A4</option>
+								</select>
+							</div>
+						</div>
+
+
+						<div class="col-xs-4">
+							<div class="row">
+								<select class="form-control" rows="4" id="topic">
+									<option>Private</option>
+									<option>A2</option>
+									<option>A3</option>
+									<option>A4</option>
+								</select>
+							</div>
+						</div>
+						<div class="pull-right">
+							<i class="fa fa-trash fa-fw" style="font-size:20px"></i>
+							<i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i>
+							<i class="fa fa-envelope fa-fw" style="font-size:20px"></i>
+
+						</div>
+					</div>
+
 				</div>
 			</div>
+		</div>
+	</div>
+	<!--Inbox div starts here-->
+	<div class="col-xs-7">
+	<div class="panel panel-default" style="height:370px">
+		<div class="panel panel-heading">Inbox</div>
+        <div class="panel-body" style="height:130px">
+           <div style="float:left;font-size:60px" class="glyphicon glyphicon-user"></div>
+					<div class="col-xs-offset-2">
+						<h4>Uday Pratap singh<a href="#" style="float:right"><u>Grails</u></a></h4>
 
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..</p>
+						<a href="#"><i class="fa fa-facebook fa-fw"></i></a>
+						<a href="#"><i class="fa fa-twitter fa-fw"></i></a>
+						<a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
+							<a href="#" style="float:right"><u>View Posts</u></a>
+					</div>
+				</div>
+				<hr>
+			<div class="panel-body" style="height:130px">
+           <div style="float:left;font-size:60px" class="glyphicon glyphicon-user"></div>
+					<div class="col-xs-offset-2">
+						<h4>Uday Pratap singh<a href="#" style="float:right"><u>Grails</u></a></h4>
 
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..</p>
+						<a href="#"><i class="fa fa-facebook fa-fw"></i><a>
+						<a href="#"><i class="fa fa-twitter fa-fw"></i></a>
+							<a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
+					
+							<a href="#" style="float:right"><u>View Posts</u></a>
+							
+					</div>
+				</div>
+        
+	</div>
+</div>
+</div>
 
-
-		<!--Modal-->
+		<!--Modals starting here!!!!-->
 		<div class="container">
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
