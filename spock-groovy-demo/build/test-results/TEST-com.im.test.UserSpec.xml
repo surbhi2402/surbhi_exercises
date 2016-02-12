@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.im.test.UserSpec" tests="9" skipped="8" failures="0" errors="0" timestamp="2016-02-11T04:17:04" hostname="surbhi-TravelMate-P257-M" time="0.177">
+  <properties/>
+  <testcase name="get users full name #fname #lname" classname="com.im.test.UserSpec" time="0.175"/>
+  <testcase name="Display user name" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="Is valid password" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="encrypt pasword mocking" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reset Password And Send Email" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="get income group spec" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="Product purchased" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="cancel purchase" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="to get sorted interested categories" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[======hello!!!
+======hello!!!
+======hello!!!
+======hello!!!
+]]></system-err>
+</testsuite>

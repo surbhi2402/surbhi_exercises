@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.im.test.TransactionSpec" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-02-11T04:11:32" hostname="surbhi-TravelMate-P257-M" time="0.242">
+  <properties/>
+  <testcase name="selling a product to customer" classname="com.im.test.TransactionSpec" time="0.112"/>
+  <testcase name="cancellation of sale" classname="com.im.test.TransactionSpec" time="0.125"/>
+  <testcase name="calculating discount" classname="com.im.test.TransactionSpec" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
