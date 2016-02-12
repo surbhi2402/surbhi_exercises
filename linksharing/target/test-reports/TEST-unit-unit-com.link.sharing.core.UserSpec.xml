@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.link.sharing.core.UserSpec" skipped="0" tests="5" time="3.488" timestamp="2016-02-12T11:58:00">
+  <properties />
+  <testcase classname="com.link.sharing.core.UserSpec" name="passed" time="2.839" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.05" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.493" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.023" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.018" />
+  <system-out><![CDATA[--Output from passed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+]]></system-out>
+  <system-err><![CDATA[--Output from passed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+]]></system-err>
+</testsuite>
