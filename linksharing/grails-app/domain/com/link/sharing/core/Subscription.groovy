@@ -7,8 +7,8 @@ import spock.util.mop.Use
 
 class Subscription {
 
-    Topic topic
-    User user
+    //Topic topic
+    //User user
     Date dateCreated
     Date lastUpdated
     Seriousness seriousness
