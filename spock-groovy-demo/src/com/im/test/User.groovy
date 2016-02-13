@@ -25,7 +25,7 @@ class User {
         if(gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("Female")) {
             this.gender = gender
         }else{
-            throw new IllegalArgumentException("Gender values accepted ar not accepted.")
+            throw new IllegalArgumentException("Gender values accepted are not accepted.")
         }
     }
 
@@ -34,7 +34,7 @@ class User {
     }
 
     String displayName() {
-        String prefix = (gender == "Male") ? 'Mr' : 'Ms '
+        String prefix = (gender == "Male") ? 'Mr ' : 'Ms '
         return prefix + fullName
     }
 
@@ -69,7 +69,7 @@ class User {
         } else if (incomePerMonth > 5000 && incomePerMonth <= 10000) {
             group = "Lower MiddleClass"
         } else if (incomePerMonth > 10000) {
-            group = "Lower MiddleClass"
+            group = "Upper MiddleClass"
         }
         return group
     }

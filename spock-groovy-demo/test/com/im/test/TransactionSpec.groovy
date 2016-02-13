@@ -8,92 +8,104 @@ import spock.lang.Unroll
 
 class TransactionSpec extends Specification {
 
-@IgnoreRest
-        def "selling a product to customer:when values are correct"(){
 
-            given:"a user"
-            User user = new User(balance: 1000)
+    def "selling a product to customer:when values are correct"() {
 
-            and:"a product"
-            Product product = new Product(price: 500)
+        given: "a user"
+        User user = new User(balance: bal)
 
-            and:"a transaction"
-            Transaction transaction = new Transaction()
+        and: "a product"
+        Product product = new Product(price: price)
 
-            when:"called sell method"
-            transaction.sell(product,user)
-
-            then:"no exeption should be thrown"
-            //user.balance==user.balance-product.price
-            notThrown(SaleException)
-
-        }
-
-    def "selling a product to customer:when values are incorrect"(){
-
-        given:"a user"
-        User user = new User(balance: 200)
-
-        and:"a product"
-        Product product = new Product(price: 500)
-
-        and:"a transaction"
+        and: "a transaction"
         Transaction transaction = new Transaction()
 
-        when:"called sell method"
-        transaction.sell(product,user)
+        when: "called sell method"
+        transaction.sell(product, user)
 
-        then:"no exeption should be thrown"
-        thrown(SaleException)
+        then: "no exeption should be thrown"
+        output == bal - price
+        //notThrown(SaleException)
+
+        where:
+        bal  | price || output
+        1000 | 500   || 500
+        500  | 500   || 0
+
     }
 
-        def "cancellation of sale"(){
 
-            given:
-            Product product = new Product(name: "xyz",price: 576)
+    def "selling a product to customer:when values are incorrect"() {
 
-            and:
-            User user = new User(balance: 1000)
+        given: "a user"
+        User user = new User(balance: 500)
 
-            and:
-            Transaction transaction = new Transaction()
+        and: "a product"
+        Product product = new Product(price: 700)
 
-            and:
-            def mockedEmailService = Mock(EmailService)
-            transaction.emailService = mockedEmailService
+        and: "a transaction"
+        Transaction transaction = new Transaction()
 
-            when:
-            transaction.cancelSale(product,user)
+        when: "called sell method"
+        transaction.sell(product, user)
 
-            then:
-            transaction.emailService.sendCancellationEmail(user,_ as String)
+        then: "no exeption should be thrown"
+        thrown(SaleException)
 
-
-        }
+    }
 
 
-            def "calculating discount"(){
+    def "cancellation of sale"() {
 
-                given:
-                Product product = new Product(name: "abcd",price: p, discountType: "PRIVELLEGE_ONLY")
+        given:
+        Product product = new Product(name: name, price: price)
 
-                and:
-                User user = new User(isPrivellegedCustomer: true,balance: 100)
+        and:
+        User user = new User(balance: bal)
 
-                and:
-                Transaction transaction = new Transaction()
+        and:
+        Transaction transaction = new Transaction()
 
-                when:
-                def result = transaction.calculateDiscount(product,user)
+        and:
+        def mockedEmailService = Mock(EmailService)
+        transaction.emailService = mockedEmailService
 
-                then:
-                result == expectedResult
+        when:
+        transaction.cancelSale(product, user)
 
-            where:
-            p |expectedResult
-            50|15
+        then:
+        transaction.emailService.sendCancellationEmail(user, _ as String)
 
-            }
+        where:
+        name  | price | bal  || output
+        "xyz" | 500   | 1000 || true
+
+
+    }
+
+    @IgnoreRest
+    def "calculating discount"() {
+
+        given:
+        Product product = new Product(name: "abcd", price: p, discountType: "PRIVELLEGE_ONLY")
+
+        and:
+        User user = new User(isPrivellegedCustomer: true, balance: bal)
+
+        and:
+        Transaction transaction = new Transaction()
+
+        when:
+        def result = transaction.calculateDiscount(product, user)
+
+        then:
+        result == expectedResult
+
+        where:
+        p  | bal || expectedResult
+        50 | 100 || 15
+
+    }
 
       /*
         //!!!! doubt!!!!!
