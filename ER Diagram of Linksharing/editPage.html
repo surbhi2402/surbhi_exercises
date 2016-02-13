@@ -1,0 +1,222 @@
+<html lang="en">
+<head>
+    <title>Edit Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+
+
+    </style>
+
+</head>
+<body>
+
+<!--header nav bar-->
+<div class="container" style="height:100px">
+
+    <nav class="navbar header" style="border:2px solid lightblue">
+        <a class="navbar-brand" href="#">Link sharing</a>
+        <form class="navbar-form navbar-right" role="search">
+            <span class="glyphicon glyphicon-search"></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="badge" class="glyphicon glyphicon-remove"></span>
+            </input>
+
+
+            <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user" style="font-size: 20px">Uday</span>
+
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </form>
+
+
+    </nav>
+
+</div>
+<!--header nav bar ends-->
+
+<div class="container-fluid">
+    <div class="col-xs-5">
+        <div class="well well-lg" style="height:130px">
+            <div class="glyphicon glyphicon-user" style="float:left;font-size:60px"></div>
+            <div class="col-xs-offset-2">
+
+                <div style="color:black">Uday Pratap</div>
+                <div style="color:grey">@uday</div>
+                <br>
+                <div>
+                    <div class="col-sm-3" style="color:grey;margin-left: -10px">Subscription</div>
+                    <div class="col-sm-3" style="color:grey">Topics</div>
+                </div>
+                <br>
+                <div>
+                    <div class="col-sm-3" style="color:grey; margin-left:0px"><a href="#">50</a></div>
+                    <div class="col-sm-3" style="color:grey;margin-left: 0px"><a href="#">30</a></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel panel-heading" style="height:40px">Topics
+                <div class="pull-right" style="width: 100px;height: 15px">
+                    <input type="text" class="form-control" placeholder="Search" style="height:25px">
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>
+
+                <div class="col-xs-offset-2" class="row">
+
+                    <div class="btn">
+                        <div class="row">
+                            <div class="col-md-offset-1">
+                                <input type="text" placeholder="textbox" style="margin-left: 20px"></input>
+                                <button class="btn btn-success" type="submit" style="margin-left: 20px">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <a href="#" style="float:left;color: grey"><u>@Uday</u></a>
+
+                        <div>
+                            <div class="col-sm-3" style="color:grey">Subscription</div>
+                            <div class="col-sm-3" style="color:grey">Post</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-3" style="color:grey; margin-left:55px"><a href="#">50</a></div>
+                        <div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-4" style="margin-left: 40px">
+
+                        <select class="form-control" rows="4" id="topic">
+                            <option>Serious</option>
+                            <option>A2</option>
+                            <option>A3</option>
+                            <option>A4</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4" style="margin-left: 30px">
+                        <select class="form-control" rows="4" id="topic">
+                            <option>Private</option>
+                            <option>A2</option>
+                            <option>A3</option>
+                            <option>A4</option>
+                        </select>
+                    </div>
+                    <div style="float: right">
+                        <a href="#"><i class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>
+                        <a href="#"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
+                        <a href="#"><i class="fa fa-trash fa-fw" style="font-size:20px"></i></a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-xs-7">
+            <div class="panel panel-default">
+                <div class="panel panel-heading">Register</div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="pull-left" style="margin-left: 10px">First Name*</label>
+                            <div class="col-xs-9">
+                                <input class="form-control pull-right" id="inputFname" style="width:400px"
+                                       placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="pull-left" style="margin-left: 10px">Last Name*</label>
+                            <div class="col-xs-9">
+                                <input class="form-control pull-right" id="inputLname" style="width:400px"
+                                       placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="pull-left" style="margin-left: 10px">Username*</label>
+                            <div class="col-xs-9">
+                                <input class="form-control pull-right" id="inputUname" style="width:400px"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="pull-left" style="margin-left:10px">Photo</label>
+                            <div style="margin-left:50px">
+                                <div class="col-xs-3">
+                                    <input class="form-control" id="inputPhoto" style="margin-left:120px;width:320px"
+                                           placeholder="Upload">
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <button type="submit" class="btn btn-default" style="margin-left:290px">Browse
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-9"></div>
+                            <div class="col-xs-3">
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel panel-heading">Register</div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="pull-left" style="margin-left:10px">Password*</label>
+                            <div class="col-xs-9">
+                                <input class="form-control" id="inputFname" style="width:400px;margin-left:140px"
+                                       placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="pull-left" style="margin-left: 10px">Change Password*</label>
+                            <div class="col-xs-9">
+                                <input class="form-control pull-right" id="inputLname" style="width:400px"
+                                       placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-9"></div>
+                            <div class="col-xs-3">
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
