@@ -7,10 +7,16 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <style>
+     
+     </style>
 
+     <script type="text/javascript">
 
-    </style>
+        $(function() {
+            $('[data-tooltip="true"]').tooltip();
+        });
+    </script>
+
 
 </head>
 <body>
@@ -63,9 +69,10 @@
                 <p class="pull-right">2:45 PM 24 Feb 2016</p></div>
                 <br>
                 <div style="float: right">
-                    <button id="b1" style="height:20px;width: 20px"></button>
+                    <button id="b1" style="height:20px;width: 20px" data-tooltip="true" title="if user is logged in, 
+                    he/she can rate!"></button>
                     <button id="b2" style="height:20px;width: 20px"></button>
-                    <button id=""b3 style="height:20px;width: 20px"></button>
+                    <button id="b3" style="height:20px;width: 20px"></button>
                     <button id="b4" style="height:20px;width: 20px"></button>
                     <button id="b5" style="height:20px;width: 20px"></button>
 
@@ -148,7 +155,7 @@
                     <div class="col-sm-4" style="color:grey;margin-left: 70px">Subscription</div>
                     <div class="col-sm-4" style="color:grey">Post</div>
                 </inline>
-                <inline>
+                <div>
                     <div class="col-xs-4">
                         <div class="row">
                             <select class="form-control" rows="4" id="topic">
@@ -161,17 +168,17 @@
                     </div>
                     <div class="col-sm-3" style="color:grey; margin-left:15px"><a href="#">50</a></div>
                     <div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
-                </inline>
+                </div>
                 <br>
 
 
-            </div>
+            
 
 
             <div class="row">
                 <div class="col-xs-4"></div>
                 <div class="col-xs-4">
-                    <select class="form-control" rows="5" id="topic" style="height:100px,width:50px" >
+                    <select class="form-control" rows="5" id="topic" style="height:100px,width:50px;margin-left:50px">
                         <option>Public</option>
                         <option>private</option>
                     </select>
@@ -182,7 +189,7 @@
 
             </div>
 
-
+</div>
 
 
 
