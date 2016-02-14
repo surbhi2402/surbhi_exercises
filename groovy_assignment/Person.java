@@ -43,3 +43,39 @@
             }
 
     }
+
+
+public static void main(String[] args) {
+    
+
+    //accessing fields using . operator 
+Person person=new Person()
+person.name="Dummy User"
+person.gender="Male"
+person.address="Delhi-110032"
+person.age=24
+
+
+println "Accessing using . operator"
+println emp.name
+println emp.gender
+println emp.address
+println emp.age
+
+
+
+//accessing fields using getter setter 
+Person person=new Person()
+person.setName("Dummy User3")
+person.setGender("Male")
+person.setAddress("Delhi-110032")
+person.setAge(23)
+
+
+println "Accessing using getter and setter"
+println person.getName()
+println person.getGender()
+println person.getAddress()
+println person.getAge()
+}
+
