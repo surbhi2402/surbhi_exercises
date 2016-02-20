@@ -1,4 +1,4 @@
-/*24. Conside a class named "Employee" which has the following properties: 
+/*24. Consider a class named "Employee" which has the following properties: 
 1) Name 2) Age 3) DepartmentName 4) EmployeeNumber 5) Salary 
 Let's say that there's a list of 50 employees available.
  Perform the following operations on the list of employees: 
@@ -41,24 +41,34 @@ Let's say that there's a list of 50 employees available.
             "Above 30001"  
            }
            
-           m1.each{println it}
+           println m1.get("10001 to 20000").name
            
+              println "******part 2*********"
+              Map dept=l1.groupBy{it->
+                   it.deptName
+                }
+                println dept
+            dept.each{it ->
+    println "$it.key , Count: ${it.value.count{it}}"
+}
            
-           println "******part 2*********"
-           
-      Map<String,Integer> departmentTotalEmployee =[:];
- l1.each{
-     if(departmentTotalEmployee.containsKey(it.deptName)){
-         departmentTotalEmployee[it.deptName]= departmentTotalEmployee.get(it.deptName)+1;
-     }else{
-         departmentTotalEmployee[it.deptName]=1;
-     }
- }
+//      Map<String,Integer> departmentTotalEmployee =[:];
+// l1.each{
+//     if(departmentTotalEmployee.containsKey(it.deptName)){
+//         departmentTotalEmployee[it.deptName]= departmentTotalEmployee.get(it.deptName)+1;
+//     }else{
+//         departmentTotalEmployee[it.deptName]=1;
+//     }
+// }
 
- departmentTotalEmployee.each{
-     println it
- }
-        /*   println "*****part 3******"
+// departmentTotalEmployee.each{
+  //   println it
+ //}
+ 
+ 
+ 
+ 
+           println "*****part 3******"
            
            l1.each{
            if(it.age>=18 && it.age<=35)
@@ -69,10 +79,15 @@ Let's say that there's a list of 50 employees available.
            
            println "*******part 4******"
            
-           println l1.sort { 
-            it.name.charAt(0)}*.name
-            
-            println "age>20" + l1.findAll{it.age >20}*.name
+          Map m4=l1.groupBy{ it.name.charAt(0) 
+                       "${it.name.charAt(0)}"
+                     }
+            def n=0
+            m4.each{i,v->  v.each{ if(it.age>=20)
+            n++ }
+            println "name starting with " + i + " having age >20 " + n + " "
+            n=0               
+             }
             
             println "******part 5*********"
             
@@ -80,17 +95,4 @@ Let's say that there's a list of 50 employees available.
             it.deptName
             }
             
-            println m2*/
-            
-            
-            
-            
-            
-            
-            
-            
-           
-           
-           
-           
- 
+            println m2    

@@ -28,6 +28,7 @@ Create a list consisting of 10 Employee objects.
               //6(b). Get the name of the youngest employee and oldest employee 
               
               println list1.min{it.age}*.name
+                println list1.max{it.age}*.name              
               
              // 6(c). Get the employee with maximum salary 
              

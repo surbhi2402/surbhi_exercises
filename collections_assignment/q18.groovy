@@ -24,16 +24,16 @@
        println map.containsKey('saksham')
          println  map.keySet()
            
-       println map.containsValue(22)
-       println map.values()
-       
-       //find
-       
-      println map.find{'surbhi'}
-    map.each{println it}
-    
-    map.eachWithIndex{key,value -> println key 
-                                    println value}
-                                    
-                                    println map.toMapString()
-        
+//       println map.containsValue(22)
+//       println map.values()
+//       
+//       //find
+//       
+//      println map.find{'surbhi'}
+//    map.each{println it}
+//    
+//    map.eachWithIndex{key,value -> println key 
+//                                    println value}
+//                                    
+//                                    println map.toMapString()
+//        

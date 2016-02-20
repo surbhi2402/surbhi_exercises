@@ -7,7 +7,7 @@ List list1 = [1, 2, 3, "element1", 0.3, [2, 4, 6], 0..10]
                 p,index -> println index+ " : " + p.getClass()
     }
 
-        list1.get(6).get(9)
+       println list1.get(6).get(9)
         
     
         

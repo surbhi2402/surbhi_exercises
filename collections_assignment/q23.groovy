@@ -13,12 +13,13 @@ Map m = ["Computing":['Computing':600,'InformationSystems':300],'Engineering':['
         
         //a)
        println m.keySet()
+      m.size()
        
        //b)
       // m.containsKey('Computing')
-        println "How many programs are delivered by the Computing department?:"+m.get('Computing')?.keySet()?.size()
-
-        println "How many programs are delivered by the Computing department?:"+m.get('Engineering')?.get('Civil')        
-       
-     
-     
+       println "How many programs are delivered by the Computing department?:"+m.get('Computing')?.keySet()?.size()
+//c)
+      println "How many students are enrolled in the Civil Engineering program?:"+m.get('Engineering')?.get('Civil')        
+//       
+//     
+//     

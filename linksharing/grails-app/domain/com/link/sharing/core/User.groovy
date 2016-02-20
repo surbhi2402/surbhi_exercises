@@ -36,4 +36,8 @@ class User {
         [firstName,lastName].findAll{it}.join(' ')
         //return "${firstName}${lastName}"
     }
+
+    String toString(){
+        return this.username
+    }
 }

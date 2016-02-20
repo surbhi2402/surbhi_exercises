@@ -14,6 +14,7 @@ println s.split(" ") println s.split(/\s/) (Try Same Parameter with tokenize)
        println "Split"+" "+s.split(/\s/)
       println s.split().getClass()
       
+      
       println "tokenize with regex"+s.tokenize(/\s/)
        
         String s1 = "are.you.trying.to.split.me.mister?"

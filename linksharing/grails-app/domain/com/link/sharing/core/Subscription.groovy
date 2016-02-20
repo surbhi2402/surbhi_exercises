@@ -17,6 +17,9 @@ class Subscription {
 
     static constraints = {
         user(nullable: false)
+        //,validator{def object, def val->
+          //  return "ff.g.g"
+        //}
         topic(nullable: false,unique:'user')
         seriousness(nullable:false)
 
