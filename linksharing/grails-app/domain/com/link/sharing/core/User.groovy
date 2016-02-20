@@ -37,7 +37,5 @@ class User {
         //return "${firstName}${lastName}"
     }
 
-    String toString(){
-        return this.username
-    }
+
 }

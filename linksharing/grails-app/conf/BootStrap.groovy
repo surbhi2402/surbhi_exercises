@@ -2,6 +2,7 @@ import com.link.sharing.core.DocumentResource
 import com.link.sharing.core.LinkResource
 import com.link.sharing.core.ReadingItem
 import com.link.sharing.core.Resource
+import com.link.sharing.core.ResourceRating
 import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
@@ -16,6 +17,8 @@ class BootStrap {
         List<User> users = createUsers()
         createTopic()
         List<Resource> resources = createResources()
+        List<ReadingItem> readingItems =createReadingItems()
+        //List<ResourceRating> resourceRatings = createResourceRatings()
     }
 
 
@@ -101,21 +104,17 @@ class BootStrap {
         return resources
     }
 
-  /*  void subscribeTopics() {
+    void subscribeTopics() {
         List<User> users = User.list()
-        List<Topic> topics = Topic.list()
+      //  List<Topic> topics = Topic.list()
 
-        users.each {
-            user ->
-                topics.each { topic ->
-
-                    if (topic.createdBy != user) {
-
+        users.each { User user ->
+                user.topics.each {Topic topic ->
+                    if (topic.createdBy != this.user) {
                         Subscription subscription = new Subscription(seriousness: Seriousness.VERY_SERIOUS, user: user, topic: topic)
-
-                        subscription.validate()
+                        //subscription.validate()
                         if (subscription.hasErrors()) {
-                            log.info "Subscrption has errors-> $subscription.errors"
+                            log.info "Subscrption has errors-> ${subscription.errors}"
                         } else {
                             subscription.save(flush: true)
                             log.info "${subscription} saved successfully"
@@ -125,23 +124,65 @@ class BootStrap {
                 }
         }
 
-    }*/
-
-    void createReadingItems() {
-        List<User> users = User.list()
-        users.each { User user ->
-            user.subscriptions.each {Subscription subscription ->
-                subscription.topic.resources.each {
-                    ReadingItem readingItem = new ReadingItem(isRead: false, user: user, resource: resource)
-                    readingItem.save()
-                }
-            }
-        }
     }
 
+    List<ReadingItem> createReadingItems() {
+        List<User> users = User.list()
+        List<ReadingItem> readingItems = []
 
-    def destroy = {
+        users.each { User user ->
+            user.topics.each { Topic topic ->
+
+                    topic.resources.each { Resource resource ->
+                        if ((resource.createdBy != user) && (!user.readingItems?.contains(resource))) {
+
+                            ReadingItem readingItem = new ReadingItem(isRead: false, user: user, resource: resource)
+                            if (readingItem.hasErrors()) {
+                                log.info "Errors saving -> ${readingItem}"
+                            } else {
+                                readingItem.save(flush: true)
+                                readingItems.add(readingItem)
+                                log.info "${readingItem} saved successfully"
+                            }
+                        }
+                    }
+                }
+            }
+        
+
+        return readingItems
+        }
+
+   /* List<ResourceRating> createResourceRatings(){
+        List<User> users = User.list()
+        List<ResourceRating> resourceRatings =[]
+
+        users.each {User user->
+            user.readingItems.each {
+                ReadingItem readingItem ->
+                    if(readingItem.isRead == false){
+                        ResourceRating resourceRating = new ResourceRating(resource: readingItem.resource,user:readingItem.user ,score: 3)
+                        if(resourceRating.hasErrors()){
+                            log.info "Errors saving -> ${resourceRating}"
+                        }
+                        else {
+                            resourceRating.save()
+                            resourceRatings.add(resourceRating)
+                            log.info "${resourceRating} saved successfully"
+                        }
+                    }
+            }
+
+        }
+        return resourceRatings
+    }*/
+
+
+
+
+
+
+        def destroy = {
 
     }
 }
-

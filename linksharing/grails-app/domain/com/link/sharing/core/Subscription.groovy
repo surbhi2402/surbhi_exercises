@@ -24,4 +24,9 @@ class Subscription {
         seriousness(nullable:false)
 
     }
+
+    String toString(){
+
+        "User is : ${this.user} and topic is:  ${this.topic}"
+    }
 }

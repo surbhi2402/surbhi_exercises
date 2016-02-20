@@ -23,11 +23,6 @@ class Topic {
 
     }
 
-    @Override
-    String toString(){
-
-        return name
-    }
 
  def afterInsert ={
      Topic.withNewSession{
