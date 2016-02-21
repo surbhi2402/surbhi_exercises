@@ -17,7 +17,7 @@ class BootStrap {
         List<User> users = createUsers()
         createTopic()
         List<Resource> resources = createResources()
-        List<ReadingItem> readingItems =createReadingItems()
+       //List<ReadingItem> readingItems =createReadingItems()
         //List<ResourceRating> resourceRatings = createResourceRatings()
     }
 
@@ -126,7 +126,8 @@ class BootStrap {
 
     }
 
-    List<ReadingItem> createReadingItems() {
+
+   /* List<ReadingItem> createReadingItems() {
         List<User> users = User.list()
         List<ReadingItem> readingItems = []
 
@@ -148,10 +149,10 @@ class BootStrap {
                     }
                 }
             }
-        
+
 
         return readingItems
-        }
+        }*/
 
    /* List<ResourceRating> createResourceRatings(){
         List<User> users = User.list()

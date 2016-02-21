@@ -1,110 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="DocumentResourceSpec" package="com.link.sharing.core" skipped="0" tests="1" time="0.199" timestamp="2016-02-18T08:28:48">
+  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="LoginControllerSpec" package="com.linksharing" skipped="0" tests="1" time="3.102" timestamp="2016-02-20T11:02:29">
       <properties />
 
-      <testcase classname="com.link.sharing.core.DocumentResourceSpec" name="testing document resource class" time="0.182" />
+      <testcase classname="com.linksharing.LoginControllerSpec" name="testing logout action" time="3.032" />
 
-      <system-out><![CDATA[--Output from testing document resource class--
+      <system-out><![CDATA[--Output from testing logout action--
 ]]></system-out>
 
-      <system-err><![CDATA[--Output from testing document resource class--
-]]></system-err>
-
-  </testsuite>
-  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="1" name="LinkResourceSpec" package="com.link.sharing.core" skipped="0" tests="1" time="0.202" timestamp="2016-02-18T08:28:49">
-      <properties />
-
-      <testcase classname="com.link.sharing.core.LinkResourceSpec" name="testing link resource file" time="0.192" />
-
-      <system-out><![CDATA[--Output from testing link resource file--
-]]></system-out>
-
-      <system-err><![CDATA[--Output from testing link resource file--
-]]></system-err>
-
-  </testsuite>
-  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="2" name="ReadingItemSpec" package="com.link.sharing.core" skipped="0" tests="1" time="0.163" timestamp="2016-02-18T08:28:49">
-      <properties />
-
-      <testcase classname="com.link.sharing.core.ReadingItemSpec" name="testing reading item class" time="0.155" />
-
-      <system-out><![CDATA[--Output from testing reading item class--
-]]></system-out>
-
-      <system-err><![CDATA[--Output from testing reading item class--
-]]></system-err>
-
-  </testsuite>
-  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="3" name="ResourceRatingSpec" package="com.link.sharing.core" skipped="0" tests="1" time="4.084" timestamp="2016-02-18T08:28:43">
-      <properties />
-
-      <testcase classname="com.link.sharing.core.ResourceRatingSpec" name="testing resource rating" time="3.923" />
-
-      <system-out><![CDATA[--Output from testing resource rating--
-]]></system-out>
-
-      <system-err><![CDATA[--Output from testing resource rating--
-]]></system-err>
-
-  </testsuite>
-  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="4" name="SubscriptionSpec" package="com.link.sharing.core" skipped="0" tests="1" time="0.359" timestamp="2016-02-18T08:28:47">
-      <properties />
-
-      <testcase classname="com.link.sharing.core.SubscriptionSpec" name="testing subscripton class" time="0.344" />
-
-      <system-out><![CDATA[--Output from testing subscripton class--
-]]></system-out>
-
-      <system-err><![CDATA[--Output from testing subscripton class--
-]]></system-err>
-
-  </testsuite>
-  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="5" name="TopicSpec" package="com.link.sharing.core" skipped="0" tests="1" time="0.19" timestamp="2016-02-18T08:28:49">
-      <properties />
-
-      <testcase classname="com.link.sharing.core.TopicSpec" name="testing topic" time="0.174" />
-
-      <system-out><![CDATA[--Output from testing topic--
-]]></system-out>
-
-      <system-err><![CDATA[--Output from testing topic--
-]]></system-err>
-
-  </testsuite>
-  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="6" name="UserSpec" package="com.link.sharing.core" skipped="0" tests="7" time="0.554" timestamp="2016-02-18T08:28:48">
-      <properties />
-
-      <testcase classname="com.link.sharing.core.UserSpec" name="passed" time="0.175" />
-
-      <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.039" />
-
-      <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.028" />
-
-      <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.03" />
-
-      <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.038" />
-
-      <testcase classname="com.link.sharing.core.UserSpec" name="email id of user should be unique" time="0.147" />
-
-      <testcase classname="com.link.sharing.core.UserSpec" name="test name property that is transient" time="0.075" />
-
-      <system-out><![CDATA[--Output from passed--
---Output from failed--
---Output from failed--
---Output from failed--
---Output from failed--
---Output from email id of user should be unique--
---Output from test name property that is transient--
-]]></system-out>
-
-      <system-err><![CDATA[--Output from passed--
---Output from failed--
---Output from failed--
---Output from failed--
---Output from failed--
---Output from email id of user should be unique--
---Output from test name property that is transient--
+      <system-err><![CDATA[--Output from testing logout action--
 ]]></system-err>
 
   </testsuite>

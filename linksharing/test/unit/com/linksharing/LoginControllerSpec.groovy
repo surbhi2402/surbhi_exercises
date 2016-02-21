@@ -15,6 +15,25 @@ class LoginControllerSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "testing index action"() {
+            when:"calling action for indexing on ogin controller"
+            controller.index()
+
+            then:"text failure is rendered"
+           // response.forwardedUrl == '/user/index'
+            response.contentAsString == "failure!"
+
     }
+
+    void "testing logout action"(){
+
+        when:"logout is called"
+        controller.logout()
+
+        then:
+        session.invalidate()
+        response.forwardedUrl == '/login/index'
+    }
+
+
 }
