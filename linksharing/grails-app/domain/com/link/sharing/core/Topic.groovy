@@ -23,9 +23,13 @@ class Topic {
 
     }
 
+    static mapping = {
+        sort name:'asc'
+    }
 
- def afterInsert ={
-     Topic.withNewSession{
+
+ def afterInsert() {
+     Subscription.withNewSession{
          Subscription subscription =new Subscription(user:this.createdBy,seriousness: Seriousness.VERY_SERIOUS,topic:this)
         if(subscription.save())
         {

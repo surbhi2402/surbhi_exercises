@@ -20,7 +20,7 @@ class LoginControllerSpec extends Specification {
             controller.index()
 
             then:"text failure is rendered"
-           // response.forwardedUrl == '/user/index'
+           //response.forwardedUrl == '/user/index'
             response.contentAsString == "failure!"
 
     }

@@ -17,8 +17,9 @@ class BootStrap {
         List<User> users = createUsers()
         createTopic()
         List<Resource> resources = createResources()
-       //List<ReadingItem> readingItems =createReadingItems()
-        //List<ResourceRating> resourceRatings = createResourceRatings()
+        subscribeTopics()
+       List<ReadingItem> readingItems =createReadingItems()
+        List<ResourceRating> resourceRatings = createResourceRatings()
     }
 
 
@@ -106,17 +107,19 @@ class BootStrap {
 
     void subscribeTopics() {
         List<User> users = User.list()
-      //  List<Topic> topics = Topic.list()
+        List<Topic> topics = Topic.list()
 
         users.each { User user ->
-                user.topics.each {Topic topic ->
-                    if (topic.createdBy != this.user) {
+            topics.each {Topic topic ->
+                    if (topic.createdBy != user) {
                         Subscription subscription = new Subscription(seriousness: Seriousness.VERY_SERIOUS, user: user, topic: topic)
                         //subscription.validate()
                         if (subscription.hasErrors()) {
                             log.info "Subscrption has errors-> ${subscription.errors}"
                         } else {
                             subscription.save(flush: true)
+                            //topic.addToSubscrition(subscription)
+                            //user.addToSubscription(subscription)
                             log.info "${subscription} saved successfully"
                         }
                     }
@@ -127,16 +130,19 @@ class BootStrap {
     }
 
 
-   /* List<ReadingItem> createReadingItems() {
+    List<ReadingItem> createReadingItems() {
         List<User> users = User.list()
+        List<Topic> topics = Topic.list()
         List<ReadingItem> readingItems = []
 
         users.each { User user ->
-            user.topics.each { Topic topic ->
+            topics.each { Topic topic ->
+                if (Subscription.findByUserAndTopic(user,topic)) {
 
                     topic.resources.each { Resource resource ->
-                        if ((resource.createdBy != user) && (!user.readingItems?.contains(resource))) {
 
+                        if ((resource.createdBy != user) && (!user.readingItems?.contains(resource))) {
+                           // log.info "*****"
                             ReadingItem readingItem = new ReadingItem(isRead: false, user: user, resource: resource)
                             if (readingItem.hasErrors()) {
                                 log.info "Errors saving -> ${readingItem}"
@@ -144,25 +150,30 @@ class BootStrap {
                                 readingItem.save(flush: true)
                                 readingItems.add(readingItem)
                                 log.info "${readingItem} saved successfully"
+                               // user.addToReadingItems(readingItem)
+                                user.addToReadingItems(readingItem)
                             }
                         }
                     }
                 }
             }
-
+            user.save(flush: true)
+        }
 
         return readingItems
-        }*/
+        }
 
-   /* List<ResourceRating> createResourceRatings(){
+    List<ResourceRating> createResourceRatings(){
         List<User> users = User.list()
         List<ResourceRating> resourceRatings =[]
 
         users.each {User user->
-            user.readingItems.each {
+
+            user.readingItems?.each {
                 ReadingItem readingItem ->
-                    if(readingItem.isRead == false){
+                    if(!readingItem.isRead){
                         ResourceRating resourceRating = new ResourceRating(resource: readingItem.resource,user:readingItem.user ,score: 3)
+
                         if(resourceRating.hasErrors()){
                             log.info "Errors saving -> ${resourceRating}"
                         }
@@ -170,13 +181,15 @@ class BootStrap {
                             resourceRating.save()
                             resourceRatings.add(resourceRating)
                             log.info "${resourceRating} saved successfully"
+                            readingItem.resource.addToResourceRatings(resourceRating)
+
                         }
                     }
             }
 
         }
         return resourceRatings
-    }*/
+    }
 
 
 

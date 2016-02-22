@@ -5293,3 +5293,7 @@ n:2571:script14558120845301067990094$_run_closure2$_closure7
 n:2571:script14558120845301067990094$_run_closure2$_closure8
 n:3050:script14558120845301067990094$_run_closure3
 n:1391:java_lang_Object$getClass
+n:2273:org/codehaus/groovy/grails/commons/GrailsApplication$isArtefactOfType
+n:1543:org/apache/commons/logging/Log$isDebugEnabled
+n:2188:org/codehaus/groovy/grails/commons/GrailsApplication$addArtefact$0
+n:429:grails/web/RequestParameter

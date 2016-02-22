@@ -27,12 +27,15 @@ class LoginController {
 
     def logout(){
             session.invalidate()
+       // render session.user
             forward(action: "index")
     }
 
     def loginHandler(String username,String password){
+                User user = User.findByUsernameAndPassword(username,password)
 
-            if (params.username == "admin" && params.password == "su") {
+            println "=======user====$user.properties"
+            if (user && user.active) {
                 //render "User is active"
                 session.user = true
                 redirect(action: "index",params: [username: "admin"])
@@ -44,33 +47,4 @@ class LoginController {
         }
     }
 
- def show(String id){
-
-      def topic
-
-      topic = Topic.get(params:id)
-
-      /*def user = get(params: id) */
-
-    if(!topic){
-         redirect(controller: "user", action: "index")
-         flash.error = "No topic in database"
-     }
-     else {
-         if(Visibillity.PUBLIC){
-             render "Successfull"
-         }
-         else if(Visibillity.PRIVATE){
-             render "private topic"
-
-             if(user.subscription.topic == this.topic)
-                 render "success"
-
-             else {
-                 redirect(controller: "user",action: "login")
-                 flash.error = "user not subscribed to this private topic"
-             }
-         }
-     }
- }
 }
