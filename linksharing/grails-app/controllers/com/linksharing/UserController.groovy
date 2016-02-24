@@ -9,7 +9,7 @@ class UserController {
     }
 
     def register() {
-        println "insidde register"
+        println "inside register"
 
         if (session.user) {
             flash.message = "You are already Registered"
