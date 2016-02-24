@@ -41,7 +41,7 @@ class TopicController {
 
     def save(String name, String seriousness) {
         println "***inside save of topic"
-        Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visibillity.convert(seriousness))
+        Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visibility.convert(seriousness))
 
         if (topic.save()) {
             flash.message = "Success"

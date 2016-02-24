@@ -6,19 +6,27 @@ import com.ttnd.linksharing.Enum.Visibility
 
 class ResourceController {
 
-    def index() {}
+    def index() {
+        render "Inside resource!"
+    }
 
-//    def delete(){
-//        if(!resource.load(params.id)){
-//
-//        }
-
-    def search(ResourceSearchCo co){
-        if(co.q){
-            co.visibility = Visibility.PUBLIC
+    def delete(Long id) {
+        Resource resource = Resource.get(id)
+        if (!resource) {
+            render "Resource does not exists"
+        }else {
+            resource.delete()
+            render "Resource deleted successfully!"
         }
-        List<Resource> resources = Resource.search(co).list()
-        render resources
     }
-    }
+
+        def search(ResourceSearchCo co) {
+            if (co.q) {
+                co.visibility = Visibility.PUBLIC
+            }
+            List<Resource> resources = Resource.search(co).list()
+            render resources
+        }
+
+}
 
