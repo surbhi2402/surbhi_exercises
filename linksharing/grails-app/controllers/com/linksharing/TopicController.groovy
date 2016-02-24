@@ -1,7 +1,11 @@
 package com.linksharing
 
+import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
-import com.ttnd.linksharing.Enum.Visibillity
+import com.link.sharing.core.User
+import com.ttnd.linksharing.Co.ResourceSearchCo
+import com.ttnd.linksharing.Enum.Seriousness
+import com.ttnd.linksharing.Enum.Visibility
 
 class TopicController {
 
@@ -9,29 +13,46 @@ class TopicController {
 
         render "inside index"
     }
-    def show() {
+    def show(Long id,ResourceSearchCo resourceSearchCo) {
         println "under show"
         def topic
-        topic = Topic.get(params.id)
+        topic = Topic.get(id)
 
         if(!topic){
             redirect(controller: "user", action: "index")
             flash.error = "No topic in database"
         }
         else {
-            if(Visibillity.PUBLIC){
+            if(Visibility.PUBLIC){
                 render "success"
             }
-            else if(Visibillity.PRIVATE) {
-                if (session.user) {
-
-                render "Can not see the topic as it's private topic"
-            }
-                else {
-                    redirect(controller: "user",action: "login")
-                    flash.error = "user not subscribed to this private topic"
+            else if(Visibility.PRIVATE) {
+                User user1 = User.findByUserName(session.user)
+                def subscription = Subscription.findAllByUserAndTopic(user1, topic)
+                if (!subscription) {
+                    redirect(controller: 'login', action: 'index')
+                    flash.message = "Subscription does not exists."
+                } else {
+                    render "Success"
                 }
             }
         }
     }
+
+    def save(String name, String seriousness) {
+        println "***inside save of topic"
+        Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visibillity.convert(seriousness))
+
+        if (topic.save()) {
+            flash.message = "Success"
+            render flash.message
+        } else {
+            log.error(" Could not save Topic ${topic.name}")
+            flash.message = "Topic ${topic.name} does not satisfied constraints"
+            render flash.message
+
+        }
+
+    }
+
 }

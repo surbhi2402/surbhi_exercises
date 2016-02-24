@@ -5297,3 +5297,9 @@ n:2273:org/codehaus/groovy/grails/commons/GrailsApplication$isArtefactOfType
 n:1543:org/apache/commons/logging/Log$isDebugEnabled
 n:2188:org/codehaus/groovy/grails/commons/GrailsApplication$addArtefact$0
 n:429:grails/web/RequestParameter
+n:603:grails/validation/Validateable
+n:566:org/codehaus/groovy/grails/validation/Validateable
+n:1489:org/apache/commons/logging/Log$debug$0
+n:2768:BuildConfig$_run_closure1$_closure5
+n:2386:_Events
+n:2483:_Events$_run_closure1

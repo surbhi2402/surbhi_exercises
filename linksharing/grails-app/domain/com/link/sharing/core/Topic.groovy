@@ -1,7 +1,8 @@
 package com.link.sharing.core
 
 import com.ttnd.linksharing.Enum.Seriousness
-import com.ttnd.linksharing.Enum.Visibillity
+import com.ttnd.linksharing.Enum.Visibility
+
 
 
 
@@ -11,7 +12,7 @@ class Topic {
     Date dateCreated
     Date lastUpdated
     User createdBy
-    Visibillity visibility
+    Visibility Visibility
 
    static hasMany = [subscritions:Subscription,resources:Resource]
 
@@ -29,9 +30,13 @@ class Topic {
 
 
  def afterInsert() {
-     Subscription.withNewSession{
-         Subscription subscription =new Subscription(user:this.createdBy,seriousness: Seriousness.VERY_SERIOUS,topic:this)
-        if(subscription.save())
+     System.err.println("....${this.id}")
+
+     Topic.withNewSession{
+         System.err.println("....${this.id}")
+         Topic topic = Topic.get(this.id)
+         Subscription subscription =new Subscription(user:topic.createdBy,seriousness: Seriousness.VERY_SERIOUS,topic:topic)
+        if(subscription.save(flush: true))
         {
             log.info "Subscription saved successfully"
         }

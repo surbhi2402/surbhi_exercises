@@ -1,6 +1,8 @@
 package com.linksharing
 
+import com.link.sharing.core.User
 import grails.test.mixin.TestFor
+import spock.lang.IgnoreRest
 import spock.lang.Specification
 
 /**
@@ -9,19 +11,24 @@ import spock.lang.Specification
 @TestFor(LoginController)
 class LoginControllerSpec extends Specification {
 
-    def setup() {
-    }
 
-    def cleanup() {
+
+
+    void "when session is set, user is forwarded to user index"(){
+        setup:
+        controller.session.user = new User()
+        when:
+        controller.index()
+        then:
+        response.forwardedUrl == '/user/index'
     }
 
     void "testing index action"() {
-            when:"calling action for indexing on ogin controller"
+            when:"calling action for indexing on login controller"
             controller.index()
 
             then:"text failure is rendered"
-           //response.forwardedUrl == '/user/index'
-            response.contentAsString == "failure!"
+            response.contentAsString == "failure!-> Please login"
 
     }
 
@@ -35,5 +42,15 @@ class LoginControllerSpec extends Specification {
         response.forwardedUrl == '/login/index'
     }
 
+//    void "testing Login Handler function"(){
+//        setup:
+//        User user = new User(username: "surbhi",password: "abcdefhgh",active: true,email: "newuser@tothenew.com",firstName: "surbhi",lastName: "dhawan")
+//
+//        when:
+//        controller.loginHandler("surbhi","abcdefhgh")
+//
+//        then:
+//        response.redirectedUrl == '/login/index'
+//    }
 
 }

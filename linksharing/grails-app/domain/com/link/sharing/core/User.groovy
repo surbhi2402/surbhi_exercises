@@ -19,13 +19,15 @@ class User {
     static constraints = {
         email(unique:true,blank: false, nullable: false,email:true)
         password(nullable:false, blank: false,minSize: 5,validator:{ value, object -> if(value.size()<5) return false })
-        confirmPassword nullable: true,blank: true,minSize: 5,binding:true,
-                validator:{val,obj ->
-                    if(obj.password != obj.confirmPassword) {
-                        return "object.password.not.match"
-                    }else {
-                        return true
-                    }
+        confirmPassword nullable: true,blank: true,minSize: 5,bindable:true,
+                validator: { val, obj ->
+                        if (val != obj.password) {
+                           // return "object.password.not.match"
+                            return false
+                        } else {
+                            return true
+                        }
+
                 }
         firstName(nullable:false,blank: false)
         photo(nullable: true)

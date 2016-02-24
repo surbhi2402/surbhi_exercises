@@ -7,7 +7,7 @@ import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
 import com.ttnd.linksharing.Enum.Seriousness
-import com.ttnd.linksharing.Enum.Visibillity
+import com.ttnd.linksharing.Enum.Visibility
 import com.ttnd.linksharing.constants.Constants
 
 class BootStrap {
@@ -27,8 +27,8 @@ class BootStrap {
 
         List<User> users = []
 
-        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: false, username: "surbhi", lastName: "dhawan")
-        User adminUser = new User(email: "admin@tothenew.com", password: "jitin", firstName: "admin", admin: true, username: "jitin", lastName: "dominic")
+        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: false, username: "surbhi", lastName: "dhawan",confirmPassword: "surbhidhawan")
+        User adminUser = new User(email: "admin@tothenew.com", password: "jitin", firstName: "admin", admin: true, username: "jitin", lastName: "dominic",confirmPassword: "jitin")
 
         if (User.count() == 0) {
 
@@ -57,15 +57,14 @@ class BootStrap {
         users.each {
 
             user ->
-                if (!user.topics?.count()) {
+                if (!user.topics?.size()) {
 
                     (1..5).each {
 
-                        Topic topic = new Topic(name: "topic" + it, createdBy: user, visibility: Visibillity.PUBLIC)
+                        Topic topic = new Topic(name: "topic" + it, createdBy: user, Visibility: Visibility.PUBLIC)
+                        topic.save(flush: true, failOnError: true)
                         user.addToTopics(topic)
-                        topic.save()
                     }
-                    user.save()
                 }
 
         }
@@ -79,26 +78,21 @@ class BootStrap {
         topics.each
                 {
                     topic ->
-                        if (!topic.resources?.count()) {
+                        if (!topic.resources?.size()) {
                             2.times
                                     {
                                         Resource documentResource = new DocumentResource(description: "${topic.name}Doc${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path")
                                         Resource linkResource = new LinkResource(description: "${topic.name}Link${it}", topic: topic, createdBy: topic.createdBy, url: "http://www.someurl.com")
 
-                                        if (documentResource.save() && linkResource.save()) {
-//                                            resources.add(documentResource)
-//                                            resources.add(linkResource)
+                                        if (documentResource.save(flush: true, failOnError: true) && linkResource.save(flush:true, failOnError: true)) {
+                                            resources.add(documentResource)
+                                            resources.add(linkResource)
                                             topic.addToResources(documentResource)
                                             topic.addToResources(linkResource)
                                             log.info "${documentResource} and ${linkResource} saved successfully"
                                         } else
                                             log.error "Error saving ${documentResource.errors.allErrors} and ${linkResource.errors.allErrors}"
                                     }
-
-                            if (topic.save())
-                                log.info "Topic ${topic} saved successfully"
-                            else
-                                log.error "Error saving ${topic.errors.allErrors}"
                         }
 
                 }
@@ -117,7 +111,7 @@ class BootStrap {
                         if (subscription.hasErrors()) {
                             log.info "Subscrption has errors-> ${subscription.errors}"
                         } else {
-                            subscription.save(flush: true)
+                            subscription.save(flush:true, failOnError: true)
                             //topic.addToSubscrition(subscription)
                             //user.addToSubscription(subscription)
                             log.info "${subscription} saved successfully"
@@ -147,7 +141,7 @@ class BootStrap {
                             if (readingItem.hasErrors()) {
                                 log.info "Errors saving -> ${readingItem}"
                             } else {
-                                readingItem.save(flush: true)
+                                readingItem.save(flush:true, failOnError: true)
                                 readingItems.add(readingItem)
                                 log.info "${readingItem} saved successfully"
                                // user.addToReadingItems(readingItem)
@@ -157,7 +151,6 @@ class BootStrap {
                     }
                 }
             }
-            user.save(flush: true)
         }
 
         return readingItems

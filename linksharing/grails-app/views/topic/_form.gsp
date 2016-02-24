@@ -1,4 +1,4 @@
-<%@ page import="com.link.sharing.core.Topic" %>
+<%@ page import="com.ttnd.linksharing.Enum.Visibility; com.link.sharing.core.Topic" %>
 
 
 
@@ -61,7 +61,7 @@
 		<g:message code="topic.visibility.label" default="Visibility" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visibillity?.values()}" keys="${com.ttnd.linksharing.Enum.Visibillity.values()*.name()}" required="" value="${topicInstance?.visibility?.name()}" />
+	<g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visibility?.values()}" keys="${com.ttnd.linksharing.Enum.Visibillity.values()*.name()}" required="" value="${topicInstance?.visibility?.name()}" />
 
 </div>
 

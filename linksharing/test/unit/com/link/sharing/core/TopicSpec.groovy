@@ -1,8 +1,9 @@
 package com.link.sharing.core
 
+
 import grails.test.mixin.TestFor
 import spock.lang.Specification
-import com.ttnd.linksharing.Enum.Visibillity
+import com.ttnd.linksharing.Enum.Visibility
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -28,9 +29,9 @@ class TopicSpec extends Specification {
         result == expectedOutput
 
         where:
-        n       | author     | visibility          || expectedOutput
-        "abcd"  | new User() | Visibillity.PUBLIC  || true
-        "xyze"  | new User() | Visibillity.PRIVATE || true
-        "ffsvf" | "xyze"     | Visibillity.PRIVATE || false
+        n       | author     | visibility         || expectedOutput
+        "abcd"  | new User() | Visibility.PUBLIC  || false
+        "xyze"  | new User() | Visibility.PRIVATE || false
+        "ffsvf" | "xyze"     | Visibility.PRIVATE || false
     }
 }

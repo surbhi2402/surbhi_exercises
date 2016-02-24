@@ -1,5 +1,7 @@
 package com.link.sharing.core
 
+import com.ttnd.linksharing.Co.ResourceSearchCo
+
 abstract class Resource {
 
     String description
@@ -15,7 +17,20 @@ abstract class Resource {
     static mapping = {
         description(type:'text')
     }
+    static namedQueries = {
+        search { ResourceSearchCo co ->
+            if(co.topicId) {
+                'topic'{
+                    eq('id',co.topicId)
+                    eq('visibility',co.visibility)
+                }
+            }
+        }
+    }
+
 }
+
+
 
 
 
