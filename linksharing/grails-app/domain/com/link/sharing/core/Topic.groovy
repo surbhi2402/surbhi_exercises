@@ -27,7 +27,7 @@ class Topic {
         sort name: 'asc'
     }
 
-    static getTrendigTopics() {
+    static getTrendingTopics() {
         List topicVos = Resource.createCriteria().list {
 
             projections {
@@ -37,13 +37,9 @@ class Topic {
                 property('t.visibility')
                 property('t.createdBy')
                 count('id')
-
-
             }
             //max('resourceCount')
-
             maxResults 5
-
             order('t.name', 'desc')
         }
         println "${topicVos}"
@@ -51,9 +47,7 @@ class Topic {
         topicVos.each {
             topicVoList.add(new TopicVo(id: it[0], name: it[1], visibility: it[2], createdBy: it[3], count: it[4]))
         }
-
         return topicVoList
-
     }
 
     def afterInsert() {

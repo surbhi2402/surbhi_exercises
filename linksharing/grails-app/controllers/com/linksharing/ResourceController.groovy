@@ -41,7 +41,7 @@ class ResourceController {
     }
 
     def showTopics(){
-        List<TopicVo> topicVoList = Topic.getTrendigTopics()
+        List<TopicVo> topicVoList = Topic.getTrendingTopics()
         render topicVoList
     }
 

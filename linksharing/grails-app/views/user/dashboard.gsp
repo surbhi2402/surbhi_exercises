@@ -12,5 +12,6 @@
     <meta name="layout" content="main">
 </head>
 <body>
+    <g:render template="/topic/showTopic"></g:render>
 </body>
 </html>
