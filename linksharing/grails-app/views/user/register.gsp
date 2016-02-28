@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: surbhi
-  Date: 26/2/16
-  Time: 5:21 PM
+  Date: 28/2/16
+  Time: 10:57 AM
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -13,7 +13,6 @@
 </head>
 
 <body>
-        <g:render template="form"></g:render>
-        <g:render template="/user/registration"></g:render>
+    <g:render template="registration"></g:render>
 </body>
 </html>

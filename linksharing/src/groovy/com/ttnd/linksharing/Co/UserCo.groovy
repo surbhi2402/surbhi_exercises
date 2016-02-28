@@ -9,4 +9,5 @@ class UserCo {
     String password
     String email
     String username
+    String confirmPassword
 }

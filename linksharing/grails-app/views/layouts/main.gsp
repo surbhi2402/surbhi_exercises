@@ -33,13 +33,13 @@
 				<a href="#" data-toggle="modal" data-target="#createtopic" data-tooltip="true" title="Send Invitation"><i
 						class="fa fa-comment fa-fw" style="font-size:20px"></i></a>
 
-				<a href="#myModal4" data-toggle="modal" data-target="#myModal4" data-tooltip="true" title="Send Invitation"><i
+				<a href="#" data-toggle="modal" data-target="#myModal4" data-tooltip="true" title="Send Invitation"><i
 						class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>
 
-				<a href="#myModal" data-toggle="modal" data-target="#myModal" data-tooltip="true" title="Create Resource"><i
+				<a href="#" data-toggle="modal" data-target="#submitLink" data-tooltip="true" title="Create Resource"><i
 						class="fa fa-link fa-fw" style="font-size:20px"></i></a>
 
-				<a href="#myModal2" data-toggle="modal" data-target="#myModal2" data-tooltip="true" title="Send Document"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
+				<a href="#" data-toggle="modal" data-target="#submitDocument" data-tooltip="true" title="Send Document"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
 
 				<a class="glyphicon glyphicon-user" style="font-size:30px"></a>
 				<div class="dropdown" style="float:right">
@@ -60,6 +60,8 @@
 
 	</div>
         <g:render template="/topic/createTopic"></g:render>
+		<g:render template="/linkResource/submitLink"></g:render>
+        <g:render template="/documentResource/submitDocument"></g:render>
 	</g:if>
 		<g:else>
             <div class="container" style="height:100px">

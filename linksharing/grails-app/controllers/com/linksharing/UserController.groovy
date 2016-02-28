@@ -16,19 +16,19 @@ class UserController {
         if (session.user) {
             render "You are already Registered"
         } else {
-            User user = new User(email:userCo.email,firstName: userCo.firstName,lastName: userCo.lastName,password: userCo.password,username: userCo.username )
+            User user = new User(email:userCo.email,firstName: userCo.firstName,lastName: userCo.lastName,password: userCo.password,username: userCo.username,confirmPassword: userCo.confirmPassword )
 
             if (user?.hasErrors()) {
 //                    flash.message = "new.user.validate.error"
-                render (view: 'myForm',model: [user:user])
-//                    render "validation failed!!!"
+//                render (view: 'register',model: [user:user])
+                    render "validation failed!!!"
                 } else {
                     user.save(flush: true)
                     render "validation succeeded"
                 }
             }
 
-        render "heyyyyyy"
+        render "-----"
         }
 
 
