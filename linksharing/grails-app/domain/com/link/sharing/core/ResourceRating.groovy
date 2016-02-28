@@ -18,4 +18,17 @@ class ResourceRating {
         resource unique: 'user'
         user nullable: false
     }
+
+    static topPost(){
+        List topPostList = ResourceRating.createCriteria().list(){
+            projections{
+                groupProperty('resource.id')
+                property('resource')
+                count('score')
+            }
+            //order('resource.id','desc')
+            maxResults 5
+        }
+        return topPostList
+    }
 }

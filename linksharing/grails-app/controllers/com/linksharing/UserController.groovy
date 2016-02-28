@@ -1,29 +1,38 @@
 package com.linksharing
 
 import com.link.sharing.core.User
+import com.ttnd.linksharing.Co.UserCo
 
 class UserController {
 
     def index() {
-        render "User Dashboard"
+        render(view: 'dashboard')
+        //render "User Dashboard ${params.username}"
     }
 
-    def register() {
+    def register(UserCo userCo) {
         println "inside register"
 
         if (session.user) {
-            flash.message = "You are already Registered"
+            render "You are already Registered"
         } else {
-            User user = new User(email: "new@tothenew.com", password: "abcdefgh", firstName: "newUser")
+            User user = new User(email:userCo.email,firstName: userCo.firstName,lastName: userCo.lastName,password: userCo.password,username: userCo.username )
 
-            if (user.hasErrors()) {
-                if (!user.validate()) {
-                    flash.message = "new.user.validate.error"
-                    render flash.message
+            if (user?.hasErrors()) {
+//                    flash.message = "new.user.validate.error"
+                render (view: 'myForm',model: [user:user])
+//                    render "validation failed!!!"
                 } else {
+                    user.save(flush: true)
                     render "validation succeeded"
                 }
             }
+
+        render "heyyyyyy"
         }
+
+
+    def createForm(){
+        render (view: 'myForm.gsp')
     }
 }

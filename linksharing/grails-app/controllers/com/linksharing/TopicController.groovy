@@ -39,14 +39,16 @@ class TopicController {
         }
     }
 
-    def save(String name, String seriousness) {
+    def save(String name, String visibility) {
         println "***inside save of topic"
-        Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visibility.convert(seriousness))
 
-        if (topic.save()) {
+        Topic topic = new Topic(name: name, createdBy: session.user, visibility: Visibility.convert(visibility))
+        if (topic.validate()) {
+            topic.save(flush: true)
             flash.message = "Success"
             render flash.message
         } else {
+            render topic.errors
             log.error(" Could not save Topic ${topic.name}")
             flash.message = "Topic ${topic.name} does not satisfied constraints"
             render flash.message

@@ -27,7 +27,7 @@ class BootStrap {
 
         List<User> users = []
 
-        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: false, username: "surbhi", lastName: "dhawan",confirmPassword: "surbhidhawan")
+        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: true, username: "surbhi", lastName: "dhawan",confirmPassword: "surbhidhawan")
         User adminUser = new User(email: "admin@tothenew.com", password: "jitin", firstName: "admin", admin: true, username: "jitin", lastName: "dominic",confirmPassword: "jitin")
 
         if (User.count() == 0) {
@@ -61,7 +61,7 @@ class BootStrap {
 
                     (1..5).each {
 
-                        Topic topic = new Topic(name: "topic" + it, createdBy: user, Visibility: Visibility.PUBLIC)
+                        Topic topic = new Topic(name: "topic" + it, createdBy: user, visibility: Visibility.PUBLIC)
                         topic.save(flush: true, failOnError: true)
                         user.addToTopics(topic)
                     }
@@ -144,7 +144,7 @@ class BootStrap {
                                 readingItem.save(flush:true, failOnError: true)
                                 readingItems.add(readingItem)
                                 log.info "${readingItem} saved successfully"
-                               // user.addToReadingItems(readingItem)
+                                user.addToReadingItems(readingItem)
                                 user.addToReadingItems(readingItem)
                             }
                         }

@@ -5,7 +5,7 @@ package com.ttnd.linksharing.Vo
  */
 class RatingInfoVo {
 
-    Integer totalvotes
-    Integer avgscore
-    Integer totalscore
+    Integer totalVotes
+    Integer averageScore
+    Integer totalScore
 }

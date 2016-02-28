@@ -10,7 +10,7 @@ class UrlMappings {
         "/"(controller: "login",action: "index")
       // "/topic"(controller: "topic",action: "index")
         "500"(view:'/error')
-
+//    "/"(view: "/index")
 
 	}
 }

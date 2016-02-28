@@ -12,6 +12,7 @@ enum Visibility {
             Visibility.PUBLIC
         else
             Visibility.PRIVATE
+
     }
 
 }

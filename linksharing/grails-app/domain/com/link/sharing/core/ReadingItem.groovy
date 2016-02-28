@@ -15,4 +15,12 @@ class ReadingItem {
         isRead(nullable: false)
         user nullable: false
     }
+
+    def executeUpdate(){
+        User user = User.get(1)
+        String firstName = user.firstName
+        User.executeUpdate("update User as u set u.firstName = firstName where u.id =:id", [firstName:"surbhi",id:1.toLong()])
+        render "firstName before --> ${firstName} and firstName after --> ${user.firstName}"
+
+    }
 }

@@ -9,17 +9,88 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><g:layoutTitle default="Grails"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <asset:javascript src="jquery-2.2.1.min.js"/>
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<g:layoutHead/>
 	</head>
-	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+<body>
+	<g:if test="${session.user}">
+	<div class="container" style="height:100px">
+
+		<nav class="navbar header" style="border:2px solid lightblue">
+			<a class="navbar-brand" href="#">Link sharing</a>
+			<form class="navbar-form navbar-right" role="search">
+				<span class="glyphicon glyphicon-search"></span>
+				<input type="text" class="form-control" placeholder="Search">
+				<span class="badge" class="glyphicon glyphicon-remove"></span>
+			</input>
+
+                %{--<i class="fa fa-comment" data-target="#createtopic" data-toggle="modal"></i>--}%
+				<a href="#" data-toggle="modal" data-target="#createtopic" data-tooltip="true" title="Send Invitation"><i
+						class="fa fa-comment fa-fw" style="font-size:20px"></i></a>
+
+				<a href="#myModal4" data-toggle="modal" data-target="#myModal4" data-tooltip="true" title="Send Invitation"><i
+						class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>
+
+				<a href="#myModal" data-toggle="modal" data-target="#myModal" data-tooltip="true" title="Create Resource"><i
+						class="fa fa-link fa-fw" style="font-size:20px"></i></a>
+
+				<a href="#myModal2" data-toggle="modal" data-target="#myModal2" data-tooltip="true" title="Send Document"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
+
+				<a class="glyphicon glyphicon-user" style="font-size:30px"></a>
+				<div class="dropdown" style="float:right">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Uday<span
+							class="caret">
+					</span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Profile</a></li>
+						<li><a href="#">Users</a></li>
+						<li><a href="#">Topics</a></li>
+						<li><a href="#">Posts</a></li>
+						<li><a href="#">Logout</a></li>
+					</ul>
+				</div>
+			</form>
+
+		</nav>
+
+	</div>
+        <g:render template="/topic/createTopic"></g:render>
+	</g:if>
+		<g:else>
+            <div class="container" style="height:100px">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a class="navbar-brand" href="#">Link sharing</a>
+
+                    </div>
+                    <div class="col-md-8"></div>
+                    <div class="col-md-3 pull-right">
+                        <form class="navbar-form" role="search">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" style="height: 34px"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" style="height: 34px"><i class="glyphicon glyphicon-remove"></i></button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+		</g:else>
+	<g:layoutBody/>
 	</body>
 </html>
+
+
+

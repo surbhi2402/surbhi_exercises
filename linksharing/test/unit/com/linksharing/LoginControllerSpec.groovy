@@ -1,6 +1,7 @@
 package com.linksharing
 
 import com.link.sharing.core.User
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.IgnoreRest
 import spock.lang.Specification
@@ -9,6 +10,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
 @TestFor(LoginController)
+@Mock([User])
 class LoginControllerSpec extends Specification {
 
 
@@ -42,15 +44,17 @@ class LoginControllerSpec extends Specification {
         response.forwardedUrl == '/login/index'
     }
 
-//    void "testing Login Handler function"(){
-//        setup:
-//        User user = new User(username: "surbhi",password: "abcdefhgh",active: true,email: "newuser@tothenew.com",firstName: "surbhi",lastName: "dhawan")
-//
-//        when:
-//        controller.loginHandler("surbhi","abcdefhgh")
-//
-//        then:
-//        response.redirectedUrl == '/login/index'
-//    }
+    @IgnoreRest
+    void "testing Login Handler function"(){
+        setup:
+        User user = new User(username: "surbhi",password: "abcdefhgh",active: true,email: "newuser@tothenew.com",firstName: "surbhi",lastName: "dhawan")
+        user.save(validate: false)
+
+        when:
+        controller.loginHandler("surbhi","abcdefhgh")
+
+        then:
+        response.redirectedUrl == '/login/index'
+    }
 
 }

@@ -1,8 +1,12 @@
 package com.linksharing
 
 import com.link.sharing.core.Resource
+import com.link.sharing.core.ResourceRating
+import com.link.sharing.core.Topic
 import com.ttnd.linksharing.Co.ResourceSearchCo
 import com.ttnd.linksharing.Enum.Visibility
+import com.ttnd.linksharing.Vo.RatingInfoVo
+import com.ttnd.linksharing.Vo.TopicVo
 
 class ResourceController {
 
@@ -15,7 +19,7 @@ class ResourceController {
         if (!resource) {
             render "Resource does not exists"
         }else {
-            resource.delete()
+            resource.delete(flush: true)
             render "Resource deleted successfully!"
         }
     }
@@ -28,5 +32,27 @@ class ResourceController {
             render resources
         }
 
+    def show(Long id){
+            Resource resource = Resource.findById(id)
+
+        RatingInfoVo ratingInfoVo = resource.ratingInfo
+
+        render "****total votes: $ratingInfoVo.totalVotes*****average: $ratingInfoVo.averageScore***total: $ratingInfoVo.totalScore"
+    }
+
+    def showTopics(){
+        List<TopicVo> topicVoList = Topic.getTrendigTopics()
+        render topicVoList
+    }
+
+    def showTopPost(){
+        List topicsss = ResourceRating.topPost()
+        List ids=[]
+        topicsss.each {
+            ids.add(it[0])
+        }
+        List<Resource> resources=Resource.getAll(ids)
+        render resources
+    }
 }
 

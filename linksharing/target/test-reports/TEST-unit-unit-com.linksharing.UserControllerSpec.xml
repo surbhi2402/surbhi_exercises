@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.UserControllerSpec" skipped="0" tests="1" time="3.368" timestamp="2016-02-24T18:03:08">
-  <properties />
-  <testcase classname="com.linksharing.UserControllerSpec" name="testing user controller" time="3.316" />
-  <system-out><![CDATA[--Output from testing user controller--
-]]></system-out>
-  <system-err><![CDATA[--Output from testing user controller--
-]]></system-err>
-</testsuite>
