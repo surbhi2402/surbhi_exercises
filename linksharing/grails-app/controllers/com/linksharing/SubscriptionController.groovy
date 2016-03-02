@@ -9,8 +9,7 @@ class SubscriptionController {
 
     def index() {}
 
-    def deleting(Long id,String username,String password) {
-        User user = User.findByUsernameAndPassword(username,password)
+    def delete(Long id) {
         Subscription subscription = Subscription.get(id)
         if(subscription){
             subscription.delete(flush: true)
@@ -20,7 +19,7 @@ class SubscriptionController {
         }
     }
 
-    def saving(Long id) {
+    def save(Long id) {
 
        // User user = User.findByUsernameAndPassword(username, password)
         Topic topic = Topic.get(id)
@@ -34,7 +33,7 @@ class SubscriptionController {
         }
     }
 
-    def updating(Long id,String seriousness) {
+    def update(Long id,String seriousness) {
         println "inside updating"
         seriousness = Seriousness.convert(seriousness)
         Subscription subscription = Subscription.findByIdAndSeriousness(id,seriousness)

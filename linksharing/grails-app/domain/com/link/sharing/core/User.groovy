@@ -21,12 +21,12 @@ class User {
         password(nullable:false, blank: false,minSize: 5,validator:{ value, object -> if(value.size()<5) return false })
         confirmPassword nullable: true,blank: true,minSize: 5,bindable:true,
                 validator: { val, obj ->
-                        if (val != obj.password) {
-                           // return "object.password.not.match"
-                            return false
-                        } else {
-                            return true
-                        }
+                    if (val != obj.password) {
+                        // return "object.password.not.match"
+                        return false
+                    } else {
+                        return true
+                    }
 
                 }
         firstName(nullable:false,blank: false)
@@ -35,7 +35,7 @@ class User {
         active(nullable: true)
     }
 
-    static transients = ['name','confirmPassword']
+    static transients = ['name','confirmPassword','subscribeTopics']
 
     static mapping = {
         photo(sqlType:'blob')
@@ -49,5 +49,25 @@ class User {
         //return "${firstName}${lastName}"
     }
 
+    List<Topic> getSubscribeTopics(){
+        List<Topic> topics= Subscription.createCriteria().list() {
+            projections {
+                property('topic')
+            }
+            eq('user.id',this.id)
+        }
+        return topics
+    }
 
+    User save(){
+        User user = this
+        user.validate()
+        if(user.hasErrors()){
+            log.error("Error in saving user: ${user.errors}")
+        }else{
+            user.save(flush: true)
+            log.info "Users saved successfully"
+        }
+        return user
+    }
 }

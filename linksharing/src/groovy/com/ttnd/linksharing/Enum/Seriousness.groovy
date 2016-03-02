@@ -9,6 +9,7 @@ enum Seriousness {
 
     static Seriousness convert(String s)
     {
+        s = s.toUpperCase()
         if(s=="SERIOUS")
             Seriousness.SERIOUS
 
@@ -18,6 +19,5 @@ enum Seriousness {
         else
             Seriousness.CASUAL
     }
-
 }
 

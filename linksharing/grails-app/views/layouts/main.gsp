@@ -55,9 +55,7 @@
                     </ul>
                 </div>
             </form>
-
         </nav>
-
     </div>
     <g:render template="/topic/createTopic"></g:render>
     <g:render template="/linkResource/submitLink"></g:render>

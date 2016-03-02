@@ -46,6 +46,20 @@ abstract class Resource {
         }
     }
 
+   static List<Resource> showTopPost(){
+        List topicsss = ResourceRating.topPost()
+        List ids=[]
+        topicsss.each {
+            ids.add(it[0])
+        }
+        List<Resource> resources=Resource.getAll(ids)
+        resources
+    }
+
+    String toString(){
+        createdBy
+    }
+
 }
 
 

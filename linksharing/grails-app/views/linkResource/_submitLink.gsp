@@ -27,10 +27,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="topic" class="control-label col-xs-2">Topic*</label>
+                                <label for="topic1" class="control-label col-xs-2">Topic*</label>
                                 <div class="col-xs-10">
-                                    <g:select name="topic" from="${com.link.sharing.core.Topic.name}"
-                                              value="${com.link.sharing.core.Topic.name}" noSelection="['':'select Topic']"/>
+                                    <g:select name="topic1" from="${subscribeTopics}" optionKey="id"
+                                              value="${subscribeTopics}" noSelection="['':'select Topic']"/>
                                 </div>
                             </div>
 

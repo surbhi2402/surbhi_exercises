@@ -18,41 +18,31 @@ class ResourceController {
         Resource resource = Resource.get(id)
         if (!resource) {
             render "Resource does not exists"
-        }else {
+        } else {
             resource.delete(flush: true)
             render "Resource deleted successfully!"
         }
     }
 
-        def search(ResourceSearchCo co) {
-            if (co.q) {
-                co.visibility = Visibility.PUBLIC
-            }
-            List<Resource> resources = Resource.search(co).list()
-            render resources
+    def search(ResourceSearchCo co) {
+        if (co.q) {
+            co.visibility = Visibility.PUBLIC
         }
+        List<Resource> resources = Resource.search(co).list()
+        render resources
+    }
 
-    def show(Long id){
-            Resource resource = Resource.findById(id)
+    def show(Long id) {
+        Resource resource = Resource.findById(id)
 
         RatingInfoVo ratingInfoVo = resource.ratingInfo
 
         render "****total votes: $ratingInfoVo.totalVotes*****average: $ratingInfoVo.averageScore***total: $ratingInfoVo.totalScore"
     }
 
-    def showTopics(){
-        List<TopicVo> topicVoList = Topic.getTrendingTopics()
-        render topicVoList
-    }
-
-    def showTopPost(){
-        List topicsss = ResourceRating.topPost()
-        List ids=[]
-        topicsss.each {
-            ids.add(it[0])
-        }
-        List<Resource> resources=Resource.getAll(ids)
-        render resources
-    }
+//     def showTopics() {
+//        List<TopicVo> topicVoList = Topic.getTrendingTopics()
+//        render(template: "/topic/showTopic", model: [topicVoList: topicVoList])
+//
+//    }
 }
-

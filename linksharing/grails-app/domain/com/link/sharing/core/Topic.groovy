@@ -27,8 +27,10 @@ class Topic {
         sort name: 'asc'
     }
 
-    static getTrendingTopics() {
-        List topicVos = Resource.createCriteria().list {
+    static transients = ['subscribeUsers']
+
+    static List<TopicVo> getTrendingTopics() {
+        List topicVos = Resource.createCriteria().list([max:1]) {
 
             projections {
                 createAlias('topic', 't')
@@ -37,6 +39,7 @@ class Topic {
                 property('t.visibility')
                 property('t.createdBy')
                 count('id')
+                eq('t.visibility', Visibility.PUBLIC)
             }
             //max('resourceCount')
             maxResults 5
@@ -63,5 +66,13 @@ class Topic {
                 log.error "could not save subscriptions"
             }
         }
+    }
+
+//    List<User> getSubscribeUsers(){
+//
+//    }
+
+    String toString() {
+        return "topic: ${name}"
     }
 }

@@ -12,4 +12,9 @@ class TopicVo {
     Visibility visibility
     Integer count
     User createdBy
+
+
+    String toString(){
+        name
+    }
 }

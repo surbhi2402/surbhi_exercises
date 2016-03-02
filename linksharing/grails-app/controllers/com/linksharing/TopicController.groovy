@@ -16,7 +16,7 @@ class TopicController {
     def show(Long id,ResourceSearchCo resourceSearchCo) {
         println "under show"
         def topic
-        topic = Topic.get(id)
+        topic = Topic.read(id)
 
         if(!topic){
             redirect(controller: "user", action: "index")
@@ -48,7 +48,6 @@ class TopicController {
             flash.message = "Success"
             render flash.message
         } else {
-            render topic.errors
             log.error(" Could not save Topic ${topic.name}")
             flash.message = "Topic ${topic.name} does not satisfied constraints"
             render flash.message
