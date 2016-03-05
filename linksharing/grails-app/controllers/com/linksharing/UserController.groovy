@@ -1,6 +1,8 @@
 package com.linksharing
 
 import com.link.sharing.core.ReadingItem
+import com.link.sharing.core.Resource
+import com.link.sharing.core.ResourceRating
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.UserCo
@@ -38,4 +40,14 @@ class UserController {
         render(view: '/user/forgotPassword')
     }
 
+    def getScore(Long id,Integer score){
+        Resource resource = Resource.read(id)
+        User user = session.user
+        if(ResourceRating.executeUpdate("update ResourceRating r set r.score=:score where r.resource.id=id and r.user.id = :userId", [userId: user.id])){
+            render "Score has been updated"
+        }
+        else{
+            render "score not changed"
+        }
+    }
 }

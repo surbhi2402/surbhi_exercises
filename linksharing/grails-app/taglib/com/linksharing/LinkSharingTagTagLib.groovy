@@ -11,7 +11,7 @@ class LinkSharingTagTagLib {
 
     def markRead = { attrs, body ->
         User user = session.user
-        String link = "${createLink(controller: 'readingItem',action: 'changeIsRead',params: [id:attrs.id, isRead: !attrs.isRead])}"
+        String link = "${createLink(controller: 'readingItem', action: 'changeIsRead', params: [id: attrs.id, isRead: !attrs.isRead])}"
         if (user) {
             if (!attrs.isRead) {
                 out << "<a href=$link>Mark as Unread</a>"
@@ -25,23 +25,26 @@ class LinkSharingTagTagLib {
 
     def checkType = { attrs, body ->
 
-        if(com.link.sharing.core.Resource.checkResourceType(attrs.id)){
+        if (com.link.sharing.core.Resource.checkResourceType(attrs.id)) {
             out << "<a href=${attrs.filePath}>Download</a>"
-        }
-        else{
+        } else {
             out << "<a href=${attrs.url} target='_blank'>View full site</a>"
         }
     }
 
-    def resourceDelete = {attrs,body ->
-        if(session.user) {
+    def resourceDelete = { attrs, body ->
+        if (session.user) {
             User user = session.user
             if (user.canDeleteResource(attrs.id)) {
-                String deleteLink = "${createLink(controller:'resource',action:'delete',params:[id:attrs.id])}"
+                String deleteLink = "${createLink(controller: 'resource', action: 'delete', params: [id: attrs.id])}"
                 out << "<a href=$deleteLink>Delete</a>"
             }
         }
     }
-
+//    def showSubscribe={attrs,body ->
+//        if(session.user){
+//            if()
+//        }
+//    }
 
 }

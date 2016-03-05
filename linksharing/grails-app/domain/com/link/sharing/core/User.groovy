@@ -79,7 +79,23 @@ class User {
         } else {
             return false
         }
+    }
 
-
+    static Boolean isSubscribed(Long id){
+        Long topicId = id
+        User user = this
+        if(user) {
+            Subscription.createCriteria().list {
+                createAlias('topic', 't')
+                projections {
+                    property('t.id')
+                }
+                eq('t.id', topicId)
+            }
+            return true
+        }
+        else{
+            return false
+        }
     }
 }

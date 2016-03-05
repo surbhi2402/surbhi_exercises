@@ -11,51 +11,50 @@ abstract class Resource {
     Date dateCreated
     Date lastUpdated
 
-    static hasMany=[resourceRatings:ResourceRating,readingItems:ReadingItem]
+    static hasMany = [resourceRatings: ResourceRating, readingItems: ReadingItem]
 
-    static belongsTo = [topic:Topic]
+    static belongsTo = [topic: Topic]
 
     static transients = ['ratingInfo']
 
-    RatingInfoVo getRatingInfo(){
-            List result = ResourceRating.createCriteria().get{
-                'resource'{
-                    eq('id',this.id)
-                }
-                projections {
-                    sum('score')
-                    avg('score')
-                    count('score')
-                }
+    RatingInfoVo getRatingInfo() {
+        List result = ResourceRating.createCriteria().get {
+            'resource' {
+                eq('id', this.id)
             }
-        RatingInfoVo ratingInfoVo = new RatingInfoVo(totalVotes: result[0],totalScore: result[2],averageScore: result[1])
+            projections {
+                sum('score')
+                avg('score')
+                count('score')
+            }
+        }
+        RatingInfoVo ratingInfoVo = new RatingInfoVo(totalVotes: result[0], totalScore: result[2], averageScore: result[1])
         ratingInfoVo
     }
 
     static mapping = {
-        description(type:'text')
+        description(type: 'text')
     }
     static namedQueries = {
         search { ResourceSearchCo co ->
-            if(co.topicId) {
-                'topic'{
-                    eq('id',co.topicId)
-                    eq('visibility',co.visibility)
+            if (co.topicId) {
+                'topic' {
+                    eq('id', co.topicId)
+                    eq('visibility', co.visibility)
                 }
             }
         }
     }
 
-   static List<Resource> showTopPost(){
+    static List<Resource> showTopPost() {
         List topicsss = ResourceRating.topPost()
-        List ids=[]
+        List ids = []
         topicsss.each {
             ids.add(it[0])
         }
-        List<Resource> resources=Resource.getAll(ids)
+        List<Resource> resources = Resource.getAll(ids)
         resources
     }
-
 
 
     static Boolean checkResourceType(Long id) {
@@ -64,6 +63,16 @@ abstract class Resource {
             return false
         } else {
             return true
+        }
+    }
+
+    static Boolean canViewBy(User user, Long id) {
+        Resource resource = Resource.read(id)
+        println "=======${resource.id}"
+        if (Topic.canViewedBy(user,resource.topic?.id)) {
+            return true
+        } else {
+            return false
         }
     }
 

@@ -13,7 +13,7 @@ class Topic {
     User createdBy
     Visibility visibility
 
-    static hasMany = [subscritions: Subscription, resources: Resource]
+    static hasMany = [subscriptions: Subscription, resources: Resource]
 
 
     static constraints = {
@@ -90,10 +90,9 @@ class Topic {
         }
     }
 
-    def canViewedBy(Long id){
-        User current = session.user
+    static Boolean canViewedBy(User user,Long id){
         Topic topic = Topic.get(id)
-        if(current.admin || topic.isPublic()){
+        if(user.admin || topic.isPublic()){
             return true
         }else{
             return false

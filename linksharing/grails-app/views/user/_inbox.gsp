@@ -21,7 +21,7 @@
                     <ls:markRead isRead="${inbox.isRead}" resourceId="${inbox.resourceID}"></ls:markRead>
                     <g:link controller="resource" action="viewPost" params='[id:"${inbox.resourceID}"]'>View Post</g:link>
                     %{--<g:link controller="resource" action="viewPost"><u>View Posts</u></g:link></a>--}%
-
+                    <g:link controller="resource" action="show" params='[id:"${inbox.resourceID}"]'>View Resource</g:link>
                 </div>
                 <hr>
             </div>

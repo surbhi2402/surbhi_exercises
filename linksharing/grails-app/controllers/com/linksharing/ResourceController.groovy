@@ -43,11 +43,19 @@ class ResourceController {
     }
 
     def show(Long id) {
-        Resource resource = Resource.findById(id)
-
-        RatingInfoVo ratingInfoVo = resource.ratingInfo
-
-        render "****total votes: $ratingInfoVo.totalVotes*****average: $ratingInfoVo.averageScore***total: $ratingInfoVo.totalScore"
+        User user = session.user
+        List<TopicVo> trendingTopics = Topic.getTrendingTopics()
+        List<PostVO> readingItems =ReadingItem.getInboxItems(user)
+        Resource resource = Resource.read(id)
+        if(Resource.canViewBy(user,id)){
+        render(view: '/resource/resourceSearch',model: [trendingTopics: trendingTopics,readingItemList:readingItems,resource:resource])
+        }
+        else {
+            render "you cannot view this resource"
+        }
+//        Resource resource = Resource.findById(id)
+//        RatingInfoVo ratingInfoVo = resource.ratingInfo
+//        render "****total votes: $ratingInfoVo.totalVotes*****average: $ratingInfoVo.averageScore***total: $ratingInfoVo.totalScore"
     }
 
 //     def showTopics() {
@@ -61,8 +69,8 @@ class ResourceController {
         List<TopicVo> trendingTopics = Topic.getTrendingTopics()
         List<PostVO> readingItems =ReadingItem.getInboxItems(user)
         Resource resource = Resource.read(id)
-        println "=====${resource}===="
-        println "=====${resource.id}===="
+//        println "=====${resource}===="
+//        println "=====${resource.id}===="
         render(view: '/resource/resourceSearch',model: [trendingTopics: trendingTopics,readingItemList:readingItems,resource:resource])
     }
 }
