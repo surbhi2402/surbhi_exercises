@@ -81,9 +81,8 @@ class User {
         }
     }
 
-    static Boolean isSubscribed(Long id){
+    static Boolean isSubscribed(User user,Long id){
         Long topicId = id
-        User user = this
         if(user) {
             Subscription.createCriteria().list {
                 createAlias('topic', 't')

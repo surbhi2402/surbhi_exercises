@@ -1,5 +1,6 @@
 package com.linksharing
 
+import com.link.sharing.core.Subscription
 import com.link.sharing.core.User
 import org.apache.log4j.lf5.util.Resource
 
@@ -41,10 +42,17 @@ class LinkSharingTagTagLib {
             }
         }
     }
-//    def showSubscribe={attrs,body ->
-//        if(session.user){
-//            if()
-//        }
-//    }
+    def showSubscribe = { attrs, body ->
+        if (session.user) {
+            String subscribe = "${createLink(controller: 'subscription', action: 'save', params: [id: attrs.id])}"
+            out << "Subscribe"
+            out << "<a href=$subscribe>Save</a>"
+
+            String unsubscribe = "${createLink(controller: 'subscription', action: 'delete', params: [id: attrs.id])}"
+            out << "Unsubscribe"
+            out << "<a href=$unsubscribe>Delete</a>"
+
+        }
+    }
 
 }

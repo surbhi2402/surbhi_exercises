@@ -23,7 +23,7 @@ class TopicController {
         }
         else {
             if(Visibility.PUBLIC){
-                render (view: '/topic/displayTopic' ,model:[topics:topic,subscribedUsers:topic.subscribedUsers])
+                render (view: '/topic/displayTopic' ,model:[topic:topic,subscribedUsers:topic.subscribedUsers])
             }
             else if(Visibility.PRIVATE) {
                 User user1 = User.findByUserName(session.user)

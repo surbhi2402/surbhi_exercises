@@ -16,7 +16,7 @@
 
 <div class="col-xs-5">
     <div class="row" style="margin:9px">
-        <g:render template="/topic/showTopic" model="[topics:topic]"/>
+        <g:render template="/topic/showTopic" model="[topic:topic]"/>
     </div>
     <div class="row" style="margin:9px">
         <g:render template="/topic/showUser" model="[subscribedUsers:subscribedUsers]"/>
