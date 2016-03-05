@@ -27,10 +27,10 @@ class Topic {
         sort name: 'asc'
     }
 
-    static transients = ['subscribeUsers']
+    static transients = ['subscribedUsers']
 
     static List<TopicVo> getTrendingTopics() {
-        List topicVos = Resource.createCriteria().list([max:1]) {
+        List topicVos = Resource.createCriteria().list([max: 1]) {
 
             projections {
                 createAlias('topic', 't')
@@ -41,7 +41,6 @@ class Topic {
                 count('id')
                 eq('t.visibility', Visibility.PUBLIC)
             }
-            //max('resourceCount')
             maxResults 5
             order('t.name', 'desc')
         }
@@ -68,9 +67,38 @@ class Topic {
         }
     }
 
-//    List<User> getSubscribeUsers(){
-//
-//    }
+    List<User> getSubscribedUsers() {
+        List<User> subscribedUsers = Subscription.createCriteria().list {
+            projections {
+                property('user')
+            }
+            eq('topic.id', this.id)
+        }
+        return subscribedUsers
+    }
+
+    Boolean isPublic() {
+        def vis = Topic.createCriteria().list {
+            projections {
+                property('visibility')
+            }
+        }?.each {
+            if (Visibility.PUBLIC == it as Visibility)
+                return true
+            else
+                return false
+        }
+    }
+
+    def canViewedBy(Long id){
+        User current = session.user
+        Topic topic = Topic.get(id)
+        if(current.admin || topic.isPublic()){
+            return true
+        }else{
+            return false
+        }
+    }
 
     String toString() {
         return "topic: ${name}"

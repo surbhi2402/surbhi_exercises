@@ -6,25 +6,24 @@ import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.ResourceSearchCo
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visibility
+import com.ttnd.linksharing.Vo.TopicVo
 
 class TopicController {
 
     def index() {
-
-        render "inside index"
+        List<TopicVo> trendingTopics = Topic.getTrendingTopics()
+        render (view: '/topic/searchPage',model: [trendingTopics: trendingTopics])
     }
-    def show(Long id,ResourceSearchCo resourceSearchCo) {
-        println "under show"
+    def show(ResourceSearchCo resourceSearchCo) {
         def topic
-        topic = Topic.read(id)
-
+        topic = Topic.read(resourceSearchCo?.topicId)
         if(!topic){
             redirect(controller: "user", action: "index")
             flash.error = "No topic in database"
         }
         else {
             if(Visibility.PUBLIC){
-                render "success"
+                render (view: '/topic/displayTopic' ,model:[topics:topic,subscribedUsers:topic.subscribedUsers])
             }
             else if(Visibility.PRIVATE) {
                 User user1 = User.findByUserName(session.user)
@@ -55,5 +54,7 @@ class TopicController {
         }
 
     }
+
+
 
 }

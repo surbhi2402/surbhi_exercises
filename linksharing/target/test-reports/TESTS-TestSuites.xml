@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="1" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="LoginControllerSpec" package="com.linksharing" skipped="0" tests="1" time="6.817" timestamp="2016-02-27T10:22:29">
+  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="TopicControllerSpec" package="com.linksharing" skipped="0" tests="1" time="5.857" timestamp="2016-03-03T09:27:53">
       <properties />
 
-      <testcase classname="com.linksharing.LoginControllerSpec" name="testing Login Handler function" time="6.655">
-          <error message="No signature of method: com.linksharing.LoginController.loginHandler() is applicable for argument types: (java.lang.String, java.lang.String) values: [surbhi, abcdefhgh]" type="groovy.lang.MissingMethodException">groovy.lang.MissingMethodException: No signature of method: com.linksharing.LoginController.loginHandler() is applicable for argument types: (java.lang.String, java.lang.String) values: [surbhi, abcdefhgh]
-	at org.codehaus.groovy.grails.plugins.web.api.ControllerTagLibraryApi.methodMissing(ControllerTagLibraryApi.java:97)
-	at org.springsource.loaded.ri.ReflectiveInterceptor.jlrMethodInvoke(ReflectiveInterceptor.java:1426)
-	at com.linksharing.LoginControllerSpec.testing Login Handler function(LoginControllerSpec.groovy:54)
-</error>
+      <testcase classname="com.linksharing.TopicControllerSpec" name="testing show action of Topic" time="5.795" />
 
-      </testcase>
-
-      <system-out><![CDATA[--Output from testing Login Handler function--
+      <system-out><![CDATA[--Output from testing show action of Topic--
+==success=====response.text==success
 ]]></system-out>
 
-      <system-err><![CDATA[--Output from testing Login Handler function--
+      <system-err><![CDATA[--Output from testing show action of Topic--
 ]]></system-err>
 
   </testsuite>

@@ -12,13 +12,11 @@
                             <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
                         </div>
                     </div>
-
                     <div class="col-xs-9">
                         <div class="row">
-                            <a href="#">${trendingTopics.createdBy.username}</a>
+                            <g:link controller="topic" action="show" params='[topicId:"${topic.id}"]'>${topic}</g:link>
                         </div>
                         <br/><br/>
-
                         <div class="row">
                             <div class="col-xs-4">
                                 <small class="col-xs-12">@vikas</small>

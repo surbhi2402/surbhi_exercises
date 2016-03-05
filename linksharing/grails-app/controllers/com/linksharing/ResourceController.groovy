@@ -1,17 +1,23 @@
 package com.linksharing
 
+import com.link.sharing.core.LinkResource
+import com.link.sharing.core.ReadingItem
 import com.link.sharing.core.Resource
 import com.link.sharing.core.ResourceRating
 import com.link.sharing.core.Topic
+import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.ResourceSearchCo
 import com.ttnd.linksharing.Enum.Visibility
+import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.RatingInfoVo
 import com.ttnd.linksharing.Vo.TopicVo
 
 class ResourceController {
 
     def index() {
-        render "Inside resource!"
+//        render "Inside resource!"
+        List<TopicVo> trendingTopics = Topic.getTrendingTopics()
+        render (view: 'resourceSearch',model: [trendingTopics: trendingTopics])
     }
 
     def delete(Long id) {
@@ -20,7 +26,11 @@ class ResourceController {
             render "Resource does not exists"
         } else {
             resource.delete(flush: true)
-            render "Resource deleted successfully!"
+            List<TopicVo> trendingTopics = Topic.getTrendingTopics()
+            List<PostVO> readingItems =ReadingItem.getInboxItems(session.user)
+            render(view: '/user/dashboard',model: [trendingTopics:trendingTopics,readingItemList:readingItems])
+            //flash.message= "Resource deleted successfully!"
+            //render flash.message
         }
     }
 
@@ -45,4 +55,15 @@ class ResourceController {
 //        render(template: "/topic/showTopic", model: [topicVoList: topicVoList])
 //
 //    }
+
+    def viewPost(Long id){
+        User user = session.user
+        List<TopicVo> trendingTopics = Topic.getTrendingTopics()
+        List<PostVO> readingItems =ReadingItem.getInboxItems(user)
+        Resource resource = Resource.read(id)
+        println "=====${resource}===="
+        println "=====${resource.id}===="
+        render(view: '/resource/resourceSearch',model: [trendingTopics: trendingTopics,readingItemList:readingItems,resource:resource])
+    }
 }
+

@@ -1,5 +1,5 @@
 <div class="col-xs-6">
-<div class="well well-lg" style="height:130px;width: 500px">
+<div class="well well-lg" style="height:130px;width: 500px;float: left">
     <div class="glyphicon glyphicon-user" style="float:left;font-size:60px"></div>
     <div class="col-xs-offset-3">
         <div style="color:black">Uday Pratap</div>

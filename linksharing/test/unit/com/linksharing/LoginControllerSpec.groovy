@@ -44,17 +44,53 @@ class LoginControllerSpec extends Specification {
         response.forwardedUrl == '/login/index'
     }
 
-    @IgnoreRest
-    void "testing Login Handler function"(){
+
+    void "testing Login Action"(){
         setup:
         User user = new User(username: "surbhi",password: "abcdefhgh",active: true,email: "newuser@tothenew.com",firstName: "surbhi",lastName: "dhawan")
         user.save(validate: false)
 
         when:
-        controller.loginHandler("surbhi","abcdefhgh")
+        controller.login("surbhi","abcdefhgh")
 
         then:
-        response.redirectedUrl == '/login/index'
+        response.redirectedUrl == '/user/index'
+    }
+
+
+
+    void "testing Login action when user is not active"(){
+        setup:
+        User user = new User(username: "surbhi",password: "abcdefhgh",active: false,email: "newuser@tothenew.com",firstName: "surbhi",lastName: "dhawan")
+        user.save(validate: false)
+
+        when:
+        controller.login("surbhi","abcdefhgh")
+
+        then:
+        flash.error == 'Your account is not active'
+    }
+
+
+    void "testing Login action when user is not found"(){
+        when:
+        controller.login("veena","xyzzzzz")
+
+        then:
+        flash.error == 'User not found'
+    }
+
+    void "testing Logout action"(){
+        setup:
+        User user = new User(username: "surbhi",password: "abcdefhgh",active: false,email: "newuser@tothenew.com",firstName: "surbhi",lastName: "dhawan")
+        user.save(validate: false)
+
+        when:
+        controller.logout()
+
+        then:
+        session.invalidate()
+        response.forwardedUrl == '/login/index'
     }
 
 }

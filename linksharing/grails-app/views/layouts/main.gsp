@@ -51,7 +51,7 @@
                         <li><a href="#">Users</a></li>
                         <li><a href="#">Topics</a></li>
                         <li><a href="#">Posts</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="/login/logout">Logout</a></li>
                     </ul>
                 </div>
             </form>

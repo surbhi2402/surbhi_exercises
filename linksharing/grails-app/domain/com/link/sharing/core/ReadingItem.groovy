@@ -1,5 +1,7 @@
 package com.link.sharing.core
 
+import com.ttnd.linksharing.Vo.PostVO
+
 class ReadingItem {
 
     //Resource resource
@@ -8,19 +10,50 @@ class ReadingItem {
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [user:User,resource:Resource]
+    static belongsTo = [user: User, resource: Resource]
 
     static constraints = {
-        resource(unique: 'user',nullable: false)
+        resource(unique: 'user', nullable: false)
         isRead(nullable: false)
         user nullable: false
     }
 
-    def executeUpdate(){
+    def executeUpdate() {
         User user = User.get(1)
         String firstName = user.firstName
-        User.executeUpdate("update User as u set u.firstName = firstName where u.id =:id", [firstName:"surbhi",id:1.toLong()])
+        User.executeUpdate("update User as u set u.firstName = firstName where u.id =:id", [firstName: "surbhi", id: 1.toLong()])
         render "firstName before --> ${firstName} and firstName after --> ${user.firstName}"
 
+    }
+
+//    static def getResourceDetails(User user){
+//        def ReadingItemList = ReadingItem.findAllByUser(user)
+//        def result = ReadingItem.createCriteria().list {
+//            projections {
+//                property('resource.id')
+//                property('isRead')
+//                'resource'{
+//                    property('url')
+//                    property('filePath')
+//                }
+//            }
+//            eq('user',user)
+//        }
+//        return result
+//    }
+
+
+    static def getInboxItems(user) {
+// User currentUser = session.user
+        List<PostVO> readingItemsList= [];
+        ReadingItem.findAllByUserAndIsRead(user,false).each{
+            readingItemsList.add(new PostVO(resourceID: it.resource.id, description: it.resource.description,
+                    topicName: it.resource.topic.name, userUserName: it.resource.createdBy.username,
+                    userFirstName: it.resource.createdBy.firstName, userLastName: it.resource.createdBy.lastName,
+                    userPhoto: it.resource.createdBy.photo, isRead: it.isRead,
+                    url: it.resource.class.equals(LinkResource) ? it.resource.id : "",
+                    filePath: it.resource.class.equals(DocumentResource) ? it.resource.id : ""))
+        }
+        return readingItemsList
     }
 }

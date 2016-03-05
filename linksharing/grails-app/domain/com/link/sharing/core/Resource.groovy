@@ -56,8 +56,15 @@ abstract class Resource {
         resources
     }
 
-    String toString(){
-        createdBy
+
+
+    static Boolean checkResourceType(Long id) {
+        Resource resource = Resource.get(id)
+        if (resource.class.equals(LinkResource)) {
+            return false
+        } else {
+            return true
+        }
     }
 
 }

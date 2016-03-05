@@ -16,7 +16,7 @@ class BootStrap {
 
 
     void createUsers() {
-        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: true, username: "surbhi", lastName: "dhawan",confirmPassword: "surbhidhawan",active: true)
+        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: false, username: "surbhi", lastName: "dhawan",confirmPassword: "surbhidhawan",active: true)
         User adminUser = new User(email: "admin@tothenew.com", password: "jitin", firstName: "admin", admin: true, username: "jitin", lastName: "dominic",confirmPassword: "jitin")
 
         if (User.count() == 0) {
@@ -69,8 +69,8 @@ class BootStrap {
                         log.info "Subscrption has errors-> ${subscription.errors}"
                     } else {
                         subscription.save(flush:true, failOnError: true)
-                        //topic.addToSubscrition(subscription)
-                        //user.addToSubscription(subscription)
+//                        topic.addToSubscrition(subscription)
+//                        user.addToSubscription(subscription)
                         log.info "${subscription} saved successfully"
                     }
                 }
@@ -139,11 +139,6 @@ class BootStrap {
         }
         return resourceRatings
     }
-
-
-
-
-
 
     def destroy = {
 

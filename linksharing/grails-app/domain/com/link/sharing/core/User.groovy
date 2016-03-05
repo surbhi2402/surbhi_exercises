@@ -70,4 +70,16 @@ class User {
         }
         return user
     }
+
+     Boolean canDeleteResource(Long id){
+        Resource resource = Resource.read(id)
+         println "=====${resource.id}================"
+        if(this.admin || resource.createdBy.id == this.id){
+            return true
+        } else {
+            return false
+        }
+
+
+    }
 }
