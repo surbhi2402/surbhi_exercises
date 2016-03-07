@@ -45,8 +45,8 @@ class ReadingItem {
 
     static def getInboxItems(user) {
 // User currentUser = session.user
-        List<PostVO> readingItemsList= [];
-        ReadingItem.findAllByUserAndIsRead(user,false).each{
+        List<PostVO> readingItemsList = [];
+        ReadingItem.findAllByUserAndIsRead(user, false).each {
             readingItemsList.add(new PostVO(resourceID: it.resource.id, description: it.resource.description,
                     topicName: it.resource.topic.name, userUserName: it.resource.createdBy.username,
                     userFirstName: it.resource.createdBy.firstName, userLastName: it.resource.createdBy.lastName,

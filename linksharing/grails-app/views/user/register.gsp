@@ -13,6 +13,6 @@
 </head>
 
 <body>
-    <g:render template="registration"></g:render>
+<g:render template="registration"></g:render>
 </body>
 </html>

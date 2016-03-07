@@ -18,18 +18,18 @@ class UserSpec extends Specification {
     }
 
 
-  @Unroll("#description")
-   def "testing user spec"() {
+    @Unroll("#description")
+    def "testing user spec"() {
 
-        given:"a user"
-        User user = new User(email:email,firstName:fname,lastName:lname,password:passwd,username:uname)
+        given: "a user"
+        User user = new User(email: email, firstName: fname, lastName: lname, password: passwd, username: uname)
 
         when:
-      Boolean result= user.validate()
+        Boolean result = user.validate()
 
         then:
-       //user.hasErrors()
-        result==expectedOutput
+        //user.hasErrors()
+        result == expectedOutput
 
         where:
         description | email             | fname     | lname     | passwd     | uname   || expectedOutput
@@ -40,7 +40,7 @@ class UserSpec extends Specification {
         "failed"    | "abcd@gnmail.com" | null      | "dhawan"  | "gtshdt"   | "test5" || false
 
 
-  }
+    }
 
     def "email id of user should be unique"() {
         given:
@@ -54,7 +54,7 @@ class UserSpec extends Specification {
         user.count() == 1
 
         when:
-        User user2 = new User(firstName: "priyanka", lastName: "gupta", email: "sakshi@tothenew.com", password: "sakshi", username:"pg")
+        User user2 = new User(firstName: "priyanka", lastName: "gupta", email: "sakshi@tothenew.com", password: "sakshi", username: "pg")
         user2.save()
 
         then:
@@ -65,10 +65,10 @@ class UserSpec extends Specification {
     }
 
 
-    def "test name property that is transient"(){
+    def "test name property that is transient"() {
 
         given:
-        User user = new User(firstName: fname, lastName: lname, email: mail, password:passwod, username:uname)
+        User user = new User(firstName: fname, lastName: lname, email: mail, password: passwod, username: uname)
 
         when:
         user.getName()

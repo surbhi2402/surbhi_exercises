@@ -10,14 +10,13 @@ class DocumentResourceController {
         render "inside document resource!"
     }
 
-    def save(String filePath,String description,Integer topic1){
+    def save(String filePath, String description, Integer topic1) {
         Topic topic = Topic.findById(topic1)
-        Resource resource = new DocumentResource(description:description,createdBy: session.user,topic: topic,filePath:filePath)
-        if(resource.validate()){
+        Resource resource = new DocumentResource(description: description, createdBy: session.user, topic: topic, filePath: filePath)
+        if (resource.validate()) {
             resource.save(flush: true)
             render "Document saved successfully"
-        }
-        else {
+        } else {
             render "Document not saved!!"
         }
     }

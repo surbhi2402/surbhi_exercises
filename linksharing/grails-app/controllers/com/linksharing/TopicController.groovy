@@ -12,20 +12,20 @@ class TopicController {
 
     def index() {
         List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-        render (view: '/topic/searchPage',model: [trendingTopics: trendingTopics])
+        render(view: '/topic/searchPage', model: [trendingTopics: trendingTopics])
     }
+
     def show(ResourceSearchCo resourceSearchCo) {
         def topic
         topic = Topic.read(resourceSearchCo?.topicId)
-        if(!topic){
+        if (!topic) {
             redirect(controller: "user", action: "index")
             flash.error = "No topic in database"
-        }
-        else {
-            if(Visibility.PUBLIC){
-                render (view: '/topic/displayTopic' ,model:[topic:topic,subscribedUsers:topic.subscribedUsers])
-            }
-            else if(Visibility.PRIVATE) {
+        } else {
+            if (Visibility.PUBLIC) {
+//                render "success"
+                render(view: '/topic/displayTopic', model: [topic: topic, subscribedUsers: topic.subscribedUsers])
+            } else if (Visibility.PRIVATE) {
                 User user1 = User.findByUserName(session.user)
                 def subscription = Subscription.findAllByUserAndTopic(user1, topic)
                 if (!subscription) {
@@ -34,6 +34,8 @@ class TopicController {
                 } else {
                     render "Success"
                 }
+            } else {
+                render "Topic not available!"
             }
         }
     }
@@ -54,7 +56,6 @@ class TopicController {
         }
 
     }
-
 
 
 }

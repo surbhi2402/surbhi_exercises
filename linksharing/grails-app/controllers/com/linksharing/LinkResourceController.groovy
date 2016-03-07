@@ -10,15 +10,14 @@ class LinkResourceController {
         render "inside Link Resource"
     }
 
-    def save(String link, String description,Integer topic1){
-        Topic topic =  Topic.findById(topic1)
-        Resource resource = new LinkResource(description: description,createdBy: session.user,topic:topic,url: link)
-        println "${description}  ${session.user}  ${topic} ${link}"
-        if(resource.validate()){
+    def save(String link, String description, Integer topic1) {
+        Topic topic = Topic.findById(topic1)
+        Resource resource = new LinkResource(description: description, createdBy: session.user, topic: topic, url: link)
+//        println "${description}  ${session.user}  ${topic} ${link}"
+        if (resource.validate()) {
             resource.save(flush: true)
             render "link saved successfully"
-        }
-        else {
+        } else {
             render "link not saved!!"
         }
     }

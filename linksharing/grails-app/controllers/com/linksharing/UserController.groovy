@@ -11,43 +11,49 @@ import com.ttnd.linksharing.Vo.TopicVo
 
 class UserController {
 
+    def userService
+
+    def saving() {
+        if (userService.save())
+            render "success"
+        else
+            render "failed"
+    }
+
+
     def index() {
         User user = session.user
         List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-        List<PostVO> readingItems =ReadingItem.getInboxItems(user)
-        render(view: 'dashboard' ,model:[subscribeTopics:user.subscribeTopics,trendingTopics:trendingTopics,readingItemList:readingItems])
+        List<PostVO> readingItems = ReadingItem.getInboxItems(user)
+        render(view: 'dashboard', model: [subscribeTopics: user.subscribeTopics, trendingTopics: trendingTopics, readingItemList: readingItems])
         //render "User Dashboard ${params.username}"
     }
+
 
     def register(UserCo userCo) {
         if (session.user) {
             render "You are already Registered"
         } else {
-            User user = new User(email:userCo.email,firstName: userCo.firstName,lastName: userCo.lastName,password: userCo.password,username: userCo.username,confirmPassword: userCo.confirmPassword )
-
+            User user = new User(email: userCo.email, firstName: userCo.firstName, lastName: userCo.lastName, password: userCo.password, username: userCo.username, confirmPassword: userCo.confirmPassword)
             if (user?.hasErrors()) {
-                    render "validation failed!!!"
-                } else {
-                    user.save(flush: true)
-                    render "validation succeeded"
-                }
+                render "validation failed!!!"
+            } else {
+                user.save(flush: true)
+                render "validation succeeded"
             }
-
-        render "-----"
         }
 
-    def forgotPassword(){
+        render "-----"
+    }
+
+    def forgotPassword() {
         render(view: '/user/forgotPassword')
     }
 
-    def getScore(Long id,Integer score){
-        Resource resource = Resource.read(id)
+    def getScore(Long resourceId, Integer score) {
         User user = session.user
-        if(ResourceRating.executeUpdate("update ResourceRating r set r.score=:score where r.resource.id=id and r.user.id = :userId", [userId: user.id])){
-            render "Score has been updated"
-        }
-        else{
-            render "score not changed"
-        }
+        Integer value = ResourceRating.executeUpdate("update ResourceRating r set r.score=:score where r.resource.id=:resourceId and r.user.id = :userId", [score:score,resourceId:resourceId,userId: user.id])
+
+        render value
     }
 }

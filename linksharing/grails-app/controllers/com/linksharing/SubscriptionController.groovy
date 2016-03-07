@@ -10,16 +10,21 @@ import com.ttnd.linksharing.Vo.TopicVo
 
 class SubscriptionController {
 
+//    static transactional = false
+
     def index() {}
 
     def delete(Long id) {
-        User user=session.user
+        User user = session.user
 //        Subscription subscription
-        if (User.isSubscribed(user,id)) {
-            Subscription.read(id)?.delete(flush: true)
+        if (User.isSubscribed(user, id)) {
+            Topic topic = Topic.get(id)
+            Subscription subscription = Subscription.findByUserAndTopic(user, topic)
+            subscription.delete(flush: true)
             List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-            List<PostVO> readingItems =ReadingItem.getInboxItems(user)
-            render(view: 'dashboard' ,model:[subscribeTopics:user.subscribeTopics,trendingTopics:trendingTopics,readingItemList:readingItems])
+            List<PostVO> readingItems = ReadingItem.getInboxItems(user)
+            render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, trendingTopics: trendingTopics, readingItemList: readingItems])
+//            render view: '/user/dashboard'
         } else {
             render "Subscription not found!!"
         }
@@ -27,23 +32,23 @@ class SubscriptionController {
 
     def save(Long id) {
         User user = session.user
-        println "====${user}"
-        println "========================${id}"
         Topic topic = Topic.get(id)
+        Subscription subscription1 = Subscription.findByUserAndTopic(user, topic)
         println "======${topic}"
-        if (!User.isSubscribed(user, id)) {
+        println "Subscription -- >>> ${subscription1}"
+        if (!subscription1) {
             Subscription subscription = new Subscription(topic: topic, user: session.user, seriousness: Seriousness.SERIOUS)
             if (subscription.save(flush: true)) {
                 List<TopicVo> trendingTopics = Topic.getTrendingTopics()
                 List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-                render(view: 'dashboard', model: [subscribeTopics: user.subscribeTopics, trendingTopics: trendingTopics, readingItemList: readingItems])
+//                render(view: 'dashboard', model: [subscribeTopics: user.subscribeTopics, trendingTopics: trendingTopics, readingItemList: readingItems])
 
-//                render (view: '/user/dashboard')
+                render(view: '/user/dashboard')
+//                render "Successfullyy subscribed!!"
+            } else {
+                render "Subscription not saved"
             }
-        } else {
-            render "Subscription not saved"
         }
-        render "---------"
     }
 
     def update(Long id, String seriousness) {

@@ -17,7 +17,7 @@ class ReadingItemSpec extends Specification {
 
     def "testing reading item class"() {
         given:
-        ReadingItem readingItem = new ReadingItem(user: user,resource: resource,isRead: read)
+        ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: read)
 
         when:
         Boolean result = readingItem.validate()

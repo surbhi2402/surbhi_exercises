@@ -10,14 +10,14 @@ class BootStrap {
         createTopic()
         List<Resource> resources = createResources()
         subscribeTopics()
-        List<ReadingItem> readingItems =createReadingItems()
+        List<ReadingItem> readingItems = createReadingItems()
         List<ResourceRating> resourceRatings = createResourceRatings()
     }
 
 
     void createUsers() {
-        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: false, username: "surbhi", lastName: "dhawan",confirmPassword: "surbhidhawan",active: true)
-        User adminUser = new User(email: "admin@tothenew.com", password: "jitin", firstName: "admin", admin: true, username: "jitin", lastName: "dominic",confirmPassword: "jitin")
+        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: false, username: "surbhi", lastName: "dhawan", confirmPassword: "surbhidhawan", active: true)
+        User adminUser = new User(email: "admin@tothenew.com", password: "jitin", firstName: "admin", admin: true, username: "jitin", lastName: "dominic", confirmPassword: "jitin",active: true)
 
         if (User.count() == 0) {
             normalUser.save()
@@ -26,7 +26,7 @@ class BootStrap {
     }
 
     void createTopic() {
-        User.findAllByEmailInList(["normal@tothenew.com","admin@tothenew.com"]).each {
+        User.findAllByEmailInList(["normal@tothenew.com", "admin@tothenew.com"]).each {
             user ->
                 if (!user.topics?.size()) {
                     (1..5).each {
@@ -40,12 +40,12 @@ class BootStrap {
 
     void createResources() {
         List<Topic> topics = Topic.list()
-        topics.each{Topic topic ->
+        topics.each { Topic topic ->
             if (!topic.resources?.size()) {
-                2.times{
+                2.times {
                     Resource documentResource = new DocumentResource(description: "${topic.name}Doc${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path")
                     Resource linkResource = new LinkResource(description: "${topic.name}Link${it}", topic: topic, createdBy: topic.createdBy, url: "http://www.someurl.com")
-                    if (documentResource.save(flush: true, failOnError: true) && linkResource.save(flush:true, failOnError: true)) {
+                    if (documentResource.save(flush: true, failOnError: true) && linkResource.save(flush: true, failOnError: true)) {
                         topic.addToResources(documentResource)
                         topic.addToResources(linkResource)
                         log.info "${documentResource} and ${linkResource} saved successfully"
@@ -61,14 +61,14 @@ class BootStrap {
         List<Topic> topics = Topic.list()
 
         users.each { User user ->
-            topics.each {Topic topic ->
+            topics.each { Topic topic ->
                 if (topic.createdBy != user) {
                     Subscription subscription = new Subscription(seriousness: Seriousness.VERY_SERIOUS, user: user, topic: topic)
                     //subscription.validate()
                     if (subscription.hasErrors()) {
                         log.info "Subscrption has errors-> ${subscription.errors}"
                     } else {
-                        subscription.save(flush:true, failOnError: true)
+                        subscription.save(flush: true, failOnError: true)
 //                        topic.addToSubscrition(subscription)
 //                        user.addToSubscription(subscription)
                         log.info "${subscription} saved successfully"
@@ -87,7 +87,7 @@ class BootStrap {
         List<ReadingItem> readingItems = []
         users.each { User user ->
             topics.each { Topic topic ->
-                if (Subscription.findByUserAndTopic(user,topic)) {
+                if (Subscription.findByUserAndTopic(user, topic)) {
 
                     topic.resources.each { Resource resource ->
 
@@ -97,7 +97,7 @@ class BootStrap {
                             if (readingItem.hasErrors()) {
                                 log.info "Errors saving -> ${readingItem}"
                             } else {
-                                readingItem.save(flush:true, failOnError: true)
+                                readingItem.save(flush: true, failOnError: true)
                                 readingItems.add(readingItem)
                                 log.info "${readingItem} saved successfully"
                                 user.addToReadingItems(readingItem)
@@ -112,21 +112,20 @@ class BootStrap {
         return readingItems
     }
 
-    List<ResourceRating> createResourceRatings(){
+    List<ResourceRating> createResourceRatings() {
         List<User> users = User.list()
-        List<ResourceRating> resourceRatings =[]
+        List<ResourceRating> resourceRatings = []
 
-        users.each {User user->
+        users.each { User user ->
 
             user.readingItems?.each {
                 ReadingItem readingItem ->
-                    if(!readingItem.isRead){
-                        ResourceRating resourceRating = new ResourceRating(resource: readingItem.resource,user:readingItem.user ,score: 3)
+                    if (!readingItem.isRead) {
+                        ResourceRating resourceRating = new ResourceRating(resource: readingItem.resource, user: readingItem.user, score: 3)
 
-                        if(resourceRating.hasErrors()){
+                        if (resourceRating.hasErrors()) {
                             log.info "Errors saving -> ${resourceRating}"
-                        }
-                        else {
+                        } else {
                             resourceRating.save()
                             resourceRatings.add(resourceRating)
                             log.info "${resourceRating} saved successfully"

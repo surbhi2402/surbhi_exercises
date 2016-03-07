@@ -18,10 +18,10 @@ class DocumentResourceSpec extends Specification {
     def "testing document resource class"() {
 
         given:
-        DocumentResource documentResource = new DocumentResource(topic: topic,createdBy: author,filePath: path,description: desc)
+        DocumentResource documentResource = new DocumentResource(topic: topic, createdBy: author, filePath: path, description: desc)
 
         when:
-        Boolean result =documentResource.validate()
+        Boolean result = documentResource.validate()
 
         then:
         result == expectedOutput

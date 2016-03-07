@@ -19,10 +19,10 @@ class SubscriptionSpec extends Specification {
     def "testing subscripton class"() {
 
         given:
-        Subscription subscription=new Subscription(user:uname ,topic:topic ,seriousness: seriousness)
+        Subscription subscription = new Subscription(user: uname, topic: topic, seriousness: seriousness)
 
         when:
-       Boolean result= subscription.validate()
+        Boolean result = subscription.validate()
 
         then:
         result == expectedOutput

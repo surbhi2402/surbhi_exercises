@@ -17,7 +17,7 @@ class ResourceController {
     def index() {
 //        render "Inside resource!"
         List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-        render (view: 'resourceSearch',model: [trendingTopics: trendingTopics])
+        render(view: 'resourceSearch', model: [trendingTopics: trendingTopics])
     }
 
     def delete(Long id) {
@@ -27,8 +27,8 @@ class ResourceController {
         } else {
             resource.delete(flush: true)
             List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-            List<PostVO> readingItems =ReadingItem.getInboxItems(session.user)
-            render(view: '/user/dashboard',model: [trendingTopics:trendingTopics,readingItemList:readingItems])
+            List<PostVO> readingItems = ReadingItem.getInboxItems(session.user)
+            render(view: '/user/dashboard', model: [trendingTopics: trendingTopics, readingItemList: readingItems])
             //flash.message= "Resource deleted successfully!"
             //render flash.message
         }
@@ -45,12 +45,11 @@ class ResourceController {
     def show(Long id) {
         User user = session.user
         List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-        List<PostVO> readingItems =ReadingItem.getInboxItems(user)
+        List<PostVO> readingItems = ReadingItem.getInboxItems(user)
         Resource resource = Resource.read(id)
-        if(Resource.canViewBy(user,id)){
-        render(view: '/resource/resourceSearch',model: [trendingTopics: trendingTopics,readingItemList:readingItems,resource:resource])
-        }
-        else {
+        if (Resource.canViewBy(user, id)) {
+            render(view: '/resource/resourceSearch', model: [trendingTopics: trendingTopics, readingItemList: readingItems, resource: resource])
+        } else {
             render "you cannot view this resource"
         }
 //        Resource resource = Resource.findById(id)
@@ -64,14 +63,14 @@ class ResourceController {
 //
 //    }
 
-    def viewPost(Long id){
+    def viewPost(Long id) {
         User user = session.user
         List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-        List<PostVO> readingItems =ReadingItem.getInboxItems(user)
+        List<PostVO> readingItems = ReadingItem.getInboxItems(user)
         Resource resource = Resource.read(id)
-//        println "=====${resource}===="
-//        println "=====${resource.id}===="
-        render(view: '/resource/resourceSearch',model: [trendingTopics: trendingTopics,readingItemList:readingItems,resource:resource])
+        println "=====${resource}===="
+        println "=====${resource.id}===="
+        render(view: '/resource/resourceSearch', model: [trendingTopics: trendingTopics, readingItemList: readingItems, resource: resource])
     }
 }
 

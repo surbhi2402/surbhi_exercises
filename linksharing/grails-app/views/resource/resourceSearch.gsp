@@ -15,7 +15,7 @@
 <body>
 <div class="col-xs-7">
     <div class="row" style="margin:9px">
-        <g:render template="viewResource" model="[readingItemList:readingItemList,resource:resource]"/>
+        <g:render template="viewResource" model="[readingItemList: readingItemList, resource: resource]"/>
     </div>
 </div>
 

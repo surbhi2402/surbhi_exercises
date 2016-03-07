@@ -1,21 +1,23 @@
+<%@ page import="com.link.sharing.core.ResourceRating" %>
 <div class="well well-lg" style="height:400px;width: 700px">
     <div class="glyphicon glyphicon-user" style="float:left;font-size:60px"></div>
 
     <div class="col-xs-offset-2">
 
         <div style="color:black;font-size: medium">Uday Pratap Singh
-            <a href="#" class="pull-right"><u>Grails</u></a></a></div>
+            <a href="#" class="pull-right"><u>Grails</u></a></div>
 
         <div style="color:grey">@uday
             <p class="pull-right">2:45 PM 24 Feb 2016</p></div>
         <br>
 
         <div style="float: right">
-            <g:form controller="user" action="getScore" params='[id:"${resource.id}"]'>
+            <g:formRemote url="[controller:'user',action:'getScore']" name="scoreForm">
                 <g:select name="score" from="${1..5}"
-                          value="${score}" noSelection="['': 'Select Score']"/>
-            </g:form>
-
+                          value="${com.link.sharing.core.ResourceRating.findByResource(resource)?.score}" noSelection="['': 'Select Score']"/>
+                <g:hiddenField name="resourceId" value="${resource.id}"/>
+                <g:actionSubmit value="Score"  />
+            </g:formRemote>
 
         </div>
         <br>

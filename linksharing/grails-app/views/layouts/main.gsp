@@ -17,12 +17,14 @@
     <asset:javascript src="application.js"/>
     <g:layoutHead/>
 </head>
+
 <body>
 <g:if test="${session.user}">
     <div class="container" style="height:100px">
 
         <nav class="navbar header" style="border:2px solid lightblue">
             <a class="navbar-brand" href="#">Link sharing</a>
+
             <form class="navbar-form navbar-right" role="search">
                 <span class="glyphicon glyphicon-search"></span>
                 <input type="text" class="form-control" placeholder="Search">
@@ -30,7 +32,8 @@
             </input>
 
                 %{--<i class="fa fa-comment" data-target="#createtopic" data-toggle="modal"></i>--}%
-                <a href="#" data-toggle="modal" data-target="#createtopic" data-tooltip="true" title="Send Invitation"><i
+                <a href="#" data-toggle="modal" data-target="#createtopic" data-tooltip="true"
+                   title="Send Invitation"><i
                         class="fa fa-comment fa-fw" style="font-size:20px"></i></a>
 
                 <a href="#" data-toggle="modal" data-target="#myModal4" data-tooltip="true" title="Send Invitation"><i
@@ -39,9 +42,11 @@
                 <a href="#" data-toggle="modal" data-target="#submitLink" data-tooltip="true" title="Create Resource"><i
                         class="fa fa-link fa-fw" style="font-size:20px"></i></a>
 
-                <a href="#" data-toggle="modal" data-target="#submitDocument" data-tooltip="true" title="Send Document"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
+                <a href="#" data-toggle="modal" data-target="#submitDocument" data-tooltip="true"
+                   title="Send Document"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
 
                 <a class="glyphicon glyphicon-user" style="font-size:30px"></a>
+
                 <div class="dropdown" style="float:right">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Uday<span
                             class="caret">
@@ -68,17 +73,21 @@
                 <a class="navbar-brand" href="#">Link sharing</a>
 
             </div>
+
             <div class="col-md-8"></div>
+
             <div class="col-md-3 pull-right">
                 <form class="navbar-form" role="search">
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit" style="height: 34px"><i class="glyphicon glyphicon-search"></i></button>
+                            <button class="btn btn-default" type="submit" style="height: 34px"><i
+                                    class="glyphicon glyphicon-search"></i></button>
                         </div>
                         <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
 
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit" style="height: 34px"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button class="btn btn-default" type="submit" style="height: 34px"><i
+                                    class="glyphicon glyphicon-remove"></i></button>
                         </div>
 
                     </div>

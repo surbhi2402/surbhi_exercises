@@ -16,15 +16,16 @@
 
 <div class="col-xs-5">
     <div class="row" style="margin:9px">
-        <g:render template="/topic/showTopic" model="[topic:topic]"/>
+        <g:render template="/topic/showTopic" model="[topic: topic]"/>
     </div>
+
     <div class="row" style="margin:9px">
-        <g:render template="/topic/showUser" model="[subscribedUsers:subscribedUsers]"/>
+        <g:render template="/topic/showUser" model="[subscribedUsers: subscribedUsers]"/>
     </div>
 </div>
 
 <div class="col-xs-7">
-    <g:render template="/topic/showPost" model="[topics:topic]"/>
+    <g:render template="/topic/showPost" model="[topics: topic]"/>
 </div>
 
 </body>

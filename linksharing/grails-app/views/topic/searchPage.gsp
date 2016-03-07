@@ -17,6 +17,7 @@
     <div class="row" style="margin:9px">
         <g:render template="/user/trendingTopics"/>
     </div>
+
     <div class="row" style="margin:9px">
         <g:render template="/login/topPost"/>
     </div>

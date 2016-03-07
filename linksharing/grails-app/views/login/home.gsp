@@ -13,7 +13,7 @@
 </head>
 
 <body>
-        <g:render template="form"></g:render>
-        <g:render template="/user/registration"></g:render>
+<g:render template="form" model="[recentShares:recentShares]"></g:render>
+<g:render template="/user/registration"></g:render>
 </body>
 </html>

@@ -12,14 +12,16 @@
                             <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
                         </div>
                     </div>
+
                     <div class="col-xs-9">
                         <div class="row">
-                            <g:link controller="topic" action="show" params='[topicId:"${topic.id}"]'>${topic}</g:link>
+                            <g:link controller="topic" action="show" params='[topicId: "${topic.id}"]'>${topic}</g:link>
                         </div>
                         <br/><br/>
+
                         <div class="row">
                             <div class="col-xs-4">
-                                <small class="col-xs-12">@vikas</small>
+                                <small class="col-xs-12">@${topic.name}</small>
                                 <small class="col-xs-12"><a>Subscribe</a></small>
                             </div>
 
@@ -29,7 +31,7 @@
                             </div>
 
                             <div class="col-xs-4">
-                                <small class="col-xs-12">Topics</small>
+                                <small class="col-xs-12">${topic.name}</small>
                                 <small class="col-xs-12">10</small>
                             </div>
                         </div>
@@ -65,13 +67,13 @@
 
                     <div class="row">
                         <div class="col-xs-4">
-                            <small class="col-xs-12">@vikas</small>
+                            <small class="col-xs-12">@${topic.name}</small>
                             <small class="col-xs-12"><a>Subscribe</a></small>
                         </div>
 
                         <div class="col-xs-4">
                             <small class="col-xs-12">Subscriptions</small>
-                            <small class="col-xs-12">50</small>
+                            <small class="col-xs-12">${topic.count}</small>
                         </div>
 
                         <div class="col-xs-4">
@@ -87,7 +89,8 @@
                 <div class="dropdown col-sm-4">
                     <div class="row">
                         <g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visibility.values()}"
-                                  value="${com.ttnd.linksharing.Enum.Visibility.values()}" noSelection="['':'select visibility']"/>
+                                  value="${com.ttnd.linksharing.Enum.Visibility.values()}"
+                                  noSelection="['': 'select visibility']"/>
                     </div>
 
                     %{--<ul class="dropdown-menu">--}%
@@ -98,7 +101,8 @@
                 <div class="dropdown col-sm-4">
                     <div class="row">
                         <g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visibility.values()}"
-                                  value="${com.ttnd.linksharing.Enum.Visibility.values()}" noSelection="['':'select visibility']"/>
+                                  value="${com.ttnd.linksharing.Enum.Visibility.values()}"
+                                  noSelection="['': 'select visibility']"/>
                     </div>
                 </div>
                 <i class="fa fa-envelope-o nav_icon "></i>

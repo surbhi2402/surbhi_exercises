@@ -10,18 +10,18 @@ class ResourceRating {
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [user:User,resource:Resource]
+    static belongsTo = [user: User, resource: Resource]
 
     static constraints = {
 
-        score(min:1,max: 5,nullable: false)
+        score(min: 1, max: 5, nullable: false)
         resource unique: 'user'
         user nullable: false
     }
 
-    static topPost(){
-        List topPostList = ResourceRating.createCriteria().list(){
-            projections{
+    static topPost() {
+        List topPostList = ResourceRating.createCriteria().list() {
+            projections {
                 groupProperty('resource.id')
                 property('resource')
                 count('score')

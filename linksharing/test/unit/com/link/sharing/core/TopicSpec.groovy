@@ -20,7 +20,7 @@ class TopicSpec extends Specification {
     def "testing topic"() {
 
         given:
-        Topic topic = new Topic(name: n, createdBy: author,visibility: visibility)
+        Topic topic = new Topic(name: n, createdBy: author, visibility: visibility)
 
         when:
         Boolean result = topic.validate()

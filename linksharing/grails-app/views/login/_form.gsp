@@ -6,9 +6,11 @@
             %{--<div style="float:left;font-size:60px" class="glyphicon glyphicon-user img thumbnail"></div>--}%
             <div class="panel-body">
                 <g:each in="${recentShares}" var="share">
-                    <div style="float:left;font-size:60px" class="glyphicon glyphicon-user img thumbnail"></div>
-                    <h4>${share.createdBy.username}<g:link>${share.topic}</g:link></h4>
-                %{--<g:link controller="topic" action="show" params='[topicId:"${topic.id}"]'>${topic}</g:link>--}%
+                    <div style="float:left;font-size:60px" class="glyphicon glyphicon-user"></div>
+
+                    <h4>${share.createdBy.username}</h4>
+                    <g:link style="float: right" controller="topic" action="show"
+                            params='[topicId: "${share.topicId}"]'>${share.topic}</g:link>
 
                     <p>${share.description}</p>
                     <a href="#"><i class="fa fa-facebook fa-fw"></i></a>

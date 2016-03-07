@@ -1,6 +1,6 @@
 package com.link.sharing.core
 
-class DocumentResource extends Resource{
+class DocumentResource extends Resource {
 
     String filePath
 
@@ -8,7 +8,8 @@ class DocumentResource extends Resource{
 
         filePath(nullable: false)
     }
-    String toString(){
+
+    String toString() {
         filePath
     }
 }

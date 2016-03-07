@@ -11,8 +11,9 @@
     <title></title>
     <meta name="layout" content="main">
 </head>
+
 <body>
-    %{--<g:render template="inbox"></g:render>--}%
+%{--<g:render template="inbox"></g:render>--}%
 
 
 <div class="col-xs-5">
@@ -21,20 +22,17 @@
     </div>
 
     <div class="row" style="margin:9px">
-        <g:render template="/user/subscriptions"/>
+        <g:render template="/user/subscriptions" model="[subscribeTopics:subscribeTopics]"/>
     </div>
 
     <div class="row" style="margin:9px">
-        <g:render template="/user/trendingTopics"/>
+        <g:render template="/user/trendingTopics" model="[trendingTopics: trendingTopics]"/>
     </div>
 </div>
 
 <div class="col-xs-7">
-    <g:render template="/user/inbox" model = "[readingItemList: readingItemList]"/>
+    <g:render template="/user/inbox" model="[readingItemList: readingItemList]"/>
 </div>
-
-
-
 
 </body>
 </html>

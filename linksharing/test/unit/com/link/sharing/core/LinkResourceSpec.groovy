@@ -19,7 +19,7 @@ class LinkResourceSpec extends Specification {
     def "testing link resource file"() {
 
         given:
-        LinkResource linkResource = new LinkResource(topic:topic,createdBy: author,url:myURL,description: desc)
+        LinkResource linkResource = new LinkResource(topic: topic, createdBy: author, url: myURL, description: desc)
 
         when:
         Boolean result = linkResource.validate()

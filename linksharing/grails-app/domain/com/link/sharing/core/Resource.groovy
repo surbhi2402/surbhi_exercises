@@ -69,7 +69,7 @@ abstract class Resource {
     static Boolean canViewBy(User user, Long id) {
         Resource resource = Resource.read(id)
         println "=======${resource.id}"
-        if (Topic.canViewedBy(user,resource.topic?.id)) {
+        if (Topic.canViewedBy(user, resource.topic?.id)) {
             return true
         } else {
             return false

@@ -90,11 +90,12 @@ class Topic {
         }
     }
 
-    static Boolean canViewedBy(User user,Long id){
+    static Boolean canViewedBy(User user, Long id) {
         Topic topic = Topic.get(id)
-        if(user.admin || topic.isPublic()){
+
+        if (user.admin || topic.isPublic()) {
             return true
-        }else{
+        } else {
             return false
         }
     }

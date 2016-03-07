@@ -12,8 +12,8 @@ class LoginController {
             forward(controller: "user", action: "index")
         } else {
             List<Resource> resources = Resource.showTopPost()
-            List<Resource> recentShares = Resource.list([sort: 'dateCreated',order: 'desc',max:2])
-            render (view: 'home' ,model: [resources:resources,recentShares:recentShares])
+            List<Resource> recentShares = Resource.list([sort: 'dateCreated', order: 'desc', max: 2])
+            render(view: 'home', model: [resources: resources, recentShares: recentShares])
         }
     }
 
@@ -22,7 +22,7 @@ class LoginController {
         if (user) {
             if (user.active) {
                 session.user = user
-                redirect(controller: 'user',action: 'index')
+                redirect(controller: 'user', action: 'index')
             } else {
                 flash.error = 'Your account is not active'
             }
