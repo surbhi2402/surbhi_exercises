@@ -1,23 +1,3 @@
-<div class="col-xs-7">
-    <div class="panel panel-default">
-        <div class="panel panel-heading" style="height:40px">Top Posts</div>
-
-        <div class="panel-body">
-            <g:each in="${resources}" var="post">
-                <div style="float:left;font-size:60px" class="glyphicon glyphicon-user img thumbnail"></div>
-                <h4>${post.createdBy.firstName}<a href="#" style="float:right">${post.topic}</a></h4>
-
-                <p>${post.description}</p>
-                <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
-                <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
-                <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
-                <a href="#" style="float:right"><u>View Posts</u></a>
-                <hr>
-            </g:each>
-        </div>
-    </div>
-</div>
-
 
 %{--Registration--}%
 
@@ -26,7 +6,13 @@
         <div class="panel panel-heading">Register</div>
 
         <div class="panel-body">
-            <g:form class="form-horizontal" controller="user" action="register">
+
+            <g:form class="form-horizontal" controller="user" action="register" method="post">
+                <g:hasErrors bean="${user}">
+                    <div class="alert alert-danger">
+                        <g:eachError><g:message error="${it}"/></g:eachError>
+                    </div>
+                </g:hasErrors>
 
                 <div class="form-group">
                     <label class="control-label col-xs-3">First Name*</label>
@@ -34,6 +20,10 @@
                     <div class="col-xs-9">
                         <g:textField name="firstName" class="form-control" id="inputFname" placeholder="First Name"/>
                     </div>
+
+                   <div class="alert-danger" role="alert">
+                    <g:fieldError field="firstName" bean="${user}"/>
+                </div>
                 </div>
 
                 <div class="form-group">

@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" style="height: 35px">
         <h3 class="panel-title">Trending topics</h3>
     </div>
 

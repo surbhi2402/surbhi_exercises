@@ -1,5 +1,7 @@
 package com.link.sharing.core
 
+import com.ttnd.linksharing.Vo.UserVO
+
 class User {
 
     String email
@@ -81,22 +83,17 @@ class User {
         }
     }
 
-    static Boolean isSubscribed(User user, Long id) {
-        Long topicId = id
-        if (user) {
-            List<Subscription> subscriptions= Subscription.createCriteria().list {
-                createAlias('topic', 't')
-                projections {
-                    property('t.id')
-                }
-                eq('t.id', topicId)
-            }
-            if(subscriptions.size()==0){
-                return false
-            }else {
-                return true
-            }
-
+    Boolean isSubscribed(Long topicId) {
+        Topic topic = Topic.load(topicId)
+        if (Subscription.findByUserAndTopic(this, topic)) {
+            return true
+        } else {
+            return false
         }
+    }
+
+
+    UserVO getUserDetails() {
+        return new UserVO(id:id,email: email, username: username, fname: firstName, lname: lastName, photo: photo, isAdmin: admin, isActive: active)
     }
 }

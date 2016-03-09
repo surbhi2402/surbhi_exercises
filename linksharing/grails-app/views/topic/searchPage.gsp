@@ -15,11 +15,11 @@
 <body>
 <div class="col-xs-5">
     <div class="row" style="margin:9px">
-        <g:render template="/user/trendingTopics"/>
+        <ls:trendingTopics/>
     </div>
 
     <div class="row" style="margin:9px">
-        <g:render template="/login/topPost"/>
+        <ls:topPosts/>
     </div>
 </div>
 

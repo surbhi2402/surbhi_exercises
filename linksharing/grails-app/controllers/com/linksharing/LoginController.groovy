@@ -11,9 +11,8 @@ class LoginController {
         if (session.user) {
             forward(controller: "user", action: "index")
         } else {
-            List<Resource> resources = Resource.showTopPost()
             List<Resource> recentShares = Resource.list([sort: 'dateCreated', order: 'desc', max: 2])
-            render(view: 'home', model: [resources: resources, recentShares: recentShares])
+            render(view: 'home', model: [recentShares: recentShares])
         }
     }
 

@@ -8,11 +8,12 @@ import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.UserCo
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
+import com.ttnd.linksharing.Vo.UserVO
 
 class UserController {
 
     def userService
-
+    def assetResourceLocator
     def saving() {
         if (userService.save())
             render "success"
@@ -23,27 +24,25 @@ class UserController {
 
     def index() {
         User user = session.user
-        List<TopicVo> trendingTopics = Topic.getTrendingTopics()
+        UserVO userDetails = user.getUserDetails()
         List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-        render(view: 'dashboard', model: [subscribeTopics: user.subscribeTopics, trendingTopics: trendingTopics, readingItemList: readingItems])
-        //render "User Dashboard ${params.username}"
+        render(view: 'dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems,userDetails:userDetails])
     }
 
 
     def register(UserCo userCo) {
-        if (session.user) {
-            render "You are already Registered"
-        } else {
-            User user = new User(email: userCo.email, firstName: userCo.firstName, lastName: userCo.lastName, password: userCo.password, username: userCo.username, confirmPassword: userCo.confirmPassword)
-            if (user?.hasErrors()) {
-                render "validation failed!!!"
-            } else {
-                user.save(flush: true)
-                render "validation succeeded"
-            }
-        }
 
-        render "-----"
+        User user = new User()
+        user.properties = userCo.properties
+        user.validate()
+        if(user?.hasErrors()){
+            render view: '/login/home' , model:[user:userCo]
+        }
+        else  {
+            user.save(flush: true, failOnError: true)
+            flash.message = "Successful registration"
+            render flash.message
+        }
     }
 
     def forgotPassword() {
@@ -55,5 +54,17 @@ class UserController {
         Integer value = ResourceRating.executeUpdate("update ResourceRating r set r.score=:score where r.resource.id=:resourceId and r.user.id = :userId", [score:score,resourceId:resourceId,userId: user.id])
 
         render value
+    }
+
+    def image(Long id){
+        User user = User.get(id)
+        def photo
+        if(user.photo){
+            photo = user.photo
+        }else {
+            photo = assetResourceLocator.findAssetForURI('dummy.png').getInputStream().getBytes()
+        }
+        response.outputStream << photo
+        response.outputStream.flush()
     }
 }

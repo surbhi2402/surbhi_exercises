@@ -11,8 +11,7 @@ import com.ttnd.linksharing.Vo.TopicVo
 class TopicController {
 
     def index() {
-        List<TopicVo> trendingTopics = Topic.getTrendingTopics()
-        render(view: '/topic/searchPage', model: [trendingTopics: trendingTopics])
+        render(view: '/topic/searchPage')
     }
 
     def show(ResourceSearchCo resourceSearchCo) {
@@ -23,10 +22,9 @@ class TopicController {
             flash.error = "No topic in database"
         } else {
             if (Visibility.PUBLIC) {
-//                render "success"
                 render(view: '/topic/displayTopic', model: [topic: topic, subscribedUsers: topic.subscribedUsers])
             } else if (Visibility.PRIVATE) {
-                User user1 = User.findByUserName(session.user)
+                User user1 = User.findByUsername(session.user)
                 def subscription = Subscription.findAllByUserAndTopic(user1, topic)
                 if (!subscription) {
                     redirect(controller: 'login', action: 'index')
@@ -41,8 +39,7 @@ class TopicController {
     }
 
     def save(String name, String visibility) {
-        println "***inside save of topic"
-
+//        println "***inside save of topic"
         Topic topic = new Topic(name: name, createdBy: session.user, visibility: Visibility.convert(visibility))
         if (topic.validate()) {
             topic.save(flush: true)
@@ -52,10 +49,7 @@ class TopicController {
             log.error(" Could not save Topic ${topic.name}")
             flash.message = "Topic ${topic.name} does not satisfied constraints"
             render flash.message
-
         }
-
     }
-
 
 }

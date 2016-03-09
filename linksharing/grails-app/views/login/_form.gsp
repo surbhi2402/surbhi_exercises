@@ -11,12 +11,12 @@
                     <h4>${share.createdBy.username}</h4>
                     <g:link style="float: right" controller="topic" action="show"
                             params='[topicId: "${share.topicId}"]'>${share.topic}</g:link>
-
                     <p>${share.description}</p>
                     <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
                     <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
                     <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
                     <a href="#" style="float:right"><u>View Posts</u></a>
+
                     <hr>
                 </g:each>
             </div>

@@ -1,0 +1,35 @@
+Testsuite: com.linksharing.TopicControllerSpec
+Tests run: 4, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 6.419 sec
+------------- Standard Output ---------------
+--Output from testing show action if topic not found--
+--Output from testing show action of Topic--
+--Output from topic show if visibility is private--
+--Output from testing save action--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing show action if topic not found--
+--Output from testing show action of Topic--
+--Output from topic show if visibility is private--
+--Output from testing save action--
+------------- ---------------- ---------------
+
+Testcase: testing show action if topic not found took 5.483 sec
+Testcase: testing show action of Topic took 0.187 sec
+	Caused an ERROR
+Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
+java.lang.IllegalStateException: Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
+	at com.link.sharing.core.Topic.getSubscribedUsers(Topic.groovy:71)
+	at org.springsource.loaded.ri.ReflectiveInterceptor.jlrMethodInvoke(ReflectiveInterceptor.java:1426)
+	at com.linksharing.TopicController.show(TopicController.groovy:25)
+	at com.linksharing.TopicControllerSpec.testing show action of Topic(TopicControllerSpec.groovy:57)
+
+Testcase: topic show if visibility is private took 0.275 sec
+	Caused an ERROR
+Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
+java.lang.IllegalStateException: Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
+	at com.link.sharing.core.Topic.getSubscribedUsers(Topic.groovy:71)
+	at org.springsource.loaded.ri.ReflectiveInterceptor.jlrMethodInvoke(ReflectiveInterceptor.java:1426)
+	at com.linksharing.TopicController.show(TopicController.groovy:25)
+	at com.linksharing.TopicControllerSpec.topic show if visibility is private(TopicControllerSpec.groovy:80)
+
+Testcase: testing save action took 0.25 sec

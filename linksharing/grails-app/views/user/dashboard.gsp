@@ -14,25 +14,21 @@
 
 <body>
 %{--<g:render template="inbox"></g:render>--}%
+<div class="container-fluid">
 
+    <div class="col-xs-5" style="float: left">
+            <g:render template="/user/userInfo" model="[userDetails: userDetails]"/>
 
-<div class="col-xs-5">
-    <div class="row" style="margin:9px">
-        <g:render template="/user/userInfo"/>
+            <g:render template="/user/subscriptions"
+                      model="[userDetails: userDetails, subscribeTopics: subscribeTopics]"/>
+
+            <ls:trendingTopics/>
     </div>
 
-    <div class="row" style="margin:9px">
-        <g:render template="/user/subscriptions" model="[subscribeTopics:subscribeTopics]"/>
+    <div class="col-xs-7 pull-right">
+            <g:render template="/user/inbox" model="[readingItemList: readingItemList]"/>
     </div>
 
-    <div class="row" style="margin:9px">
-        <g:render template="/user/trendingTopics" model="[trendingTopics: trendingTopics]"/>
-    </div>
 </div>
-
-<div class="col-xs-7">
-    <g:render template="/user/inbox" model="[readingItemList: readingItemList]"/>
-</div>
-
 </body>
 </html>

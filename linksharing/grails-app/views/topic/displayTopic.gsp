@@ -13,8 +13,7 @@
 </head>
 
 <body>
-
-<div class="col-xs-5">
+<div class="col-xs-7">
     <div class="row" style="margin:9px">
         <g:render template="/topic/showTopic" model="[topic: topic]"/>
     </div>
@@ -24,8 +23,9 @@
     </div>
 </div>
 
-<div class="col-xs-7">
+<div class="col-xs-5">
     <g:render template="/topic/showPost" model="[topics: topic]"/>
+    %{--<ls:topPosts/>--}%
 </div>
 
 </body>

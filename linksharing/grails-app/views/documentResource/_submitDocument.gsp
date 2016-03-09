@@ -13,13 +13,14 @@
                 <div class="container-fluid">
                     <div class="row">
                     <!--form for modal-->
-                        <g:form class="form-horizontal" controller="documentResource" action="save">
+                        <g:uploadForm class="form-horizontal" controller="documentResource" action="save">
                             <div class="form-group">
                                 <label for="inputLink" class="control-label col-xs-2">Document</label>
 
                                 <div class="col-xs-5">
-                                    <g:textField name="filePath" type="path" class="form-control" id="inputLink"
-                                                 placeholder="File Path"/>
+                                        <input type="file" name="file" class="form-control" id="inputLink"
+                                                     placeholder="File Path"/>
+
                                 </div>
 
                                 <div class="col-xs-5">
@@ -32,27 +33,27 @@
 
                                 <div class="col-xs-10">
                                     <g:textArea name="description" class="form-control" rows="5"
-                                                id="comment"></g:textArea>
+                                                id="comment"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="topic1" class="control-label col-xs-2">Topic*</label>
+                                <label for="topic" class="control-label col-xs-2">Topic*</label>
 
                                 <div class="col-xs-10">
-                                    <g:select name="topic1" from="${subscribeTopics}" optionKey="id"
+                                    <g:select name="topic" from="${subscribeTopics}" optionKey="id" class="btn dropdown"
                                               value="${subscribeTopics}" noSelection="['': 'select Topic']"/>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="modal-footer">
-                                    <g:actionSubmit action="save" value="save" type="submit"
-                                                    class="btn btn-primary">Share</g:actionSubmit>
+                                    <g:submitButton name="submit" value="save" type="submit"
+                                                    class="btn btn-primary">Share</g:submitButton>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
-                        </g:form>
+                        </g:uploadForm>
                     </div>
                 </div>
             </div>

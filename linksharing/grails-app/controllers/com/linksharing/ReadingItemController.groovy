@@ -7,14 +7,12 @@ import com.link.sharing.core.User
 class ReadingItemController {
 
     def index() {
-//        User user = session.user
-//        List<ReadingItem> readingItemList = ReadingItem.findAllByUser(user)
-//        println "${re}"
         render(view: '/user/dashboard')
     }
 
-    def changeIsRead(Long Id, Boolean isRead) {
+    def changeIsRead(Long id, Boolean isRead) {
         Resource resource = Resource.get(id)
+        println "==============------------------${resource}"
         User user = session.user
 
         if (ReadingItem.executeUpdate("update ReadingItem as r set r.isRead=:isRead where r.resource.id=id and r.user.id = :userId", [isRead: isRead, userId: user.id])) {

@@ -17,16 +17,15 @@ class SubscriptionController {
     def delete(Long id) {
         User user = session.user
 //        Subscription subscription
-        if (User.isSubscribed(user, id)) {
+        if (user.isSubscribed(id)) {
             Topic topic = Topic.get(id)
             Subscription subscription = Subscription.findByUserAndTopic(user, topic)
             subscription.delete(flush: true)
-            List<TopicVo> trendingTopics = Topic.getTrendingTopics()
             List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-            render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, trendingTopics: trendingTopics, readingItemList: readingItems])
+            render(view: '/user/dashboard', model: [subscribeTopics: user.getSubscribeTopics(user),readingItemList: readingItems])
 //            render view: '/user/dashboard'
         } else {
-            render "Subscription not found!!"
+            flash.error = "Subscription not found!!"
         }
     }
 
@@ -34,19 +33,13 @@ class SubscriptionController {
         User user = session.user
         Topic topic = Topic.get(id)
         Subscription subscription1 = Subscription.findByUserAndTopic(user, topic)
-        println "======${topic}"
-        println "Subscription -- >>> ${subscription1}"
         if (!subscription1) {
             Subscription subscription = new Subscription(topic: topic, user: session.user, seriousness: Seriousness.SERIOUS)
             if (subscription.save(flush: true)) {
-                List<TopicVo> trendingTopics = Topic.getTrendingTopics()
                 List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-//                render(view: 'dashboard', model: [subscribeTopics: user.subscribeTopics, trendingTopics: trendingTopics, readingItemList: readingItems])
-
-                render(view: '/user/dashboard')
-//                render "Successfullyy subscribed!!"
+                render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems])
             } else {
-                render "Subscription not saved"
+                flash.error = "Subscription not saved"
             }
         }
     }

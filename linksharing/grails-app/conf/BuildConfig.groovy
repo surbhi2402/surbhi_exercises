@@ -65,7 +65,8 @@ grails.project.dependency.resolution = {
         // asset-pipeline 2.0+ requires Java 7, use version 1.9.x with Java 6
         compile ":asset-pipeline:2.2.3"
         test "org.grails.plugins:code-coverage:2.0.3-3"
-
+        compile "org.grails.plugins:mail:1.0.7"
+//        compile ':quartz:1.0.1'
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"

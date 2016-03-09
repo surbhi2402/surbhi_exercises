@@ -92,8 +92,8 @@ class Topic {
 
     static Boolean canViewedBy(User user, Long id) {
         Topic topic = Topic.get(id)
-
-        if (user.admin || topic.isPublic()) {
+        List<User> userList = topic.getSubscribedUsers()
+        if (user.admin || topic.isPublic() || userList.contains(user)) {
             return true
         } else {
             return false

@@ -43,7 +43,7 @@ class BootStrap {
         topics.each { Topic topic ->
             if (!topic.resources?.size()) {
                 2.times {
-                    Resource documentResource = new DocumentResource(description: "${topic.name}Doc${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path")
+                    Resource documentResource = new DocumentResource(description: "${topic.name}Doc${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path" ,contentType: "application/pdf")
                     Resource linkResource = new LinkResource(description: "${topic.name}Link${it}", topic: topic, createdBy: topic.createdBy, url: "http://www.someurl.com")
                     if (documentResource.save(flush: true, failOnError: true) && linkResource.save(flush: true, failOnError: true)) {
                         topic.addToResources(documentResource)

@@ -20,9 +20,9 @@
 
 <body>
 <g:if test="${session.user}">
-    <div class="container" style="height:100px">
+    <div class="container-fluid" style="height:100px">
 
-        <nav class="navbar header" style="border:2px solid lightblue">
+        <nav class="navbar header">
             <a class="navbar-brand" href="#">Link sharing</a>
 
             <form class="navbar-form navbar-right" role="search">
@@ -67,7 +67,7 @@
     <g:render template="/documentResource/submitDocument"></g:render>
 </g:if>
 <g:else>
-    <div class="container" style="height:100px">
+    <div class="container-fluid" style="height: 100px">
         <div class="row">
             <div class="col-md-2">
                 <a class="navbar-brand" href="#">Link sharing</a>

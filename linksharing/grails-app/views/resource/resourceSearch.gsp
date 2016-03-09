@@ -14,13 +14,14 @@
 
 <body>
 <div class="col-xs-7">
-    <div class="row" style="margin:9px">
+    %{--<div class="row" style="margin:9px">--}%
         <g:render template="viewResource" model="[readingItemList: readingItemList, resource: resource]"/>
-    </div>
+    %{--</div>--}%
 </div>
 
 <div class="col-xs-5">
-    <g:render template="/user/trendingTopics"/>
+    %{--<g:render template="/user/trendingTopics"/>--}%
+    <ls:trendingTopics/>
 </div>
 
 </body>

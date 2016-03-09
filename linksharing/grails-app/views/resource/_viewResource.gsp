@@ -1,5 +1,6 @@
 <%@ page import="com.link.sharing.core.ResourceRating" %>
-<div class="well well-lg" style="height:400px;width: 700px">
+
+<div class="well well-lg" style="height:400px;width: 600px">
     <div class="glyphicon glyphicon-user" style="float:left;font-size:60px"></div>
 
     <div class="col-xs-offset-2">
@@ -17,6 +18,7 @@
                           value="${com.link.sharing.core.ResourceRating.findByResource(resource)?.score}" noSelection="['': 'Select Score']"/>
                 <g:hiddenField name="resourceId" value="${resource.id}"/>
                 <g:actionSubmit value="Score"  />
+                <div id="test"/>
             </g:formRemote>
 
         </div>
@@ -49,8 +51,11 @@
             %{--</g:each>--}%
 
             <a href="#" data-toggle="tooltip" title="Edit is available to admin only"><u>Edit</u></a>
-            <a href="#"><u>Download</u></a>
-            <a href="#"><u>View full site</u></a>
+            <ls:checkType id="${resource.id}" url="${resource.class}"
+                          filePath="${resource.class}"></ls:checkType>
+
+            %{--<a href="#"><u>Download</u></a>--}%
+            %{--<a href="#"><u>View full site</u></a>--}%
         </a>
     </div>
 </div>

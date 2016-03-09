@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.DocumentResourceControllerSpec" skipped="0" tests="1" time="0.246" timestamp="2016-03-06T17:10:23">
-  <properties />
-  <testcase classname="com.linksharing.DocumentResourceControllerSpec" name="testing save action" time="0.231" />
-  <system-out><![CDATA[--Output from testing save action--
-]]></system-out>
-  <system-err><![CDATA[--Output from testing save action--
-]]></system-err>
-</testsuite>
