@@ -76,6 +76,9 @@ abstract class Resource {
         }
     }
 
+    def deleteFile(){
+        println "this will be implemented in LinkResource!"
+    }
 }
 
 

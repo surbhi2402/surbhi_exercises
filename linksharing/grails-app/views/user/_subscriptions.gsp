@@ -1,223 +1,103 @@
-%{--<div class="panel panel-default">--}%
-    %{--<div class="panel panel-heading" style="height: 40px">--}%
-        %{--<div class="pull-left">Subscriptions</div>--}%
-        %{--<div class="pull-right"><a href="#"><u>View All</u></a></div>--}%
-    %{--</div>--}%
-    %{--<div class="panel-body">--}%
-        %{--<div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>--}%
-
-        %{--<div class="col-xs-offset-3" class="row">--}%
-            %{--<a href="#" style="float:left"><u>Grails</u></a>--}%
-            %{--<br>--}%
-
-            %{--<div>--}%
-                %{--<a href="#" style="float:left;color:grey"><u>@Uday</u></a>--}%
-
-                %{--<inline>--}%
-                    %{--<div class="col-sm-4" style="color:grey">Subscription</div>--}%
-                    %{--<div class="col-sm-4" style="color:grey">Topics</div>--}%
-                %{--</inline>--}%
-
-                %{--<inline>--}%
-                    %{--<div style="float:left"><u><a href="#">Unsubscribe</a></u></div>--}%
-                    %{--<div class="col-sm-3" style="color:grey; margin-left:15px"><a href="#">50</a></div>--}%
-                    %{--<div class="col-sm-3" style="color:grey"><a href="#">30</a></div>--}%
-                %{--</inline>--}%
-            %{--</div>--}%
-            %{--<br>--}%
-            %{--<!--Drop downs of subscription panel-->--}%
-            %{--<div class="form-group">--}%
-                %{--<div class="col-xs-4">--}%
-                    %{--<div class="row">--}%
-                        %{--<select class="form-control" rows="4" id="topic">--}%
-                            %{--<option>Serious</option>--}%
-                            %{--<option>A2</option>--}%
-                            %{--<option>A3</option>--}%
-                            %{--<option>A4</option>--}%
-                        %{--</select>--}%
-                    %{--</div>--}%
-                %{--</div>--}%
-
-
-                %{--<div class="col-xs-4">--}%
-                    %{--<div class="row">--}%
-                        %{--<select class="form-control" rows="4" id="topic" data-tooltip="true" title="Delete,Edit and--}%
-                                %{--private will show to topic creater and admin.">--}%
-                            %{--<option>Private</option>--}%
-                            %{--<option>A2</option>--}%
-                            %{--<option>A3</option>--}%
-                            %{--<option>A4</option>--}%
-                        %{--</select>--}%
-                    %{--</div>--}%
-                %{--</div>--}%
-                %{--<!--glyphicons-->--}%
-                %{--<div class="pull-right">--}%
-                    %{--<a href="#myModal4" data-toggle="modal" data-target="#myModal4"><i class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>--}%
-                    %{--<a href="#"><i class="fa fa-file fa-fw" style="font-size:20px"></i></a>--}%
-                    %{--<a href="#"><i class="fa fa-trash fa-fw" style="font-size:20px"></i></a>--}%
-                %{--</div>--}%
-            %{--</div>--}%
-
-        %{--</div>--}%
-    %{--</div>--}%
-    %{--<hr>--}%
-    %{--<!--Second div(same as above)-->--}%
-    %{--<div class="panel-body">--}%
-        %{--<div style="float:left;font-size:70px" class="glyphicon glyphicon-user"></div>--}%
-
-        %{--<div class="col-xs-offset-3" class="row">--}%
-            %{--<a href="#" style="float:left"><u>Grails</u></a>--}%
-            %{--<br>--}%
-
-            %{--<div>--}%
-                %{--<a href="#" style="float:left;color:grey"><u>@Uday</u></a>--}%
-
-                %{--<inline>--}%
-                    %{--<div class="col-sm-4  " style="color:grey;margin-left: 40px">Subscription</div>--}%
-                    %{--<div class="col-sm-4" style="color:grey">Topics</div>--}%
-                %{--</inline>--}%
-
-                %{--<inline>--}%
-                    %{--<div style="float:left"><u><a href="#">Unsubscribe</a></u></div>--}%
-                    %{--<div class="col-sm-3" style="color:grey; margin-left:45px"><a href="#">50</a></div>--}%
-                    %{--<div class="col-sm-3" style="color:grey"><a href="#">30</a></div>--}%
-                %{--</inline>--}%
-            %{--</div>--}%
-            %{--<br>--}%
-            %{--<div class="form-group">--}%
-                %{--<div class="col-xs-4">--}%
-                    %{--<div class="row">--}%
-                        %{--<select class="form-control" rows="4" id="topic" style="margin-left:170px"--}%
-                                %{--data-tooltip="true" title="If user is subscribed to this topic,user can send invitation">--}%
-                            %{--<option>Serious</option>--}%
-                            %{--<option>A2</option>--}%
-                            %{--<option>A3</option>--}%
-                            %{--<option>A4</option>--}%
-                        %{--</select>--}%
-                    %{--</div>--}%
-                %{--</div>--}%
-                %{--<div class="pull-right">--}%
-
-                    %{--<a href="#myModal4" data-target="#myModal4" data-toggle="modal"><i class="fa fa-envelope fa-fw" style="font-size:20px" data-tooltip="true"--}%
-                                                                                       %{--title="It will open send invitation popup"></i></a>--}%
-                %{--</div>--}%
-            %{--</div>--}%
-
-        %{--</div>--}%
-    %{--</div>--}%
-%{--</div>--}%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="panel panel-default ">
+<div class="panel panel-default">
     <div class="panel panel-heading" style="height: 40px">
         <div class="pull-left">Subscriptions</div>
 
         <div class="pull-right"><a href="#"><u>View All</u></a></div>
     </div>
 
+<div class="panel-body">
+    <g:each in="${subscribeTopics}" var="topic">
+        <div class="left" style="float: left">
+            <ls:userImage id="${session.user.id}"/>
+        </div>
+        </div>
+        <br>
+        <div class="col-xs-offset-3" class="row">
+            <a href="#" style="float:left"><u>${topic.name}</u></a>
+            <br>
 
-    <div class="panel-body">
-        <g:each in="${subscribeTopics}" var="subscriber">
-            <div style="float:left">
-                <ls:userImage id="${userDetails.id}"/>
-            </div>
+            <div>
 
-            <div >
-                <a href="#"><u>${subscriber.name}</u></a>
-                <br>
+                <a href="#" style="float:left;color:grey"><u>@${topic.id}</u></a>
+
+                <div class="col-sm-4" style="color:grey">Subscription</div>
+
+                <div class="col-sm-4" style="color:grey">Topics</div>
+
                 <div>
-                    <a href="#" style="float:left;color:grey"><u>${subscriber.name}</u></a>
-                    <inline>
-                        <div class="col-sm-4" style="color:grey;margin-left: 15px">Subscription</div>
-
-                        <div class="col-sm-4" style="color:grey">Topics</div>
-                    </inline>
-                    <inline>
-                        <div style="float:left">
-                            <ls:showSubscribe id="${subscriber.id}"></ls:showSubscribe>
-                        </div>
-
-
-                        <div class="col-sm-3" style="color:grey; margin-left:15px">
-                            <ls:subscriptionCount userId="${session.user.id}"/>
-                        </div>
-
-                        <div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
-
-                        <div class="col-sm-3" style="color:grey; margin-left:15px">
-                            <ls:topicCount/>
-                        </div>
-                    </inline>
+                    <ls:showSubscribe id="${topic.id}"></ls:showSubscribe>
                 </div>
-                <br>
-                <!--Drop downs of subscription panel-->
-                <div class="form-group">
-                    <div class="col-xs-4">
-                        <div class="row">
-                            <g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visibility.values()}"
-                                      value="${com.ttnd.linksharing.Enum.Visibility.values()}"
-                                      noSelection="['': 'select visibility']"/>
-                        </div>
-                    </div>
 
+                <div class="col-sm-3" style="color:grey"><a href="#">50</a></div>
 
-                    <div class="col-xs-4">
-                        <div class="row">
-                            <g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visibility.values()}"
-                                      value="${com.ttnd.linksharing.Enum.Visibility.values()}"
-                                      noSelection="['': 'select visibility']"/>
-                        </div>
-                    </div>
-                    <!--glyphicons-->
-                    <div class="pull-right">
-                        <a href="#myModal4" data-toggle="modal" data-target="#myModal4"><i class="fa fa-envelope fa-fw"
-                                                                                           style="font-size:20px"></i>
-                        </a>
-                        <a href="#"><i class="fa fa-file fa-fw" style="font-size:20px"></i></a>
-                        <a href="#"><i class="fa fa-trash fa-fw" style="font-size:20px"></i></a>
-                    </div>
-                </div>
+                <div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
 
             </div>
-            <br/></div><hr>
-        </g:each>
-    </div>
+
+            <br>
+            <br>
+            <!--Drop downs of subscription panel-->
+            <ls:canUpdateTopic topicId="${topic.id}" userId="${session.user.id}"/>
+        </div>
+        <br>
+        <hr>
+
+    </g:each>
+</div>
+
 
 </div>
+
+
+
+%{--<div class="panel panel-default ">--}%
+%{--<div class="panel panel-heading" style="height: 40px">--}%
+%{--<div class="pull-left">Subscriptions</div>--}%
+
+%{--<div class="pull-right"><a href="#"><u>View All</u></a></div>--}%
+%{--</div>--}%
+
+
+%{--<div class="panel-body">--}%
+%{--<g:each in="${subscribeTopics}" var="subscriber">--}%
+%{--<div style="float:left">--}%
+%{--<ls:userImage id="${userDetails.id}"/>--}%
+%{--</div>--}%
+
+%{--<div >--}%
+%{--<a href="#"><u>${subscriber.name}</u></a>--}%
+%{--<br>--}%
+%{--<div>--}%
+%{--<a href="#" style="float:left;color:grey"><u>${subscriber.name}</u></a>--}%
+%{--<inline>--}%
+%{--<div class="col-sm-4" style="color:grey;margin-left: 15px">Subscription</div>--}%
+
+%{--<div class="col-sm-4" style="color:grey">Topics</div>--}%
+%{--</inline>--}%
+%{--<inline>--}%
+%{--<div style="float:left">--}%
+%{--<ls:showSubscribe id="${subscriber.id}"></ls:showSubscribe>--}%
+%{--</div>--}%
+
+
+%{--<div class="col-sm-3" style="color:grey; margin-left:15px">--}%
+%{--<ls:subscriptionCount userId="${session.user.id}"/>--}%
+%{--</div>--}%
+
+%{--<div class="col-sm-3" style="color:grey"><a href="#">30</a></div>--}%
+
+%{--<div class="col-sm-3" style="color:grey; margin-left:15px">--}%
+%{--<ls:topicCount/>--}%
+%{--</div>--}%
+%{--</inline>--}%
+%{--</div>--}%
+%{--<br>--}%
+%{--<!--Drop downs of subscription panel-->--}%
+%{--<ls:canUpdateTopic topicId="${subscriber.id}"/>--}%
+
+%{--</div>--}%
+%{--<br/></div><hr>--}%
+%{--</g:each>--}%
+%{--</div>--}%
+
+%{--</div>--}%

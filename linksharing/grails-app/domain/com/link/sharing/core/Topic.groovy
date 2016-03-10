@@ -100,6 +100,10 @@ class Topic {
         }
     }
 
+    List<Resource> getPost(){
+        return Resource.findAllByTopic(this)
+    }
+
     String toString() {
         return "topic: ${name}"
     }

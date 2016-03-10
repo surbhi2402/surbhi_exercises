@@ -75,14 +75,13 @@
                 </a>
                 </h4>
 
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                the industry's standard dummy text ever since the 1500s..</p>
+                <p>${inbox.description}</p>
                 <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
                 <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
                 <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
                 <a href="#" style="margin-left: 180px">
                 <ls:checkType id="${inbox.resourceID}" url="${inbox.url}"
-                              filePath="${inbox.filePath}"></ls:checkType>
+                              filePath="${inbox.filePath}"/>
 
                 <ls:markRead isRead="${inbox.isRead}" resourceId="${inbox.resourceID}"></ls:markRead>
                 <g:link controller="resource" action="viewPost"

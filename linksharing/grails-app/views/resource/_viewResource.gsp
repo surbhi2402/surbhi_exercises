@@ -47,6 +47,9 @@
         <a href="#" style="margin-left:180px">
             %{--<a href="#" data-toggle="tooltip" title="Delete is available to admin only"></a>--}%
             %{--<g:each in="${resource}" var="item">--}%
+            %{--<g:link controller="documentResource" action="download">--}%
+                %{--DownloadFile</g:link>--}%
+            %{--<br>--}%
             <ls:resourceDelete id="${resource.id}"></ls:resourceDelete>
             %{--</g:each>--}%
 

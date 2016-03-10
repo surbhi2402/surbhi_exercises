@@ -1,4 +1,3 @@
-
 %{--Registration--}%
 
 <div class="col-xs-5" style="float: right">
@@ -7,7 +6,7 @@
 
         <div class="panel-body">
 
-            <g:form class="form-horizontal" controller="user" action="register" method="post">
+            <g:form class="form-horizontal" controller="user" action="register" enctype="multipart/form-data" method="post">
                 <g:hasErrors bean="${user}">
                     <div class="alert alert-danger">
                         <g:eachError><g:message error="${it}"/></g:eachError>
@@ -20,11 +19,12 @@
                     <div class="col-xs-9">
                         <g:textField name="firstName" class="form-control" id="inputFname" placeholder="First Name"/>
                     </div>
+                </div>
 
-                   <div class="alert-danger" role="alert">
+                <div class="alert-danger" role="alert">
                     <g:fieldError field="firstName" bean="${user}"/>
                 </div>
-                </div>
+
 
                 <div class="form-group">
                     <label for="inputLname" class="control-label col-xs-3">Last Name*</label>
@@ -32,6 +32,10 @@
                     <div class="col-xs-9">
                         <g:textField name="lastName" class="form-control" id="inputLname" placeholder="Last Name"/>
                     </div>
+                </div>
+
+                <div class="alert-danger" role="alert">
+                    <g:fieldError field="lastName" bean="${user}"/>
                 </div>
 
                 <div class="form-group">
@@ -43,6 +47,11 @@
                     </div>
                 </div>
 
+                <div class="alert-danger" role="alert">
+                    <g:fieldError field="email" bean="${user}"/>
+                </div>
+
+
                 <div class="form-group">
                     <label class="control-label col-xs-3">Username*</label>
 
@@ -50,6 +59,11 @@
                         <g:textField name="username" class="form-control" id="inputUname" placeholder="User Name"/>
                     </div>
                 </div>
+
+                <div class="alert-danger" role="alert">
+                    <g:fieldError field="username" bean="${user}"/>
+                </div>
+
 
                 <div class="form-group">
                     <label for="inputEmail" class="control-label col-xs-3">Password*</label>
@@ -60,6 +74,11 @@
                     </div>
                 </div>
 
+                <div class="alert-danger" role="alert">
+                    <g:fieldError field="password" bean="${user}"/>
+                </div>
+
+
                 <div class="form-group">
                     <label for="inputEmail" class="control-label col-xs-3">Confirm Password*</label>
 
@@ -69,6 +88,11 @@
                     </div>
                 </div>
 
+                <div class="alert-danger" role="alert">
+                    <g:fieldError field="confirmPassword" bean="${user}"/>
+                </div>
+
+
                 <div class="form-group">
                     <label for="inputEmail" class="control-label col-xs-3">Photo</label>
 
@@ -77,8 +101,7 @@
                     </div>
 
                     <div class="col-xs-4">
-                        <g:actionSubmit action="register" value="Browse" type="submit"
-                                        class="btn btn-default">Browse</g:actionSubmit>
+                        <input type="file" id="pic" name="pic" width="60" height="60">
                     </div>
                 </div>
 

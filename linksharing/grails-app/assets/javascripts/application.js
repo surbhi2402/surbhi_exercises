@@ -19,3 +19,30 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+
+function ajaxSuccess(result) {
+
+	if (result) {
+		var jsonResponseDiv = $(".jsonResponse");
+
+		if (result.message) {
+
+			jsonResponseDiv.text(result.message);
+			jsonResponseDiv.addClass("alert alert-success");
+		}
+		else {
+			jsonResponseDiv.text(result.error);
+			jsonResponseDiv.addClass("alert alert-danger");
+		}
+		jsonResponseDiv.css({'display': 'block'})
+	}
+}
+
+	$(document).ready(function(){
+            $.ajax({
+            url: "/subscription/delete",
+            data: {topicId: $(this).attr('topicId')},
+            success: ajaxSuccess
+        });
+
+	});

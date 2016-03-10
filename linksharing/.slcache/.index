@@ -5340,3 +5340,6 @@ n:4931:org/springframework/transaction/support/TransactionTemplate
 n:462:org/springframework/transaction/support/TransactionOperations
 n:614:org/springframework/transaction/TransactionException
 n:1377:java_util_Map$clear$9
+n:1423:org/apache/log4j/lf5/util/Resource
+n:3545:org/codehaus/groovy/grails/plugins/web/GroovyPagesGrailsPlugin$_closure5$_closure26
+n:2324:org/codehaus/groovy/grails/plugins/web/GroovyPagesGrailsPlugin$_closure5$_closure26$_closure27

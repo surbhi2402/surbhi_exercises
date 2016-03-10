@@ -12,6 +12,7 @@ import com.ttnd.linksharing.Enum.Visibility
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.RatingInfoVo
 import com.ttnd.linksharing.Vo.TopicVo
+import com.ttnd.linksharing.Vo.UserVO
 
 class ResourceController {
 
@@ -24,8 +25,9 @@ class ResourceController {
         if (user.canDeleteResource(id)) {
             Resource resource = Resource.get(id)
             resource.delete(flush: true)
+            UserVO userDetails = user.getUserDetails()
             List<PostVO> readingItems = ReadingItem.getInboxItems(session.user)
-            render(view: '/user/dashboard', model: [readingItemList: readingItems])
+            render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems,userDetails:userDetails])
         } else {
             render "Resource does not exists"
         }
@@ -47,9 +49,10 @@ class ResourceController {
         User user = session.user
         List<PostVO> readingItems = ReadingItem.getInboxItems(user)
         Resource resource = Resource.read(id)
-        println "=====${resource}===="
-        println "=====${resource.id}===="
+        println "=====resource is-->>>>>>>>${resource}===="
+        println "=====resource Id is ---- >>>>${resource.id}===="
         if (Resource.canViewBy(user, id)) {
+            println "inside can viewwww by----->>>>>"
             render(view: '/resource/resourceSearch', model: [readingItemList: readingItems, resource: resource])
         } else {
             render "you cannot view this resource"
@@ -57,27 +60,25 @@ class ResourceController {
     }
 
 
-    private def addToReadingItems(Long resourceId, Long topicId) {
-        Resource resource = Resource.get(resourceId)
-        Topic topic = Topic.get(topicId)
+    private def addToReadingItems(Resource resource) {
+
+        Topic topic = resource.topic
         List userList = topic.getSubscribedUsers()
-        List<ReadingItem> readingItems = []
 
         userList.each {
             User user ->
                 if (Subscription.findByUserAndTopic(user, topic)) {
                     if (resource.createdBy.id == user.id) {
                         ReadingItem readingItem = new ReadingItem(isRead: true, user: user, resource: resource)
-                        readingItems.add(readingItem)
                         user.addToReadingItems(readingItem)
                     } else {
                         ReadingItem readingItem = new ReadingItem(isRead: false, user: user, resource: resource)
-                        readingItems.add(readingItem)
                         user.addToReadingItems(readingItem)
                     }
                 }
         }
 
     }
+
 }
 

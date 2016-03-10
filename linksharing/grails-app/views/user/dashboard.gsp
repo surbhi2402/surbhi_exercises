@@ -17,16 +17,16 @@
 <div class="container-fluid">
 
     <div class="col-xs-5" style="float: left">
-            <g:render template="/user/userInfo" model="[userDetails: userDetails]"/>
+        <g:render template="/user/userInfo" model="[userDetails: userDetails]"/>
 
-            <g:render template="/user/subscriptions"
-                      model="[userDetails: userDetails, subscribeTopics: subscribeTopics]"/>
+        <g:render template="/user/subscriptions"
+                  model="[userDetails: userDetails, subscribeTopics: subscribeTopics]"/>
 
-            <ls:trendingTopics/>
+        <ls:trendingTopics/>
     </div>
 
     <div class="col-xs-7 pull-right">
-            <g:render template="/user/inbox" model="[readingItemList: readingItemList]"/>
+        <g:render template="/user/inbox" model="[readingItemList: readingItemList]"/>
     </div>
 
 </div>

@@ -26,7 +26,7 @@ class UserController {
         User user = session.user
         UserVO userDetails = user.getUserDetails()
         List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-        render(view: 'dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems,userDetails:userDetails])
+        render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems,userDetails:userDetails])
     }
 
 
@@ -34,9 +34,13 @@ class UserController {
 
         User user = new User()
         user.properties = userCo.properties
+        if(!params.pic.empty){
+            user.photo = params.pic.bytes
+        }
         user.validate()
         if(user?.hasErrors()){
-            render view: '/login/home' , model:[user:userCo]
+            List<Resource> recentShares = Resource.list([sort: 'dateCreated', order: 'desc', max: 2])
+            render view: '/login/home' , model:[recentShares:recentShares,user:userCo]
         }
         else  {
             user.save(flush: true, failOnError: true)
@@ -58,11 +62,11 @@ class UserController {
 
     def image(Long id){
         User user = User.get(id)
-        def photo
+        byte[] photo
         if(user.photo){
             photo = user.photo
         }else {
-            photo = assetResourceLocator.findAssetForURI('dummy.png').getInputStream().getBytes()
+            photo = assetResourceLocator.findAssetForURI('dummy.png').byteArray
         }
         response.outputStream << photo
         response.outputStream.flush()

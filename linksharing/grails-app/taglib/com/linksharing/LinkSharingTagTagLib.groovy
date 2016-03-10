@@ -3,6 +3,7 @@ package com.linksharing
 import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
+import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Vo.TopicVo
 import org.apache.log4j.lf5.util.Resource
 
@@ -27,7 +28,7 @@ class LinkSharingTagTagLib {
     def checkType = { attrs, body ->
 
         if (com.link.sharing.core.Resource.checkResourceType(attrs.id)) {
-            out << "<a href=${attrs.filePath}>Download</a>"
+            out << "<a href=${createLink(controller: 'documentResource', action: 'download', params: [id: attrs.id])}>Download</a>"
         } else {
             out << "<a href=${attrs.url} target='_blank'>View full site</a>"
         }
@@ -91,11 +92,32 @@ class LinkSharingTagTagLib {
         }
     }
 
-    def userImage={attrs,body ->
+    def userImage = { attrs, body ->
         Long userId = attrs.id
-        if(userId){
+        if (userId) {
             String src = "/user/image/${userId}"
             out << "<img src=${src} class='img img-thumbnail img-responsive' width='75px> height='75px"
+        }
+    }
+
+    def canUpdateTopic = { attrs, body ->
+        Long topicId = attrs.topicId
+        Topic topic = Topic.get(topicId)
+        User user = session.user
+        if (user == topic.createdBy || user.admin) {
+            out << render(template: '/subscription/tags', model: [topicId:attrs.topicId])
+        }
+    }
+
+    def showSeriousness = { attrs, body ->
+        Long topicId = attrs.topicId
+        User user = session.user
+        Subscription subscription = user.getSubscription(topicId)
+
+        if (subscription) {
+            out << g.select(class: 'seriousness', topicId: topicId, name: 'seriousness', from:Seriousness.values(), value: subscription.seriousness)
+        } else {
+            flash.error = "User not subscribed to topic"
         }
     }
 

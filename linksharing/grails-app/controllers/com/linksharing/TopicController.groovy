@@ -1,5 +1,6 @@
 package com.linksharing
 
+import com.link.sharing.core.Resource
 import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
@@ -22,7 +23,8 @@ class TopicController {
             flash.error = "No topic in database"
         } else {
             if (Visibility.PUBLIC) {
-                render(view: '/topic/displayTopic', model: [topic: topic, subscribedUsers: topic.subscribedUsers])
+                List<Resource> resources = topic.getPost()
+                render(view: '/topic/displayTopic', model: [post:resources,topic: topic, subscribedUsers: topic.subscribedUsers])
             } else if (Visibility.PRIVATE) {
                 User user1 = User.findByUsername(session.user)
                 def subscription = Subscription.findAllByUserAndTopic(user1, topic)

@@ -24,7 +24,7 @@
 </div>
 
 <div class="col-xs-5">
-    <g:render template="/topic/showPost" model="[topics: topic]"/>
+    <g:render template="/topic/showPost" model="[post:post,topics: topic]"/>
     %{--<ls:topPosts/>--}%
 </div>
 

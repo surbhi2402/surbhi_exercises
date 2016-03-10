@@ -15,6 +15,7 @@
     <asset:javascript src="jquery-2.2.1.min.js"/>
     <asset:stylesheet src="application.css"/>
     <asset:javascript src="application.js"/>
+    <asset:javascript src="jquery.validate.min.js"/>
     <g:layoutHead/>
 </head>
 
@@ -22,7 +23,7 @@
 <g:if test="${session.user}">
     <div class="container-fluid" style="height:100px">
 
-        <nav class="navbar header">
+        <nav class="navbar header" style="background-color:lightsteelblue">
             <a class="navbar-brand" href="#">Link sharing</a>
 
             <form class="navbar-form navbar-right" role="search">
@@ -48,7 +49,7 @@
                 <a class="glyphicon glyphicon-user" style="font-size:30px"></a>
 
                 <div class="dropdown" style="float:right">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Uday<span
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${session.user.firstName}<span
                             class="caret">
                     </span></button>
                     <ul class="dropdown-menu">
@@ -65,6 +66,7 @@
     <g:render template="/topic/createTopic"></g:render>
     <g:render template="/linkResource/submitLink"></g:render>
     <g:render template="/documentResource/submitDocument"></g:render>
+
 </g:if>
 <g:else>
     <div class="container-fluid" style="height: 100px">
@@ -97,6 +99,10 @@
     </div>
 
 </g:else>
+<div class = "container">
+    <div class = "jsonResponse" style = "display:none"></div>
+    %{--<g:layoutBody/>--}%
+</div>
 <g:layoutBody/>
 </body>
 </html>

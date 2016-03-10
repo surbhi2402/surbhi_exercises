@@ -7,6 +7,7 @@ import com.link.sharing.core.User
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
+import grails.converters.JSON
 
 class SubscriptionController {
 
@@ -14,19 +15,22 @@ class SubscriptionController {
 
     def index() {}
 
-    def delete(Long id) {
+    def delete(Long topicId) {
+        Map jsonResponseMap = [:]
         User user = session.user
-//        Subscription subscription
-        if (user.isSubscribed(id)) {
-            Topic topic = Topic.get(id)
+        if (user.isSubscribed(topicId)) {
+            Topic topic = Topic.get(topicId)
+//            if(user.equals(session.user.id)){}
             Subscription subscription = Subscription.findByUserAndTopic(user, topic)
             subscription.delete(flush: true)
-            List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-            render(view: '/user/dashboard', model: [subscribeTopics: user.getSubscribeTopics(user),readingItemList: readingItems])
-//            render view: '/user/dashboard'
+            jsonResponseMap.message = "subscription deleted!!"
+            redirect(controller: 'user', action: 'index')
         } else {
-            flash.error = "Subscription not found!!"
+            flash.error = "subscription not found!"
+            jsonResponseMap.error = "Subscription not found!!"
         }
+        JSON jsonResponse = jsonResponseMap as JSON
+        render jsonResponse
     }
 
     def save(Long id) {
@@ -37,22 +41,30 @@ class SubscriptionController {
             Subscription subscription = new Subscription(topic: topic, user: session.user, seriousness: Seriousness.SERIOUS)
             if (subscription.save(flush: true)) {
                 List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-                render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems])
+                render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems])
             } else {
                 flash.error = "Subscription not saved"
             }
         }
     }
 
-    def update(Long id, String seriousness) {
+    def update(Long topicId, String seriousness) {
         println "inside updating"
+//        User user = session.user
+        Map jsonResponseMap = [:]
+
+        // Subscription subscription = Subscription.findByUserAndTopic(user, topic)
         seriousness = Seriousness.convert(seriousness)
-        Subscription subscription = Subscription.findByIdAndSeriousness(id, seriousness)
+        //Seriousness seriousness = Seriousness.getBySeriousness()
+
+        Subscription subscription = Subscription.findByIdAndSeriousness(topicId, seriousness)
         if (subscription) {
             subscription.save(flush: true)
-            render "subscription found and updated successfully"
+            jsonResponseMap.message = "subscription found and updated successfully"
         } else {
-            render "failure in saving subscription"
+            jsonResponseMap.error = "failure in saving subscription"
         }
+        jsonResponseMap as JSON
     }
+
 }

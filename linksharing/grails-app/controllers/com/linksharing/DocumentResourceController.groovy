@@ -11,18 +11,6 @@ class DocumentResourceController extends ResourceController {
         render "inside document resource!"
     }
 
-//    def save(String filePath, String description, Integer topic1) {
-//        Topic topic = Topic.findById(topic1)
-//        Resource resource = new DocumentResource(description: description, createdBy: session.user, topic: topic, filePath: filePath)
-//        if (resource.validate()) {
-//            resource.save(flush: true)
-//            render "Document saved successfully"
-//        } else {
-//            render "Document not saved!!"
-//        }
-//    }
-
-
     @Transactional
     def save(DocumentResource documentResource) {
         documentResource.createdBy = session.user
@@ -36,11 +24,12 @@ class DocumentResourceController extends ResourceController {
             documentResource.filePath = path
 
             if (documentResource.validate()) {
-
-
                 documentResource.save(flush: true)
+
+
                 File destinationFile = new File(path)
                 params.file.transferTo(destinationFile)
+                addToReadingItems(documentResource)
                 flash.message = "Document Resource Saved"
             } else {
                 flash.error = "Resource not Saved -- ${documentResource.errors.allErrors}"
@@ -48,5 +37,22 @@ class DocumentResourceController extends ResourceController {
             //addToReadingItems(documentResource)
         }
         redirect(controller: 'login', action: 'index')
+    }
+
+    def download(Long id){
+        DocumentResource documentResource = (DocumentResource)Resource.get(id)
+        if(!documentResource){
+            render "resource not found!!"
+        }
+        if(Resource.canViewBy(session.user,id)){
+            def file = new File(documentResource.filePath)
+
+            if (file.exists()) {
+                response.setContentType("application/pdf")
+                response.setHeader("Content-disposition", "filename=${file.name}")
+                response.outputStream << file.bytes
+                redirect controller: 'login' ,action: 'index'
+            }
+        }
     }
 }

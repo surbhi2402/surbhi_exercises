@@ -4,7 +4,7 @@
 
         <div class="panel-body">
             %{--<div style="float:left;font-size:60px" class="glyphicon glyphicon-user img thumbnail"></div>--}%
-            <div class="panel-body">
+
                 <g:each in="${recentShares}" var="share">
                     <div style="float:left;font-size:60px" class="glyphicon glyphicon-user"></div>
 
@@ -19,7 +19,6 @@
 
                     <hr>
                 </g:each>
-            </div>
         </div>
     </div>
     <hr>

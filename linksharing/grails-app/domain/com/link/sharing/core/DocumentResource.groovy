@@ -1,6 +1,7 @@
 package com.link.sharing.core
 
 import com.ttnd.linksharing.constants.Constants
+import grails.transaction.Transactional
 
 class DocumentResource extends Resource {
 
@@ -22,7 +23,6 @@ class DocumentResource extends Resource {
         filePath
     }
 
-
        String getContentType() {
            this.contentType
        }
@@ -30,4 +30,22 @@ class DocumentResource extends Resource {
     void setContentType(String cType) {
         contentType = cType
     }
+
+    @Transactional
+    Boolean deleteFile() {
+        String filePath = createCriteria().get {
+            projections {
+                property('filePath')
+            }
+            eq('id', this.id)
+        }
+        boolean fileDeleted = new File(filePath).delete()
+        if (fileDeleted) {
+            this.delete(flush: true)
+            return true
+        } else {
+            return false
+        }
+    }
+
 }

@@ -1,13 +1,13 @@
 <div class="well well-lg" style="height:130px">
     <div class="left" style="float: left">
-        <ls:userImage id="${userDetails.id}"/>
+        <ls:userImage id="${session.user.id}"/>
     </div>
 </div>
 
 <div class="col-xs-offset-3">
-    <div style="color:black">${userDetails.username}</div>
+    <div style="color:black">abvxsvxg</div>
 
-    <div style="color:grey">@${userDetails.fname}</div>
+    <div style="color:grey">@bxaxhb</div>
     <inline>
         <div class="col-sm-4" style="color:grey;margin-left:0px">Subscription</div>
 
@@ -15,7 +15,7 @@
     </inline>
     <inline>
         <div class="col-sm-3" style="color:grey; margin-left:45px">
-            <ls:subscriptionCount userId="${userDetails.id}"/>
+            %{--<ls:subscriptionCount userId="${userDetails.id}"/>--}%
         </div>
 
         <div class="col-sm-3" style="color:grey">

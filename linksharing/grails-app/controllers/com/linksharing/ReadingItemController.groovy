@@ -15,7 +15,9 @@ class ReadingItemController {
         println "==============------------------${resource}"
         User user = session.user
 
-        if (ReadingItem.executeUpdate("update ReadingItem as r set r.isRead=:isRead where r.resource.id=id and r.user.id = :userId", [isRead: isRead, userId: user.id])) {
+        if (ReadingItem.executeUpdate("update ReadingItem as r set r.isRead=:isRead " +
+                "where r.resource=:resource and r.user =:user", [isRead: isRead, user: user, resource:resource]))
+        {
             render "Reading Item isRead successfully changed. ~SUCCESS~"
         } else {
             render "Reading Item isRead could not be changed. ~FAILURE~"

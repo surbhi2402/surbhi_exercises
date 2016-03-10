@@ -9,7 +9,7 @@ class UserVO {
     String username
     String fname
     String lname
-    Byte[] photo
+    byte[] photo
     Boolean isAdmin
     Boolean isActive
 }

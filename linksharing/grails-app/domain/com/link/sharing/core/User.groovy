@@ -1,6 +1,7 @@
 package com.link.sharing.core
 
 import com.ttnd.linksharing.Vo.UserVO
+import org.xhtmlrenderer.css.parser.property.PrimitivePropertyBuilders
 
 class User {
 
@@ -95,5 +96,21 @@ class User {
 
     UserVO getUserDetails() {
         return new UserVO(id:id,email: email, username: username, fname: firstName, lname: lastName, photo: photo, isAdmin: admin, isActive: active)
+    }
+
+
+    Subscription getSubscription(Long topicId){
+        Topic topic = Topic.get(topicId)
+        return Subscription.findByUserAndTopic(this,topic)
+    }
+
+    Boolean equals(Long userId){
+       User user = User.get(userId)
+        if(this == user){
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
