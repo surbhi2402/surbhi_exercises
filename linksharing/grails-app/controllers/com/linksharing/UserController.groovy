@@ -5,15 +5,22 @@ import com.link.sharing.core.Resource
 import com.link.sharing.core.ResourceRating
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
+import com.ttnd.linksharing.Co.ResourceSearchCo
+import com.ttnd.linksharing.Co.TopicSearchCO
 import com.ttnd.linksharing.Co.UserCo
+import com.ttnd.linksharing.Enum.Visibility
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
+import org.xhtmlrenderer.css.parser.property.PrimitivePropertyBuilders
 
 class UserController {
 
     def userService
     def assetResourceLocator
+    def subscriptionService
+    def resourceService
+    def topicService
     def saving() {
         if (userService.save())
             render "success"
@@ -71,4 +78,17 @@ class UserController {
         response.outputStream << photo
         response.outputStream.flush()
     }
+
+    def profile(ResourceSearchCo resourceSearchCo){
+        User user = session.user
+            TopicSearchCO topicSearchCO=new TopicSearchCO(id: resourceSearchCo.id,visibility: resourceSearchCo.visibility)
+            List<Topic> topicsCreated =topicService.search(topicSearchCO)
+            List<Topic> subscribedTopics=subscriptionService.search(topicSearchCO)
+            List<Resource> posts=resourceService.search(resourceSearchCo)
+        UserVO userDetails = user.getUserDetails()
+            render(view: '/user/profile', model: [topicsCreated:topicsCreated,subscribedTopics: subscribedTopics,posts:posts,userDetails: userDetails])
+
+    }
+
+
 }

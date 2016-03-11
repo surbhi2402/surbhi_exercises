@@ -7,17 +7,11 @@ enum Seriousness {
     SERIOUS, VERY_SERIOUS, CASUAL
 
 
-    static Seriousness convert(String s)
-    {
-        s = s.toUpperCase()
-        if(s=="SERIOUS")
-            Seriousness.SERIOUS
+    static getSeriousness(String serious) {
 
-        else if(s=="VERY_SERIOUS")
-            Seriousness.VERY_SERIOUS
+        String seriousInUpperCase = serious.toUpperCase()
+        return valueOf(seriousInUpperCase)
 
-        else
-            Seriousness.CASUAL
     }
 }
 

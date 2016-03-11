@@ -49,8 +49,8 @@ class LinkSharingTagTagLib {
             String subscribe = "${createLink(controller: 'subscription', action: 'save', params: [id: attrs.id])}"
             out << "<a href=$subscribe>Subscribe</a>"
         } else {
-            String unsubscribe = "${createLink(controller: 'subscription', action: 'delete', params: [id: attrs.id])}"
-            out << "<a href=$unsubscribe>Unsubscribe</a>"
+            String unsubscribe = "${createLink(controller: 'subscription', action: 'delete', params: [topicId:attrs.id])}"
+            out << "<a href=$unsubscribe topicId=\"$attrs.id\" class='subscription'>Unsubscribe</a>"
         }
 
     }
@@ -80,8 +80,9 @@ class LinkSharingTagTagLib {
 
     def resourceCount = { attrs, body ->
         Long topicId = attrs.topicId
+        Topic topic = Topic.get(topicId)
         if (topicId) {
-            out << Resource.countByTopic(Topic.load(topicId))
+            out << com.link.sharing.core.Resource.countByTopic(topic)
         }
     }
 
@@ -104,7 +105,7 @@ class LinkSharingTagTagLib {
         Long topicId = attrs.topicId
         Topic topic = Topic.get(topicId)
         User user = session.user
-        if (user == topic.createdBy || user.admin) {
+        if (user.equals(topic.createdBy.id) || user.admin) {
             out << render(template: '/subscription/tags', model: [topicId:attrs.topicId])
         }
     }
@@ -115,7 +116,7 @@ class LinkSharingTagTagLib {
         Subscription subscription = user.getSubscription(topicId)
 
         if (subscription) {
-            out << g.select(class: 'seriousness', topicId: topicId, name: 'seriousness', from:Seriousness.values(), value: subscription.seriousness)
+                out << g.select(class: 'seriousness', id: topicId, name: 'serious', from:Seriousness.values(), value: subscription.seriousness)
         } else {
             flash.error = "User not subscribed to topic"
         }

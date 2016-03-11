@@ -44,6 +44,10 @@ abstract class Resource {
                 }
             }
         }
+
+        resourceSearch{ User user->
+            eq('createdBy',user)
+        }
     }
 
     static List<Resource> showTopPost() {

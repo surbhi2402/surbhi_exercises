@@ -61,14 +61,15 @@
 
 
 
-%{--<div class="col-xs-6" style="width: 700px">--}%
 <div class="panel panel-default">
     <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Inbox</div>
 
     <g:each in="${readingItemList}" var="inbox">
         <div class="panel-body" style="height:150px">
-            <div style="float:left;font-size:60px" class="glyphicon glyphicon-user"></div>
-
+            <div class="left" style="float: left">
+                <ls:userImage id="${session.user.id}"/>
+            </div>
+            </div>
             <div class="col-xs-offset-2">
                 <h4>${inbox.topicName}<i style="color: grey">${inbox.userFirstName}</i><a href="#"
                                                                                           style="float:right"><u>${inbox.topicName}</u>
@@ -83,7 +84,7 @@
                 <ls:checkType id="${inbox.resourceID}" url="${inbox.url}"
                               filePath="${inbox.filePath}"/>
 
-                <ls:markRead isRead="${inbox.isRead}" resourceId="${inbox.resourceID}"></ls:markRead>
+                <ls:markRead isRead="${inbox.isRead}" resourceId="${inbox.resourceID}"/>
                 <g:link controller="resource" action="viewPost"
                         params='[id: "${inbox.resourceID}"]'>View Post</g:link>
             </div>
@@ -91,5 +92,5 @@
         </div>
     </g:each>
 </div>
-%{--</div>--}%
+
 

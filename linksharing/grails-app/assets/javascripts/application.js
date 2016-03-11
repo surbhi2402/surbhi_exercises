@@ -38,11 +38,38 @@ function ajaxSuccess(result) {
 	}
 }
 
-	$(document).ready(function(){
-            $.ajax({
+$(document).ready(function () {
+
+    $(".subscription").click(function (e) {
+
+        //console.log($(this).attr('topicId'));
+
+        e.preventDefault();
+        $.ajax({
             url: "/subscription/delete",
             data: {topicId: $(this).attr('topicId')},
             success: ajaxSuccess
         });
+    });
 
-	});
+
+    $(".seriousness").change(function (e) {
+        //alert($(this).attr('id'));
+        e.preventDefault();
+        $.ajax({
+            url: "/subscription/update",
+            data: {id: $(this).attr('id'),serious:$(this).val()},
+            success: ajaxSuccess
+        });
+    });
+
+    $(".visibility").change(function (e) {
+        //alert($(this).attr('id'));
+        e.preventDefault();
+        $.ajax({
+            url: "/topic/save",
+            data: {name: $(this).attr('id'),visibility:$(this).val()},
+            success: ajaxSuccess
+        });
+    });
+});

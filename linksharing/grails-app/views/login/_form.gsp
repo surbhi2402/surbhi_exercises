@@ -1,32 +1,6 @@
-<div class="col-xs-7">
-    <div class="panel panel-default">
-        <div class="panel panel-heading">Recent shares</div>
-
-        <div class="panel-body">
-            %{--<div style="float:left;font-size:60px" class="glyphicon glyphicon-user img thumbnail"></div>--}%
-
-                <g:each in="${recentShares}" var="share">
-                    <div style="float:left;font-size:60px" class="glyphicon glyphicon-user"></div>
-
-                    <h4>${share.createdBy.username}</h4>
-                    <g:link style="float: right" controller="topic" action="show"
-                            params='[topicId: "${share.topicId}"]'>${share.topic}</g:link>
-                    <p>${share.description}</p>
-                    <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
-                    <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
-                    <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
-                    <a href="#" style="float:right"><u>View Posts</u></a>
-
-                    <hr>
-                </g:each>
-        </div>
-    </div>
-    <hr>
-</div>
 
 
 %{--Login module--}%
-<div class="col-xs-5" style="float: right">
     <div class="panel panel-default">
         <div class="panel panel-heading">Login</div>
 
@@ -60,4 +34,3 @@
             </g:form>
         </div>
     </div>
-</div>

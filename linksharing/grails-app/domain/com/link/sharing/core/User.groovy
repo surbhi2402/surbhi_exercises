@@ -104,7 +104,7 @@ class User {
         return Subscription.findByUserAndTopic(this,topic)
     }
 
-    Boolean equals(Long userId){
+   public Boolean equals(Long userId){
        User user = User.get(userId)
         if(this == user){
             return true

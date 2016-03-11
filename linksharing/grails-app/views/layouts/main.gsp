@@ -14,7 +14,7 @@
 
     <asset:javascript src="jquery-2.2.1.min.js"/>
     <asset:stylesheet src="application.css"/>
-    <asset:javascript src="application.js"/>
+
     <asset:javascript src="jquery.validate.min.js"/>
     <g:layoutHead/>
 </head>
@@ -53,7 +53,7 @@
                             class="caret">
                     </span></button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
+                        <li><g:link controller="user" action="profile" params="[id:session.user.id,topicId:0,visibility:com.ttnd.linksharing.Enum.Visibility.PUBLIC]">Profile</g:link></li>
                         <li><a href="#">Users</a></li>
                         <li><a href="#">Topics</a></li>
                         <li><a href="#">Posts</a></li>
@@ -66,7 +66,6 @@
     <g:render template="/topic/createTopic"></g:render>
     <g:render template="/linkResource/submitLink"></g:render>
     <g:render template="/documentResource/submitDocument"></g:render>
-
 </g:if>
 <g:else>
     <div class="container-fluid" style="height: 100px">
@@ -101,9 +100,9 @@
 </g:else>
 <div class = "container">
     <div class = "jsonResponse" style = "display:none"></div>
-    %{--<g:layoutBody/>--}%
 </div>
 <g:layoutBody/>
+<asset:javascript src="application.js"/>
 </body>
 </html>
 

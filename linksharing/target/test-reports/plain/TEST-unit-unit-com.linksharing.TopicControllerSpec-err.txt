@@ -1,4 +1,0 @@
---Output from testing show action if topic not found--
---Output from testing show action of Topic--
---Output from topic show if visibility is private--
---Output from testing save action--

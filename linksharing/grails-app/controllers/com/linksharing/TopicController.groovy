@@ -1,5 +1,6 @@
 package com.linksharing
 
+import com.link.sharing.core.ReadingItem
 import com.link.sharing.core.Resource
 import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
@@ -7,6 +8,7 @@ import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.ResourceSearchCo
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visibility
+import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 
 class TopicController {

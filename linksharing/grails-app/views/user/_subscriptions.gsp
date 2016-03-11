@@ -12,13 +12,12 @@
         </div>
         </div>
         <br>
+
         <div class="col-xs-offset-3" class="row">
             <a href="#" style="float:left"><u>${topic.name}</u></a>
-            <br>
-
+    <br>
             <div>
-
-                <a href="#" style="float:left;color:grey"><u>@${topic.id}</u></a>
+                <a href="#" style="float:left;color:grey"><u>@${topic.createdBy.username}</u></a>
 
                 <div class="col-sm-4" style="color:grey">Subscription</div>
 
@@ -26,22 +25,18 @@
 
                 <div>
                     <ls:showSubscribe id="${topic.id}"></ls:showSubscribe>
+                    <div class="col-sm-3" style="color:grey;margin-left: 70px"><ls:subscriptionCount userId="${userDetails.id}"/></div>
+
+                    <div class="col-sm-3" style="color:grey"><ls:topicCount/></div>
                 </div>
-
-                <div class="col-sm-3" style="color:grey"><a href="#">50</a></div>
-
-                <div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
-
             </div>
 
-            <br>
-            <br>
+
             <!--Drop downs of subscription panel-->
-            <ls:canUpdateTopic topicId="${topic.id}" userId="${session.user.id}"/>
+            <ls:canUpdateTopic topicId="${topic.id}"/>
         </div>
         <br>
         <hr>
-
     </g:each>
 </div>
 

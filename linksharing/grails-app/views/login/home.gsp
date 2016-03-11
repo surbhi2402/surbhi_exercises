@@ -13,8 +13,21 @@
 </head>
 
 <body>
-<g:render template='/login/form' model="[recentShares:recentShares]"></g:render>
-<g:render template='/user/registration' model="[user:user]"></g:render>
-<ls:topPosts/>
+
+<div class="container-fluid">
+
+    <div class="col-xs-7" style="float: left">
+        <g:render template="/login/recentShares" model="[recentShares: recentShares]"/>
+
+        <ls:topPosts/>
+    </div>
+
+    <div class="col-xs-5 pull-right">
+        <g:render template="/login/form"/>
+
+        <g:render template='/user/registration' model="[user: user]"></g:render>
+    </div>
+
+</div>
 </body>
 </html>

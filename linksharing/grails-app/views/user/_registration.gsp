@@ -1,6 +1,5 @@
 %{--Registration--}%
 
-<div class="col-xs-5" style="float: right">
     <div class="panel panel-default">
         <div class="panel panel-heading">Register</div>
 
@@ -97,10 +96,6 @@
                     <label for="inputEmail" class="control-label col-xs-3">Photo</label>
 
                     <div class="col-xs-4">
-                        <g:textField name="photo" class="form-control" id="inputPhoto" placeholder="Upload"/>
-                    </div>
-
-                    <div class="col-xs-4">
                         <input type="file" id="pic" name="pic" width="60" height="60">
                     </div>
                 </div>
@@ -116,4 +111,3 @@
             </g:form>
         </div>
     </div>
-</div>

@@ -13,17 +13,17 @@
 </head>
 
 <body>
-<div class="col-xs-7">
+<div class="col-xs-5">
     <div class="row" style="margin:9px">
         <g:render template="/topic/showTopic" model="[topic: topic]"/>
     </div>
 
-    <div class="row" style="margin:9px">
-        <g:render template="/topic/showUser" model="[subscribedUsers: subscribedUsers]"/>
+    <div class="row" style="margin:0px">
+        <g:render template="/topic/showUser" model="[subscribedUsers: subscribedUsers,topic: topic]"/>
     </div>
 </div>
 
-<div class="col-xs-5">
+<div class="col-xs-7">
     <g:render template="/topic/showPost" model="[post:post,topics: topic]"/>
     %{--<ls:topPosts/>--}%
 </div>

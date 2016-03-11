@@ -10,7 +10,7 @@
 
     <div class="col-xs-4">
         <div class="row">
-            <ls:showSeriousness topicId="${topicId}" userId="${session.user.id}"/>
+            <ls:showSeriousness topicId="${topicId}"/>
             %{--<g:select class="seriousness" name="visibility" from="${com.ttnd.linksharing.Enum.Seriousness.values()}"--}%
             %{--value="${com.ttnd.linksharing.Enum.Seriousness.values()}"--}%
             %{--noSelection="['': 'select seriousness']"/>--}%

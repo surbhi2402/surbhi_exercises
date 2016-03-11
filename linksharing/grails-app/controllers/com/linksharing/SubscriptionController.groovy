@@ -16,16 +16,19 @@ class SubscriptionController {
     def index() {}
 
     def delete(Long topicId) {
+        println "==topicId-->>>${topicId}"
         Map jsonResponseMap = [:]
+        Topic topic = Topic.get(topicId)
         User user = session.user
         if (user.isSubscribed(topicId)) {
-            Topic topic = Topic.get(topicId)
-//            if(user.equals(session.user.id)){}
+
             Subscription subscription = Subscription.findByUserAndTopic(user, topic)
             subscription.delete(flush: true)
             jsonResponseMap.message = "subscription deleted!!"
-            redirect(controller: 'user', action: 'index')
-        } else {
+            //redirect(controller: 'user', action: 'index')
+        } else  if(user.equals(topic.createdBy.id)) {
+            flash.error = "you cannot unsubscribe from topic!"
+        }else{
             flash.error = "subscription not found!"
             jsonResponseMap.error = "Subscription not found!!"
         }
@@ -48,23 +51,24 @@ class SubscriptionController {
         }
     }
 
-    def update(Long topicId, String seriousness) {
-        println "inside updating"
-//        User user = session.user
+    def update(Integer id, String serious) {
+        Subscription subscription = Subscription.get(id)
+
+        Seriousness seriousness = Seriousness.getSeriousness(serious)
+
         Map jsonResponseMap = [:]
+        if (subscription && seriousness) {
+            subscription.seriousness = seriousness
 
-        // Subscription subscription = Subscription.findByUserAndTopic(user, topic)
-        seriousness = Seriousness.convert(seriousness)
-        //Seriousness seriousness = Seriousness.getBySeriousness()
-
-        Subscription subscription = Subscription.findByIdAndSeriousness(topicId, seriousness)
-        if (subscription) {
-            subscription.save(flush: true)
-            jsonResponseMap.message = "subscription found and updated successfully"
+            if (subscription.validate() && subscription.save(flush: true, failOnError: true))
+                jsonResponseMap.message = "Subscription ${subscription} saved successfully"
+            else
+                jsonResponseMap.error = "Subscription ${subscription} could not be saved"
         } else {
-            jsonResponseMap.error = "failure in saving subscription"
+            jsonResponseMap.error = "Subscription with id ${id} could not be found."
         }
-        jsonResponseMap as JSON
+        JSON jsonResponse = jsonResponseMap as JSON
+        render jsonResponse
     }
 
 }
