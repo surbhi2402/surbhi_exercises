@@ -49,11 +49,12 @@ class ResourceController {
         User user = session.user
         List<PostVO> readingItems = ReadingItem.getInboxItems(user)
         Resource resource = Resource.read(id)
+        UserVO userDetails = user.getUserDetails()
         println "=====resource is-->>>>>>>>${resource}===="
         println "=====resource Id is ---- >>>>${resource.id}===="
         if (Resource.canViewBy(user, id)) {
             println "inside can viewwww by----->>>>>"
-            render(view: '/resource/resourceSearch', model: [readingItemList: readingItems, resource: resource])
+            render(view: '/resource/resourceSearch', model: [readingItemList: readingItems, resource: resource,userDetails: userDetails])
         } else {
             render "you cannot view this resource"
         }

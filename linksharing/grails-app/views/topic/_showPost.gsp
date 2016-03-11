@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Post:</div>
+    <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Post:${post.topic.name}</div>
 
     <g:each in="${post}" var="topicPost">
         <div class="panel-body" style="height:150px">

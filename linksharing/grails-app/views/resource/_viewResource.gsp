@@ -1,12 +1,12 @@
 <%@ page import="com.link.sharing.core.ResourceRating" %>
 
-<div class="well well-lg" style="height:400px;width: 600px">
+<div class="well well-lg" style="height:400px">
     <div class="glyphicon glyphicon-user" style="float:left;font-size:60px"></div>
 
     <div class="col-xs-offset-2">
 
-        <div style="color:black;font-size: medium">Uday Pratap Singh
-            <a href="#" class="pull-right"><u>Grails</u></a></div>
+        <div style="color:black;font-size: medium">${resource.createdBy.username}
+            <a href="#" class="pull-right"><u>${resource.topic.name}</u></a></div>
 
         <div style="color:grey">@uday
             <p class="pull-right">2:45 PM 24 Feb 2016</p></div>

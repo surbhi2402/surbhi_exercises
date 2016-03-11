@@ -5,6 +5,7 @@ import com.link.sharing.core.Topic
 import com.link.sharing.core.User
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Vo.TopicVo
+import com.ttnd.linksharing.Vo.UserVO
 import org.apache.log4j.lf5.util.Resource
 
 class LinkSharingTagTagLib {
