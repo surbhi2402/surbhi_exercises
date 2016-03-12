@@ -39,16 +39,19 @@ class SubscriptionController {
     def save(Long id) {
         User user = session.user
         Topic topic = Topic.get(id)
+        Map jsonResponseMap = [:]
         Subscription subscription1 = Subscription.findByUserAndTopic(user, topic)
         if (!subscription1) {
             Subscription subscription = new Subscription(topic: topic, user: session.user, seriousness: Seriousness.SERIOUS)
             if (subscription.save(flush: true)) {
                 List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-                render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems])
+//                render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems])
+              jsonResponseMap.message = "Subscription Saved Sucessfully!"
             } else {
-                flash.error = "Subscription not saved"
+                jsonResponseMap.error = "Subscription not saved"
             }
         }
+        render jsonResponseMap as JSON
     }
 
     def update(Integer id, String serious) {

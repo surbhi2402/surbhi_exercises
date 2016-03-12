@@ -12,7 +12,6 @@ import com.ttnd.linksharing.Enum.Visibility
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
-import org.xhtmlrenderer.css.parser.property.PrimitivePropertyBuilders
 
 class UserController {
 
@@ -21,6 +20,7 @@ class UserController {
     def subscriptionService
     def resourceService
     def topicService
+
     def saving() {
         if (userService.save())
             render "success"
@@ -33,7 +33,7 @@ class UserController {
         User user = session.user
         UserVO userDetails = user.getUserDetails()
         List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-        render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems,userDetails:userDetails])
+        render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems, userDetails: userDetails])
     }
 
 
@@ -41,18 +41,18 @@ class UserController {
 
         User user = new User()
         user.properties = userCo.properties
-        if(!params.pic.empty){
+        if (!params.pic.empty) {
             user.photo = params.pic.bytes
         }
         user.validate()
-        if(user?.hasErrors()){
-            List<Resource> recentShares = Resource.list([sort: 'dateCreated', order: 'desc', max: 2])
-            render view: '/login/home' , model:[recentShares:recentShares,user:userCo]
-        }
-        else  {
+        if (user?.hasErrors()) {
             user.save(flush: true, failOnError: true)
-            flash.message = "Successful registration"
+            flash.message = "Could not Register User"
             render flash.message
+
+        } else {
+            List<Resource> recentShares = Resource.list([sort: 'dateCreated', order: 'desc', max: 2])
+            render view: '/login/home', model: [recentShares: recentShares, user: userCo]
         }
     }
 
@@ -62,31 +62,31 @@ class UserController {
 
     def getScore(Long resourceId, Integer score) {
         User user = session.user
-        Integer value = ResourceRating.executeUpdate("update ResourceRating r set r.score=:score where r.resource.id=:resourceId and r.user.id = :userId", [score:score,resourceId:resourceId,userId: user.id])
+        Integer value = ResourceRating.executeUpdate("update ResourceRating r set r.score=:score where r.resource.id=:resourceId and r.user.id = :userId", [score: score, resourceId: resourceId, userId: user.id])
 
         render value
     }
 
-    def image(Long id){
+    def image(Long id) {
         User user = User.get(id)
         byte[] photo
-        if(user.photo){
+        if (user.photo) {
             photo = user.photo
-        }else {
+        } else {
             photo = assetResourceLocator.findAssetForURI('dummy.png').byteArray
         }
         response.outputStream << photo
         response.outputStream.flush()
     }
 
-    def profile(ResourceSearchCo resourceSearchCo){
+    def profile(ResourceSearchCo resourceSearchCo) {
         User user = session.user
-            TopicSearchCO topicSearchCO=new TopicSearchCO(id: resourceSearchCo.id,visibility: resourceSearchCo.visibility)
-            List<Topic> topicsCreated =topicService.search(topicSearchCO)
-            List<Topic> subscribedTopics=subscriptionService.search(topicSearchCO)
-            List<Resource> posts=resourceService.search(resourceSearchCo)
+        TopicSearchCO topicSearchCO = new TopicSearchCO(id: resourceSearchCo.id, visibility: resourceSearchCo.visibility)
+        List<Topic> topicsCreated = topicService.search(topicSearchCO)
+        List<Topic> subscribedTopics = subscriptionService.search(topicSearchCO)
+        List<Resource> posts = resourceService.search(resourceSearchCo)
         UserVO userDetails = user.getUserDetails()
-            render(view: '/user/profile', model: [topicsCreated:topicsCreated,subscribedTopics: subscribedTopics,posts:posts,userDetails: userDetails])
+        render(view: '/user/profile', model: [topicsCreated: topicsCreated, subscribedTopics: subscribedTopics, posts: posts, userDetails: userDetails])
 
     }
 

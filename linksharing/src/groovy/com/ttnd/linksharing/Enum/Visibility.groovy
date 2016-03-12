@@ -6,12 +6,19 @@ package com.ttnd.linksharing.Enum
 enum Visibility {
     PUBLIC,PRIVATE
 
-    static Visibility convert(String s)
-    {
-        if(s=="PUBLIC")
-            Visibility.PUBLIC
-        else
-            Visibility.PRIVATE
+//    static Visibility convert(String s)
+//    {
+//        if(s=="PUBLIC")
+//            Visibility.PUBLIC
+//        else
+//            Visibility.PRIVATE
+//
+//    }
+
+    static getVisibility(String visibility) {
+
+        String visibilityInUpperCase = visibility.toUpperCase()
+        return valueOf(visibilityInUpperCase)
 
     }
 

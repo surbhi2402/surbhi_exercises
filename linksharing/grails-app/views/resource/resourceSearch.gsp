@@ -14,13 +14,13 @@
 
 <body>
 <div class="container-fluid">
-    <div class="col-xs-7" style="float: left">
+    <div class="col-xs-6" style="float: left">
         %{--<div class="row" style="margin:9px">--}%
         <g:render template="viewResource" model="[readingItemList: readingItemList, resource: resource]"/>
         %{--</div>--}%
     </div>
 
-    <div class="col-xs-5 pull-right">
+    <div class="col-xs-5" style="float: right">
         %{--<g:render template="/user/trendingTopics"/>--}%
         <ls:trendingTopics/>
     </div>

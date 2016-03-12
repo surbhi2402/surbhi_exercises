@@ -4,6 +4,7 @@ import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
 import com.ttnd.linksharing.Enum.Seriousness
+import com.ttnd.linksharing.Enum.Visibility
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
 import org.apache.log4j.lf5.util.Resource
@@ -48,7 +49,7 @@ class LinkSharingTagTagLib {
 
         if (!session.user.isSubscribed(attrs.id)) {
             String subscribe = "${createLink(controller: 'subscription', action: 'save', params: [id: attrs.id])}"
-            out << "<a href=$subscribe>Subscribe</a>"
+            out << "<a href=$subscribe class='subscribe' id=\"$attrs.id\">Subscribe</a>"
         } else {
             String unsubscribe = "${createLink(controller: 'subscription', action: 'delete', params: [topicId:attrs.id])}"
             out << "<a href=$unsubscribe topicId=\"$attrs.id\" class='subscription'>Unsubscribe</a>"
@@ -106,9 +107,16 @@ class LinkSharingTagTagLib {
         Long topicId = attrs.topicId
         Topic topic = Topic.get(topicId)
         User user = session.user
-        if (user.equals(topic.createdBy.id) || user.admin) {
-            out << render(template: '/subscription/tags', model: [topicId:attrs.topicId])
+        if(user) {
+            if (user.id == topic.createdBy.id || user.admin) {
+                out << render(template: '/subscription/tags', model: [topicId: attrs.topicId])
+            }
+            else {
+                out << render(template: '/user/mySubscribedTopics',model: [topicId: topicId])
+            }
+
         }
+
     }
 
     def showSeriousness = { attrs, body ->
@@ -118,6 +126,19 @@ class LinkSharingTagTagLib {
 
         if (subscription) {
                 out << g.select(class: 'seriousness', id: topicId, name: 'serious', from:Seriousness.values(), value: subscription.seriousness)
+        } else {
+            flash.error = "User not subscribed to topic"
+        }
+    }
+
+    def showVisibility = { attrs, body ->
+        Long topicId = attrs.id
+        Topic topic = Topic.get(topicId)
+//        Visibility visibility = Visibility.getVisibility(attrs.visibility)
+//        User user = session.user
+
+        if (topic) {
+            out << g.select(class: 'visibility', id: topicId, name: 'visibility', from:Visibility.values(), value: topic.visibility)
         } else {
             flash.error = "User not subscribed to topic"
         }

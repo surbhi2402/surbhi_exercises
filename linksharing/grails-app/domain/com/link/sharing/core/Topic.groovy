@@ -30,7 +30,7 @@ class Topic {
     static transients = ['subscribedUsers']
 
     static List<TopicVo> getTrendingTopics() {
-        List topicVos = Resource.createCriteria().list([max: 4]) {
+        List topicVos = Resource.createCriteria().list([max: 10]) {
 
             projections {
                 createAlias('topic', 't')

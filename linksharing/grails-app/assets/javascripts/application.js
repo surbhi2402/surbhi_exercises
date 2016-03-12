@@ -52,6 +52,18 @@ $(document).ready(function () {
         });
     });
 
+    $(".subscribe").click(function (e) {
+
+        //console.log($(this).attr('topicId'));
+
+        e.preventDefault();
+        $.ajax({
+            url: "/subscription/save",
+            data: {id: $(this).attr('id')},
+            success: ajaxSuccess
+        });
+    });
+
 
     $(".seriousness").change(function (e) {
         //alert($(this).attr('id'));
@@ -67,8 +79,8 @@ $(document).ready(function () {
         //alert($(this).attr('id'));
         e.preventDefault();
         $.ajax({
-            url: "/topic/save",
-            data: {name: $(this).attr('id'),visibility:$(this).val()},
+            url: "/topic/saving",
+            data: {topicId: $(this).attr('id'),visibility:$(this).val()},
             success: ajaxSuccess
         });
     });

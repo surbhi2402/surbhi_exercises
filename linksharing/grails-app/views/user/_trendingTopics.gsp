@@ -28,6 +28,8 @@
                         userId="${userDetails.id}"/></div>
 
                 <div class="col-sm-3" style="color:grey"><ls:topicCount/></div>
+
+                <ls:canUpdateTopic topicId="${topic.id}"/>
             </inline>
 
         </div>

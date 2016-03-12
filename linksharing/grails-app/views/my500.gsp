@@ -15,7 +15,7 @@
 <body>
 
 
-<p>Content not available!</p>
+<p style="text-align: center">Content not available!</p>
 
 <g:if env="development">
     <g:renderException exception="${exception}" />
