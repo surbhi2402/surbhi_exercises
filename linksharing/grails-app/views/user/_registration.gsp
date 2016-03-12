@@ -1,5 +1,4 @@
 %{--Registration--}%
-
     <div class="panel panel-default">
         <div class="panel panel-heading">Register</div>
 

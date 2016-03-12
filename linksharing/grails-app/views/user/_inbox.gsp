@@ -65,11 +65,12 @@
     <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Inbox</div>
 
     <g:each in="${readingItemList}" var="inbox">
-        <div class="panel-body" style="height:150px">
+        <div class="panel-body">
             <div class="left" style="float: left">
                 <ls:userImage id="${session.user.id}"/>
             </div>
             </div>
+
             <div class="col-xs-offset-2">
                 <h4>${inbox.topicName}<i style="color: grey">${inbox.userFirstName}</i><a href="#"
                                                                                           style="float:right"><u>${inbox.topicName}</u>

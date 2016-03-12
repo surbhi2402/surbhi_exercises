@@ -1,4 +1,4 @@
-<div class="panel panel-default" style="width: 300px">
+<div class="panel panel-default">
            <div class="panel panel-heading">Trending Topics</div>
 <g:each in="${trendingTopics}" var="topic">
     <div class="panel-body">

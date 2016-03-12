@@ -25,7 +25,7 @@
         <ls:trendingTopics/>
     </div>
 
-    <div class="col-xs-7 pull-right">
+    <div class="col-xs-7">
         <g:render template="/user/inbox" model="[readingItemList: readingItemList]"/>
     </div>
 
