@@ -1,5 +1,7 @@
+<%@ page contentType="text/html"%>
 
-<pre>User:${currentuser} from Linksharing has send you this email for invite <b>${topic.name}</b> topic.
+
+<pre id="sendInvite">User:${currentuser} from Linksharing has send you this email for invite <b>${topic.name}</b> topic.
     <h4>Topic info :-</h4> Name: <b>${topic.name}</b>
     Visibility <b>${topic.visibility}</b>
     Created by: <b>${topic.createdBy}</b>

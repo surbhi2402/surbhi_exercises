@@ -5,14 +5,19 @@ import com.link.sharing.core.Resource
 import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
+import com.ttnd.linksharing.Co.InvitationCO
 import com.ttnd.linksharing.Co.ResourceSearchCo
+import com.ttnd.linksharing.DTO.EmailDTO
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visibility
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 import grails.converters.JSON
 
+
+
 class TopicController {
+    def emailService
 
     def index() {
         render(view: '/topic/searchPage')
@@ -89,20 +94,40 @@ class TopicController {
 
     }
 
-    def invite(Long id,String email){
-        Topic topic = Topic.findById(id)
-        if(!topic){
-            flash.error = "topic not found!"
+    def invite(InvitationCO invitationCO) {
+        Topic topic = Topic.get(invitationCO.topicId)
+        if (topic && (!invitationCO.email.matches("\\s"))) {
+            TopicVo topicVO = new TopicVo(id: topic.id, name: topic.name, visibility: topic.visibility,
+                    createdBy: topic.createdBy)
+            EmailDTO emailDTO = new EmailDTO(to: [invitationCO.email], subject: "Invitations for topic from Linksharing",
+                    view: '/email/_invite', model: [currentUser: session.user, topic: topicVO])
+            emailService.sendMail(emailDTO)
+            flash.message = "Successfully send invitation"
+        } else {
+            flash.error = "Can't sent invitation"
         }
+        redirect(controller: "login", action:"index")
     }
 
-    def join(Long id){
-        Topic topic = Topic.get(id)
-        Subscription subscription =new Subscription(user: session.user,topic: topic,seriousness: Seriousness.VERY_SERIOUS)
-    if(!subscription){
-        render "errros in creating subscription"
+    def join(Long topicId) {
+        User user = session.user
+        if (user) {
+            Topic topic = Topic.get(topicId)
+            if (topic) {
+                Subscription subscription = new Subscription(topic: topic, user: session.user, seriousness: Seriousness.SERIOUS)
+                if (subscription?.save(flush: true)) {
+                    flash.message = "Subscription save successfully"
+                } else {
+                    flash.error = "Subscription not save successfully"
+                }
+            } else {
+
+                flash.error = "Topic not exist"
+            }
+        }
+        redirect(controller: "login", action: 'index')
     }
-    }
+
 }
 
 
