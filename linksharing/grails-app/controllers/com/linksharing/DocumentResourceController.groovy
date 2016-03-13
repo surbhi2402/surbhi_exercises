@@ -26,7 +26,6 @@ class DocumentResourceController extends ResourceController {
             if (documentResource.validate()) {
                 documentResource.save(flush: true)
 
-
                 File destinationFile = new File(path)
                 params.file.transferTo(destinationFile)
                 addToReadingItems(documentResource)

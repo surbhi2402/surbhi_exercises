@@ -28,7 +28,7 @@
 
                                 <div class="col-xs-10">
                                     <g:textArea name="description" class="form-control" rows="5"
-                                                id="comment"></g:textArea>
+                                                id="comment"/>
                                 </div>
                             </div>
 
@@ -43,8 +43,8 @@
 
                             <div class="row">
                                 <div class="modal-footer">
-                                    <g:actionSubmit action="save" value="submit" type="submit"
-                                                    class="btn btn-primary">Share</g:actionSubmit>
+                                    <g:submitButton name="submit" value="save" type="submit"
+                                                    class="btn btn-primary">Save</g:submitButton>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>

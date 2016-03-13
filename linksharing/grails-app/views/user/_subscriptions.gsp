@@ -14,7 +14,7 @@
         <br>
 
         <div class="col-xs-offset-3" class="row">
-            <a href="#" style="float:left"><u>${topic.name}</u></a>
+            <g:link controller="topic" action="show" params='[topicId: "${topic.id}"]'>${topic.name}</g:link>
     <br>
             <div>
                 <a href="#" style="float:left;color:grey"><u>@${topic.createdBy.username}</u></a>

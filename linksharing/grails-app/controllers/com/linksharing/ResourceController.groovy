@@ -50,10 +50,7 @@ class ResourceController {
         List<PostVO> readingItems = ReadingItem.getInboxItems(user)
         Resource resource = Resource.read(id)
         UserVO userDetails = user.getUserDetails()
-        println "=====resource is-->>>>>>>>${resource}===="
-        println "=====resource Id is ---- >>>>${resource.id}===="
         if (Resource.canViewBy(user, id)) {
-            println "inside can viewwww by----->>>>>"
             render(view: '/resource/resourceSearch', model: [readingItemList: readingItems, resource: resource,userDetails: userDetails])
         } else {
             render "you cannot view this resource"
@@ -62,7 +59,7 @@ class ResourceController {
 
 
     private def addToReadingItems(Resource resource) {
-
+//       println ("++++++++++++++++++${resource.properties}++++++++++++++")
         Topic topic = resource.topic
         List userList = topic.getSubscribedUsers()
 
@@ -72,14 +69,41 @@ class ResourceController {
                     if (resource.createdBy.id == user.id) {
                         ReadingItem readingItem = new ReadingItem(isRead: true, user: user, resource: resource)
                         user.addToReadingItems(readingItem)
+                        println ("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
                     } else {
                         ReadingItem readingItem = new ReadingItem(isRead: false, user: user, resource: resource)
                         user.addToReadingItems(readingItem)
+                        println ("++++++++++++++++++${resource.properties}++++++++++++++")
                     }
                 }
         }
 
     }
+
+
+
+//    private def readingItems(Resource resource) {
+//        println ("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
+//        Topic topic = resource.topic
+//
+//        List<User> user = topic.getSubscribedUsers()
+//
+//        println("+++++++++++++in user+++++${user}++++++++++++++")
+//        user.each {
+//            ReadingItem readingItem
+//            if (it == session.user) {
+//                readingItem = new ReadingItem(resource: resource, user: it, isRead: true)
+//                println("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
+//            } else {
+//
+//                readingItem = new ReadingItem(resource: resource, user: it, isRead: false)
+//                println("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
+//            }
+//            it.addToReadingItems(readingItem)
+//        }
+//
+//        }
+
 
 }
 

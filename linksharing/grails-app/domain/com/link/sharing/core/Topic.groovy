@@ -30,7 +30,7 @@ class Topic {
     static transients = ['subscribedUsers']
 
     static List<TopicVo> getTrendingTopics() {
-        List topicVos = Resource.createCriteria().list([max: 10]) {
+        List topicVos = Resource.createCriteria().list([sort:'dateCreated',max: 10]) {
 
             projections {
                 createAlias('topic', 't')
@@ -39,9 +39,10 @@ class Topic {
                 property('t.visibility')
                 property('t.createdBy')
                 count('id')
-                eq('t.visibility', Visibility.PUBLIC)
+
             }
             maxResults 5
+            eq('t.visibility', Visibility.PUBLIC)
             order('t.name', 'desc')
         }
         println "${topicVos}"
