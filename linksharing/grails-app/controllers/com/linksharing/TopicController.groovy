@@ -106,7 +106,8 @@ class TopicController {
         } else {
             flash.error = "Can't sent invitation"
         }
-        redirect(controller: "login", action:"index")
+        render "inside thiss!!!"
+//        redirect(controller: "login", action:"index")
     }
 
     def join(Long topicId) {

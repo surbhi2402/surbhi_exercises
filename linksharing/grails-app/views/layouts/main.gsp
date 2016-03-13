@@ -37,7 +37,7 @@
                    title="Create Topic"><i
                         class="fa fa-comment fa-fw" style="font-size:20px"></i></a>
 
-                <a href="#" data-toggle="modal" data-target="#sendInvite" data-tooltip="true" title="Send Invitation"><i
+                <a href="#" data-toggle="modal" data-target="#sendInvitation" data-tooltip="true" title="Send Invitation"><i
                         class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>
 
                 <a href="#" data-toggle="modal" data-target="#submitLink" data-tooltip="true" title="Create Resource"><i
@@ -64,7 +64,7 @@
         </nav>
     </div>
     <g:render template="/topic/createTopic"></g:render>
-    <g:render template="/email/invite"></g:render>
+    <g:render template="/topic/sendInvite"></g:render>
     <g:render template="/linkResource/submitLink"></g:render>
     <g:render template="/documentResource/submitDocument"></g:render>
 </g:if>
