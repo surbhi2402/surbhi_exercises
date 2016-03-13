@@ -59,6 +59,7 @@ class LinkSharingTagTagLib {
 
     def trendingTopics = {
         if (session.user) {
+
             List<TopicVo> trendingTopics = Topic.getTrendingTopics()
             out << render(template: "/user/trendingTopics", model: [trendingTopics: trendingTopics])
         }

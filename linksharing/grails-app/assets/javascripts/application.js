@@ -84,4 +84,23 @@ $(document).ready(function () {
             success: ajaxSuccess
         });
     });
+
+    $("#clearSearchPostBox").click(function () {
+        $("#searchPostBox").val("")
+    });
+
+    $("#findSearchPostBox").click(function() {
+        topicId = $(this).attr('topicId');
+            //alert("yes")
+        $.ajax({
+
+            url: "/resource/search",
+            data: {q: $('#searchPostBox').val(), topicId: topicId},
+            success: function (result) {
+                alert(result);
+                //$("#topicPosts").html(result)
+            }
+        });
+    });
+
 });

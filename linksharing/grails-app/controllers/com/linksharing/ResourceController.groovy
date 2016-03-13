@@ -27,18 +27,20 @@ class ResourceController {
             resource.delete(flush: true)
             UserVO userDetails = user.getUserDetails()
             List<PostVO> readingItems = ReadingItem.getInboxItems(session.user)
-            render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList: readingItems,userDetails:userDetails])
+            render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems, userDetails: userDetails])
         } else {
             render "Resource does not exists"
         }
     }
 
     def search(ResourceSearchCo co) {
+        User user = session.user
         if (co.q) {
             co.visibility = Visibility.PUBLIC
         }
+        UserVO userDetails = user.getUserDetails()
         List<Resource> resources = Resource.search(co).list()
-        render resources
+        render(view: '/resource/searchPage',model: [userDetails: userDetails,resources:resources])
     }
 
 //           Resource resource = Resource.findById(id)
@@ -51,7 +53,7 @@ class ResourceController {
         Resource resource = Resource.read(id)
         UserVO userDetails = user.getUserDetails()
         if (Resource.canViewBy(user, id)) {
-            render(view: '/resource/resourceSearch', model: [readingItemList: readingItems, resource: resource,userDetails: userDetails])
+            render(view: '/resource/resourceSearch', model: [readingItemList: readingItems, resource: resource, userDetails: userDetails])
         } else {
             render "you cannot view this resource"
         }
@@ -59,7 +61,6 @@ class ResourceController {
 
 
     private def addToReadingItems(Resource resource) {
-//       println ("++++++++++++++++++${resource.properties}++++++++++++++")
         Topic topic = resource.topic
         List userList = topic.getSubscribedUsers()
 
@@ -69,41 +70,17 @@ class ResourceController {
                     if (resource.createdBy.id == user.id) {
                         ReadingItem readingItem = new ReadingItem(isRead: true, user: user, resource: resource)
                         user.addToReadingItems(readingItem)
-                        println ("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
+                        readingItem.save(flush: true)
                     } else {
                         ReadingItem readingItem = new ReadingItem(isRead: false, user: user, resource: resource)
                         user.addToReadingItems(readingItem)
-                        println ("++++++++++++++++++${resource.properties}++++++++++++++")
+                        readingItem.save(flush: true)
                     }
+
                 }
         }
 
     }
-
-
-
-//    private def readingItems(Resource resource) {
-//        println ("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
-//        Topic topic = resource.topic
-//
-//        List<User> user = topic.getSubscribedUsers()
-//
-//        println("+++++++++++++in user+++++${user}++++++++++++++")
-//        user.each {
-//            ReadingItem readingItem
-//            if (it == session.user) {
-//                readingItem = new ReadingItem(resource: resource, user: it, isRead: true)
-//                println("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
-//            } else {
-//
-//                readingItem = new ReadingItem(resource: resource, user: it, isRead: false)
-//                println("+++++++++++++in iffff+++++${resource.properties}++++++++++++++")
-//            }
-//            it.addToReadingItems(readingItem)
-//        }
-//
-//        }
-
 
 }
 

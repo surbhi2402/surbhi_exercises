@@ -17,7 +17,7 @@ class LinkResourceController extends ResourceController{
         LinkResource linkResource = new LinkResource(description: description, createdBy: session.user, topic: topic, url: link)
         if (linkResource.validate()) {
             linkResource.save(flush: true)
-            
+
             addToReadingItems(linkResource)
             println "succesfullyy saved linkbdgyuedhbdft"
 

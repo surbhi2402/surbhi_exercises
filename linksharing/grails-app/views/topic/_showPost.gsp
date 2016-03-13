@@ -1,5 +1,12 @@
 <div class="panel panel-default">
-    <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Post:${post.topic.name}</div>
+    <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Post:${topic.name}
+        <div class="input-group"> <span class="input-group-btn">
+        <button id = "findSearchPostBox" topicId = "${topic.id}" class="btn btn-primary glyphicon glyphicon-search searchButtons"> </button> </span>
+        <input type="text" id = "searchPostBox" class="form-control input-group" placeholder="Search">
+        <span class="input-group-btn"> <button id = "clearSearchPostBox" class="btn btn-primary glyphicon-searchphicon glyphicon-remove searchButtons"> </button>
+        </span> </div>
+
+    </div>
 
     <g:each in="${post}" var="topicPost">
         <div class="panel-body" style="height:150px">
