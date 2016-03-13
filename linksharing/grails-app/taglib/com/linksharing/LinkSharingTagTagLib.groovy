@@ -32,7 +32,7 @@ class LinkSharingTagTagLib {
         if (com.link.sharing.core.Resource.checkResourceType(attrs.id)) {
             out << "<a href=${createLink(controller: 'documentResource', action: 'download', params: [id: attrs.id])}>Download</a>"
         } else {
-            out << "<a href=${attrs.url} target='_blank'>View full site</a>"
+            out << "<a href=${createLink(controller: 'linkResource',action:'viewFullSite',params: [id:attrs.url])} target='_blank'>View full site</a>"
         }
     }
 

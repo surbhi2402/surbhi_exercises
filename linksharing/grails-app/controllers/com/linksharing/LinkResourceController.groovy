@@ -26,4 +26,18 @@ class LinkResourceController extends ResourceController{
             render "link not saved!!"
         }
     }
+
+    def viewFullSite(Long id)
+
+    {
+        LinkResource linkResource =LinkResource.findById(id)
+
+        if(linkResource)
+            redirect(url:linkResource.url )
+        else
+            render "cant view full site"
+
+
+
+    }
 }

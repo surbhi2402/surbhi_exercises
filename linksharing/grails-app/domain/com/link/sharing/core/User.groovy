@@ -1,7 +1,7 @@
 package com.link.sharing.core
 
+import com.ttnd.linksharing.Co.UserSearchCO
 import com.ttnd.linksharing.Vo.UserVO
-import org.xhtmlrenderer.css.parser.property.PrimitivePropertyBuilders
 
 class User {
 
@@ -93,6 +93,26 @@ class User {
         }
     }
 
+
+
+    static namedQueries = {
+        search { UserSearchCO userSearchCO ->
+            eq('admin', false)
+            if (userSearchCO.active != null) {
+                eq("active", userSearchCO.active)
+            }
+
+            if (userSearchCO.q) {
+                or {
+                    ilike("firstName", "%${userSearchCO.q}%")
+                    ilike("lastName", "%${userSearchCO.q}%")
+                    ilike("email", "%${userSearchCO.q}%")
+                    ilike("userName", "%${userSearchCO.q}%")
+
+                }
+            }
+        }
+    }
 
     UserVO getUserDetails() {
         return new UserVO(id:id,email: email, username: username, fname: firstName, lname: lastName, photo: photo, isAdmin: admin, isActive: active)

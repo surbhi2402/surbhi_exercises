@@ -88,6 +88,21 @@ class TopicController {
             render "cant delete topic"
 
     }
+
+    def invite(Long id,String email){
+        Topic topic = Topic.findById(id)
+        if(!topic){
+            flash.error = "topic not found!"
+        }
+    }
+
+    def join(Long id){
+        Topic topic = Topic.get(id)
+        Subscription subscription =new Subscription(user: session.user,topic: topic,seriousness: Seriousness.VERY_SERIOUS)
+    if(!subscription){
+        render "errros in creating subscription"
+    }
+    }
 }
 
 

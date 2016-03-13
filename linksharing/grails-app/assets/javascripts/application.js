@@ -93,12 +93,13 @@ $(document).ready(function () {
         topicId = $(this).attr('topicId');
             //alert("yes")
         $.ajax({
-
             url: "/resource/search",
+            type : 'html',
+            method :'post',
             data: {q: $('#searchPostBox').val(), topicId: topicId},
             success: function (result) {
                 alert(result);
-                //$("#topicPosts").html(result)
+                $("#topicPosts").html(result)
             }
         });
     });

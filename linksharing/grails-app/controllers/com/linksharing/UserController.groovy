@@ -8,7 +8,10 @@ import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.ResourceSearchCo
 import com.ttnd.linksharing.Co.TopicSearchCO
 import com.ttnd.linksharing.Co.UserCo
+import com.ttnd.linksharing.Co.UserSearchCO
+import com.ttnd.linksharing.DTO.EmailDTO
 import com.ttnd.linksharing.Enum.Visibility
+import com.ttnd.linksharing.Util
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
@@ -20,6 +23,7 @@ class UserController {
     def subscriptionService
     def resourceService
     def topicService
+    def emailService
 
     def saving() {
         if (userService.save())
@@ -45,9 +49,9 @@ class UserController {
             user.photo = params.pic.bytes
         }
         user.validate()
-        if (user?.hasErrors()) {
+        if (!user?.hasErrors()) {
             user.save(flush: true, failOnError: true)
-            flash.message = "Could not Register User"
+            flash.message = "User registered succesfully"
             render flash.message
 
         } else {
@@ -56,9 +60,29 @@ class UserController {
         }
     }
 
-    def forgotPassword() {
-        render(view: '/user/forgotPassword')
-    }
+//    def forgotPassword(String email) {
+//        User user = User.findByEmail(email)
+////        if(user.email)
+//        if(user && user.active)
+//            String newPassword = Util.getRandomPassword()
+//        user.password =newPassword
+//        EmailDTO emailDTO = new EmailDTO(to: [email], subject: "Your Link sharing New Password", view: '/email/_password', model: [newPassword: newPassword])
+//        emailService.sendMail(emailDTO)
+//        if (User.updatePassword(newPassword, email))
+//        { flash.message = "${user.password}If your Email id is valid and you are active user then you will get your new password via mail" }
+//        else { flash.error = "Please try again"
+//        }
+//    }
+//    else
+//    {
+//        flash.error = "You are not authorized user"
+//    }
+//    redirect(controller: "login", action: "index")
+//
+//
+//
+//        render(view: '/user/forgotPassword')
+//    }
 
     def getScore(Long resourceId, Integer score) {
         User user = session.user
@@ -88,6 +112,19 @@ class UserController {
         UserVO userDetails = user.getUserDetails()
         render(view: '/user/profile', model: [topicsCreated: topicsCreated, subscribedTopics: subscribedTopics, posts: posts, userDetails: userDetails])
 
+    }
+
+    def list(UserSearchCO userSearchCO) {
+        List<UserVO> userVOList = []
+        if (session.user?.admin) {
+            User.search(userSearchCO).list([sort: userSearchCO.sort, order: userSearchCO.order]).each { user ->
+                userVOList.add(new UserVO(id: user.id, username: user.username, email: user.email, fname: user.firstName,
+                        lname: user.lastName, isActive: user.active))
+            }
+            render(view: 'list', model: [users: userVOList])
+        } else {
+            redirect(controller: 'login', action: 'index')
+        }
     }
 
 

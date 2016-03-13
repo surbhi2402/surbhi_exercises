@@ -40,7 +40,8 @@ class ResourceController {
         }
         UserVO userDetails = user.getUserDetails()
         List<Resource> resources = Resource.search(co).list()
-        render(view: '/resource/searchPage',model: [userDetails: userDetails,resources:resources])
+//        render(view: '/resource/searchPage',model: [userDetails: userDetails,resources:resources])
+        render(template: '/topic/viewSearch',model: [post:resources])
     }
 
 //           Resource resource = Resource.findById(id)

@@ -54,7 +54,7 @@
                     </span></button>
                     <ul class="dropdown-menu">
                         <li><g:link controller="user" action="profile" params="[id:session.user.id,topicId:0,visibility:com.ttnd.linksharing.Enum.Visibility.PUBLIC]">Profile</g:link></li>
-                        <li><a href="#">Users</a></li>
+                        <li><g:link controller="user" action="list">Users</g:link></li>
                         <li><a href="#">Topics</a></li>
                         <li><a href="#">Posts</a></li>
                         <li><a href="/login/logout">Logout</a></li>
