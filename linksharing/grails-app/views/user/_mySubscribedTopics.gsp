@@ -16,6 +16,6 @@
     </div>
 
     <div class="col-xs-3">
-        <button><i class="glyphicon glyphicon-envelope" style="font-size:15px"></i></button>
+        <a href="#"><i class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>
     </div>
 </div>

@@ -54,6 +54,7 @@ class ReadingItem {
                     url: it.resource.class.equals(LinkResource) ? it.resource.id : "",
                     filePath: it.resource.class.equals(DocumentResource) ? it.resource.id : ""))
         }
+        println "====readingItemsList====${readingItemsList}"
         return readingItemsList
     }
 }

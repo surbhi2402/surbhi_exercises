@@ -84,7 +84,6 @@
                 <a href="#" style="margin-left: 180px">
                 <ls:checkType id="${inbox.resourceID}" url="${inbox.url}"
                               filePath="${inbox.filePath}"/>
-
                 <ls:markRead isRead="${inbox.isRead}" resourceId="${inbox.resourceID}"/>
                 <g:link controller="resource" action="viewPost"
                         params='[id: "${inbox.resourceID}"]'>View Post</g:link>

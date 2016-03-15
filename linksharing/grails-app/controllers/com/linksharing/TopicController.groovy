@@ -15,7 +15,6 @@ import com.ttnd.linksharing.Vo.TopicVo
 import grails.converters.JSON
 
 
-
 class TopicController {
     def emailService
 
@@ -81,15 +80,13 @@ class TopicController {
         render jsonResponse
     }
 
-    def delete(Long id)
-    {
-        Topic topic=Topic.findById(id)
-        if(topic)
-        {
+    def delete(Long id) {
+        User user = session.user
+        Topic topic = Topic.findById(id)
+        if (topic && user.canDeleteTopic(id)) {
             topic.delete(flush: true)
-            render "deleted sucessfully"
-        }
-        else
+            render "Topic and subscriptions deleted sucessfully"
+        } else
             render "cant delete topic"
 
     }
@@ -106,9 +103,9 @@ class TopicController {
         } else {
             flash.error = "Can't sent invitation"
         }
-        render "inside thiss!!!"
-//        redirect(controller: "login", action:"index")
+        redirect(controller: "login", action: "index")
     }
+
 
     def join(Long topicId) {
         User user = session.user
@@ -127,6 +124,20 @@ class TopicController {
             }
         }
         redirect(controller: "login", action: 'index')
+    }
+
+
+    def titleUpdate(Long topicId, String name) {
+        Map jsonResponseMap = [:]
+        Topic topic = Topic.get(topicId)
+        if (topic) {
+            if (Topic.executeUpdate("update Topic as t set name=:name where id=:id", [name: name, id: topic.id])) {
+                jsonResponseMap.message = "Succesfully update Topic title!"
+            } else {
+                jsonResponseMap.error = "Sorry!! Could not update Topic title!"
+            }
+        }
+        render jsonResponseMap as JSON
     }
 
 }

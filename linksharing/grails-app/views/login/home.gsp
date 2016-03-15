@@ -16,14 +16,16 @@
 
 <div class="container-fluid">
 
-    <div class="col-xs-7" style="float: left">
+    <div class="col-xs-6" style="float: left">
         <g:render template="/login/recentShares" model="[recentShares: recentShares]"/>
 
         <ls:topPosts/>
     </div>
 
-    <div class="col-xs-5 pull-right">
+    <div class="col-xs-6 pull-right">
         <g:render template="/login/form"/>
+
+        <g:render template="/user/forgotPasswd"></g:render>
 
         <g:render template='/user/registration' model="[user: user]"></g:render>
     </div>

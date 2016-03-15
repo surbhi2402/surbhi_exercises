@@ -26,7 +26,7 @@
                                 <label class="control-label col-xs-2">Visibility</label>
 
                                 <div class="col-xs-10">
-                                    <g:select class="visibility" name="visibility" from="${com.ttnd.linksharing.Enum.Visibility.values()}"
+                                    <g:select class="visibility form-control" name="visibility" from="${com.ttnd.linksharing.Enum.Visibility.values()}"
                                               value="${com.ttnd.linksharing.Enum.Visibility.values()}"
                                               noSelection="['': 'select visibility']"/>
                                 </div>

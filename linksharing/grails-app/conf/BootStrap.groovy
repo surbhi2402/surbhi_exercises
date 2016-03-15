@@ -16,8 +16,8 @@ class BootStrap {
 
 
     void createUsers() {
-        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "normal", admin: false, username: "surbhi", lastName: "dhawan", confirmPassword: "surbhidhawan", active: true)
-        User adminUser = new User(email: "admin@tothenew.com", password: "jitin", firstName: "admin", admin: true, username: "jitin", lastName: "dominic", confirmPassword: "jitin",active: true)
+        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "Jitin", admin: false, username: "jitin", lastName: "Dominic", confirmPassword: "default", active: true)
+        User adminUser = new User(email: "admin@tothenew.com", password: "surbhi", firstName: "Surbhi", admin: true, username: "surbhi", lastName: "Dhawan", confirmPassword: "surbhi",active: true)
 
         if (User.count() == 0) {
             normalUser.save()
@@ -26,11 +26,10 @@ class BootStrap {
     }
 
     void createTopic() {
-        User.findAllByEmailInList(["normal@tothenew.com", "admin@tothenew.com"]).each {
-            user ->
+        User.findAllByEmailInList(["normal@tothenew.com", "admin@tothenew.com"]).each { User user ->
                 if (!user.topics?.size()) {
                     (1..5).each {
-                        Topic topic = new Topic(name: "topic" + it, createdBy: user, visibility: Visibility.PUBLIC)
+                        Topic topic = new Topic(name: "Grails" + it, createdBy: user, visibility: Visibility.PUBLIC)
                         topic.save(flush: true, failOnError: true)
                         user.addToTopics(topic)
                     }
@@ -43,8 +42,8 @@ class BootStrap {
         topics.each { Topic topic ->
             if (!topic.resources?.size()) {
                 2.times {
-                    Resource documentResource = new DocumentResource(description: "${topic.name}Doc${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path" ,contentType: "application/pdf")
-                    Resource linkResource = new LinkResource(description: "${topic.name}Link${it}", topic: topic, createdBy: topic.createdBy, url: "http://www.someurl.com")
+                    Resource documentResource = new DocumentResource(description: "${topic.name} : Doc ${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path" ,contentType: "application/pdf")
+                    Resource linkResource = new LinkResource(description: "${topic.name} : Link ${it}", topic: topic, createdBy: topic.createdBy, url: "http://www.someurl.com")
                     if (documentResource.save(flush: true, failOnError: true) && linkResource.save(flush: true, failOnError: true)) {
                         topic.addToResources(documentResource)
                         topic.addToResources(linkResource)
@@ -92,7 +91,6 @@ class BootStrap {
                     topic.resources.each { Resource resource ->
 
                         if ((resource.createdBy != user) && (!user.readingItems?.contains(resource))) {
-                            // log.info "*****"
                             ReadingItem readingItem = new ReadingItem(isRead: false, user: user, resource: resource)
                             if (readingItem.hasErrors()) {
                                 log.info "Errors saving -> ${readingItem}"

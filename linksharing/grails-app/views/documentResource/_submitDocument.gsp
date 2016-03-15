@@ -23,9 +23,9 @@
 
                                 </div>
 
-                                <div class="col-xs-5">
-                                    <button type="submit" class="btn btn-primary">Browse</button>
-                                </div>
+                                %{--<div class="col-xs-5">--}%
+                                    %{--<button type="submit" class="btn btn-primary">Browse</button>--}%
+                                %{--</div>--}%
                             </div>
                             <!--row 2-->
                             <div class="form-group">
@@ -41,7 +41,7 @@
                                 <label for="topic" class="control-label col-xs-2">Topic*</label>
 
                                 <div class="col-xs-10">
-                                    <g:select name="topic" from="${subscribeTopics}" optionKey="id" class="btn dropdown"
+                                    <g:select name="topic" from="${subscribeTopics}" optionKey="id" class="form-control"
                                               value="${subscribeTopics}" noSelection="['': 'select Topic']"/>
                                 </div>
                             </div>

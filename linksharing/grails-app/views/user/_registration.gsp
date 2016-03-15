@@ -4,7 +4,7 @@
 
         <div class="panel-body">
 
-            <g:form class="form-horizontal" controller="user" action="register" enctype="multipart/form-data" method="post">
+            <g:form class="form-horizontal" id="registrationForm" name="registrationForm" controller="user" action="register" enctype="multipart/form-data" method="post">
                 <g:hasErrors bean="${user}">
                     <div class="alert alert-danger">
                         <g:eachError><g:message error="${it}"/></g:eachError>
@@ -67,7 +67,7 @@
                     <label for="inputEmail" class="control-label col-xs-3">Password*</label>
 
                     <div class="col-xs-9">
-                        <g:passwordField name="password" type="password" class="form-control" id="inputPass"
+                        <g:passwordField name="password" type="password" class="form-control" id="password"
                                          placeholder="******"/>
                     </div>
                 </div>

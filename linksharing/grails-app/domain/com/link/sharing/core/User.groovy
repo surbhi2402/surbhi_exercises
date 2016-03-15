@@ -24,6 +24,7 @@ class User {
         password(nullable: false, blank: false, minSize: 5, validator: { value, object -> if (value.size() < 5) return false })
         confirmPassword nullable: true, blank: true, minSize: 5, bindable: true,
                 validator: { val, obj ->
+//                    !obj.id &&
                     if (val != obj.password) {
                         // return "object.password.not.match"
                         return false
@@ -84,6 +85,15 @@ class User {
         }
     }
 
+    Boolean canDeleteTopic(Long id){
+        Topic topic = Topic.get(id)
+        if(this.admin || topic.createdBy.id == this.id){
+            return true
+        }else {
+            return false
+        }
+    }
+
     Boolean isSubscribed(Long topicId) {
         Topic topic = Topic.load(topicId)
         if (Subscription.findByUserAndTopic(this, topic)) {
@@ -131,6 +141,22 @@ class User {
         }
         else {
             return false
+        }
+    }
+
+    static Integer updatePassword(String newPassword, String email) {
+        return executeUpdate("update User set password=:newPassword where email=:email",
+                [newPassword: newPassword, email: email])
+    }
+
+
+    List<Resource> unreadResources() {
+        return ReadingItem.createCriteria().list {
+            projections {
+                property('resource')
+            }
+            eq('user', this)
+            eq('isRead', false)
         }
     }
 }

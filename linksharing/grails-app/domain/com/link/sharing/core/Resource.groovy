@@ -85,6 +85,16 @@ abstract class Resource {
     def deleteFile(){
         println "this will be implemented in LinkResource!"
     }
+
+    static List usersWithUnreadResources() {
+        return ReadingItem.createCriteria().listDistinct {
+            projections {
+                property('user')
+            }
+            eq('isRead', false)
+        }
+    }
+
 }
 
 

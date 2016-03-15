@@ -13,24 +13,26 @@
         </div>
         <br>
         <div class="col-xs-offset-3" class="row">
-            <a href="#" style="float:left"><u>${topic.name}</u></a>
+            <a href="#" style="float:left">${topic.name}</a>
             <br>
 
             <div>
 
-                <a href="#" style="float:left;color:grey"><u>@${topic.id}</u></a>
+                <g:link controller="user" action="profile" style="float: left"
+                        params="[id: session.user.id, topicId: 0, visibility: com.ttnd.linksharing.Enum.Visibility.PUBLIC]">@${topic.createdBy.username}</g:link>
+
 
                 <div class="col-sm-4" style="color:grey">Subscription</div>
 
                 <div class="col-sm-4" style="color:grey">Topics</div>
 
-                <div>
+
                     <ls:showSubscribe id="${topic.id}"></ls:showSubscribe>
-                </div>
 
-                <div class="col-sm-3" style="color:grey"><a href="#">50</a></div>
 
-                <div class="col-sm-3" style="color:grey"><a href="#">30</a></div>
+                <div class="col-sm-3" style="color:grey;margin-left: 88px"><ls:subscriptionCount topicId="${topic.id}"/></div>
+
+                <div class="col-sm-3" style="color:grey"><ls:topicCount/></div>
 
             </div>
 

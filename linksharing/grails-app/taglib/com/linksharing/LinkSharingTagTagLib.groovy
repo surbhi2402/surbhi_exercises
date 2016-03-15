@@ -32,7 +32,7 @@ class LinkSharingTagTagLib {
         if (com.link.sharing.core.Resource.checkResourceType(attrs.id)) {
             out << "<a href=${createLink(controller: 'documentResource', action: 'download', params: [id: attrs.id])}>Download</a>"
         } else {
-            out << "<a href=${createLink(controller: 'linkResource',action:'viewFullSite',params: [id:attrs.url])} target='_blank'>View full site</a>"
+            out << "<a href=${createLink(controller: 'linkResource', action: 'viewFullSite', params: [id: attrs.url])} target='_blank'>View full site</a>"
         }
     }
 
@@ -51,7 +51,7 @@ class LinkSharingTagTagLib {
             String subscribe = "${createLink(controller: 'subscription', action: 'save', params: [id: attrs.id])}"
             out << "<a href=$subscribe class='subscribe' id=\"$attrs.id\">Subscribe</a>"
         } else {
-            String unsubscribe = "${createLink(controller: 'subscription', action: 'delete', params: [topicId:attrs.id])}"
+            String unsubscribe = "${createLink(controller: 'subscription', action: 'delete', params: [topicId: attrs.id])}"
             out << "<a href=$unsubscribe topicId=\"$attrs.id\" class='subscription'>Unsubscribe</a>"
         }
 
@@ -108,12 +108,11 @@ class LinkSharingTagTagLib {
         Long topicId = attrs.topicId
         Topic topic = Topic.get(topicId)
         User user = session.user
-        if(user) {
+        if (user) {
             if (user.id == topic.createdBy.id || user.admin) {
                 out << render(template: '/subscription/tags', model: [topicId: attrs.topicId])
-            }
-            else {
-                out << render(template: '/user/mySubscribedTopics',model: [topicId: topicId])
+            } else {
+                out << render(template: '/user/mySubscribedTopics', model: [topicId: topicId])
             }
 
         }
@@ -126,7 +125,7 @@ class LinkSharingTagTagLib {
         Subscription subscription = user.getSubscription(topicId)
 
         if (subscription) {
-                out << g.select(class: 'seriousness', id: topicId, name: 'serious', from:Seriousness.values(), value: subscription.seriousness)
+            out << g.select(class: 'seriousness btn btn-primary dropdown-toggle', id: topicId, name: 'serious', from: Seriousness.values(), value: subscription.seriousness)
         } else {
             flash.error = "User not subscribed to topic"
         }
@@ -139,9 +138,21 @@ class LinkSharingTagTagLib {
 //        User user = session.user
 
         if (topic) {
-            out << g.select(class: 'visibility', id: topicId, name: 'visibility', from:Visibility.values(), value: topic.visibility)
+            out << g.select(class: 'visibility btn btn-primary dropdown-toggle', id: topicId, name: 'visibility', from: Visibility.values(), value: topic.visibility)
         } else {
             flash.error = "User not subscribed to topic"
+        }
+    }
+
+    def editResource = { attrs, body ->
+        User user = session.user
+        Long id = attrs.id
+        com.link.sharing.core.Resource resource = com.link.sharing.core.Resource.get(id)
+        if (resource) {
+            if (user.canDeleteResource(attrs.id)) {
+                out << body()
+            }
+
         }
     }
 

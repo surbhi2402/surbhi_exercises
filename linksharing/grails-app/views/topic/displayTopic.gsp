@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="col-xs-7">
+<div class="col-xs-6 pull-right">
     <g:render template="/topic/showPost" model="[post:post,topics: topic]"/>
     %{--<ls:topPosts/>--}%
 </div>

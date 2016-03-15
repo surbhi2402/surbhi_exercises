@@ -16,6 +16,7 @@ import com.ttnd.linksharing.Vo.UserVO
 
 class ResourceController {
 
+    def resourceService
     def index() {
         render(view: 'resourceSearch')
     }
@@ -27,6 +28,7 @@ class ResourceController {
             resource.delete(flush: true)
             UserVO userDetails = user.getUserDetails()
             List<PostVO> readingItems = ReadingItem.getInboxItems(session.user)
+            println "${readingItems}"
             render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems, userDetails: userDetails])
         } else {
             render "Resource does not exists"
@@ -41,7 +43,7 @@ class ResourceController {
         UserVO userDetails = user.getUserDetails()
         List<Resource> resources = Resource.search(co).list()
 //        render(view: '/resource/searchPage',model: [userDetails: userDetails,resources:resources])
-        render(template: '/topic/viewSearch',model: [post:resources])
+        render(template: '/topic/viewSearch', model: [post: resources])
     }
 
 //           Resource resource = Resource.findById(id)
@@ -77,11 +79,71 @@ class ResourceController {
                         user.addToReadingItems(readingItem)
                         readingItem.save(flush: true)
                     }
-
                 }
+        }
+    }
+
+    def ViewPostOnHome(Long id) {
+//        List<PostVO> readingItems = ReadingItem.getInboxItems(user)
+        Resource resource = Resource.read(id)
+//        UserVO userDetails = user.getUserDetails()
+
+        render(template: 'viewResource', model: [resource: resource])
+    }
+
+
+    def save(Long id, String description) {
+        if (session.user) {
+            Resource resource = Resource.get(id)
+            if (resource) {
+               boolean isUpdated =Resource.executeUpdate("update Resource as r set r.description=:description where r.id=:id",[description:description,id:id])
+
+                if (isUpdated) {
+                    resource.refresh()
+                    flash.message = "Resource Description Updated!"
+                    render flash.message
+                } else {
+                    flash.error = "Resource Description is not Updated"
+                    render flash.error
+                }
+            } else {
+                flash.error = "Resource not Found"
+                render flash.error
+            }
+        } else {
+            flash.error = "Session User not Set"
+            render flash.error
         }
 
     }
 
-}
 
+//def editResource(Long resourceId,String description){
+//
+//}
+
+
+    def edit(String description, Long resourceId) {
+        Resource resource = Resource.get(resourceId)
+        User user = session.user
+        if (user && resource) {
+            if (resource.createdBy == user) {
+                resource.description = description
+                resource.save(flush: true)
+            } else {
+                flash.message = "existing user doesn't have permission to update"
+            }
+        } else {
+            flash.error = "not found"
+        }
+    }
+
+
+    def globalSearch(String queryString){
+            List<Resource> resourceList = Resource.findAllByDescriptionIlike("%${queryString}%")
+        println "List of resources---->>>>${resourceList}"
+
+        render (view: '/resource/searchPage',model: [resourceList:resourceList])
+    }
+
+}

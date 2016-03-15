@@ -36,4 +36,22 @@ class LoginController {
         forward(action: "index")
     }
 
+
+    def validateUserName(){
+        Integer numUser = User.countByUsername(params.username)
+        log.info params.username
+        Boolean result = numUser ? false : true
+
+        render result
+
+    }
+
+    def validateEmail(){
+        Integer numEmail = User.countByEmail(params.email)
+        log.info params.email
+        Boolean result1 = numEmail ? false : true
+
+        render result1
+    }
+
 }

@@ -13,11 +13,12 @@
         <br>
 
         <div style="float: right">
-            <g:formRemote url="[controller:'user',action:'getScore']" name="scoreForm">
+            <g:formRemote url="[controller: 'user', action: 'getScore']" name="scoreForm">
                 <g:select name="score" from="${1..5}"
-                          value="${com.link.sharing.core.ResourceRating.findByResource(resource)?.score}" noSelection="['': 'Select Score']"/>
+                          value="${com.link.sharing.core.ResourceRating.findByResource(resource)?.score}"
+                          noSelection="['': 'Select Score']"/>
                 <g:hiddenField name="resourceId" value="${resource.id}"/>
-                <g:actionSubmit value="Score"  />
+                <g:actionSubmit value="Score"/>
                 <div id="test"/>
             </g:formRemote>
 
@@ -29,13 +30,7 @@
     </div>
 
     <p style="font-size: medium">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aenean commodo
-        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus. Donec quam felis,ultricies
-        nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-        Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim
-        justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis.
-        Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+        ${resource.description}
     </p>
 
     <br>
@@ -45,20 +40,29 @@
 
     <div style="float: right">
         <a href="#" style="margin-left:180px">
-            %{--<a href="#" data-toggle="tooltip" title="Delete is available to admin only"></a>--}%
-            %{--<g:each in="${resource}" var="item">--}%
-            %{--<g:link controller="documentResource" action="download">--}%
-                %{--DownloadFile</g:link>--}%
-            %{--<br>--}%
+        %{--<a href="#" data-toggle="tooltip" title="Delete is available to admin only"></a>--}%
+        %{--<g:each in="${resource}" var="item">--}%
+        %{--<g:link controller="documentResource" action="download">--}%
+        %{--DownloadFile</g:link>--}%
+        %{--<br>--}%
             <ls:resourceDelete id="${resource.id}"></ls:resourceDelete>
-            %{--</g:each>--}%
+        %{--</g:each>--}%
 
-            <a href="#" data-toggle="tooltip" title="Edit is available to admin only"><u>Edit</u></a>
+
+
+        %{--<ls:editResource id="${resource.id}" description="${resource.description}"/>--}%
+            <ls:editResource id="${resource.id}">
+                <g:link controller="resource" action="save" params="[id:resource.id]">
+                    <a href="#" data-toggle="modal" data-target="#editResource" data-tooltip="true"
+                       title="Edit Resource">
+                        Edit
+                    </a></g:link>
+            </ls:editResource>
             <ls:checkType id="${resource.id}" url="${resource.class}"
                           filePath="${resource.class}"></ls:checkType>
 
-            %{--<a href="#"><u>Download</u></a>--}%
-            %{--<a href="#"><u>View full site</u></a>--}%
+        %{--<a href="#"><u>Download</u></a>--}%
+        %{--<a href="#"><u>View full site</u></a>--}%
         </a>
     </div>
 </div>

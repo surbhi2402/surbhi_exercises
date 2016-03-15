@@ -19,6 +19,7 @@ class SubscriptionController {
         println "==topicId-->>>${topicId}"
         Map jsonResponseMap = [:]
         Topic topic = Topic.get(topicId)
+        println "===${topic.createdBy}"
         User user = session.user
         if (user.isSubscribed(topicId)) {
 
@@ -26,9 +27,12 @@ class SubscriptionController {
             subscription.delete(flush: true)
             jsonResponseMap.message = "subscription deleted!!"
             //redirect(controller: 'user', action: 'index')
-        } else  if(user.equals(topic.createdBy.id)) {
+        }
+        else  if(user.equals(topic.createdBy)) {
+            println "inside if user is created by of topic"
             flash.error = "you cannot unsubscribe from topic!"
-        }else{
+        }
+        else{
             flash.error = "subscription not found!"
             jsonResponseMap.error = "Subscription not found!!"
         }

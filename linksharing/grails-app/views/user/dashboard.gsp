@@ -16,7 +16,7 @@
 %{--<g:render template="inbox"></g:render>--}%
 <div class="container-fluid">
 
-    <div class="col-xs-5" style="float: left">
+    <div class="col-xs-6" style="float: left">
         <g:render template="/user/userInfo" model="[userDetails: userDetails]"/>
 
         <g:render template="/user/subscriptions"
@@ -25,7 +25,7 @@
         <ls:trendingTopics/>
     </div>
 
-    <div class="col-xs-7">
+    <div class="col-xs-6 pull-right">
         <g:render template="/user/inbox" model="[readingItemList: readingItemList]"/>
     </div>
 

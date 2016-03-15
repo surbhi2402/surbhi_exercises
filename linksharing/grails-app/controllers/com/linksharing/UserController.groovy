@@ -7,6 +7,7 @@ import com.link.sharing.core.Topic
 import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.ResourceSearchCo
 import com.ttnd.linksharing.Co.TopicSearchCO
+import com.ttnd.linksharing.Co.UpdatePasswordCO
 import com.ttnd.linksharing.Co.UserCo
 import com.ttnd.linksharing.Co.UserSearchCO
 import com.ttnd.linksharing.DTO.EmailDTO
@@ -60,29 +61,28 @@ class UserController {
         }
     }
 
-//    def forgotPassword(String email) {
-//        User user = User.findByEmail(email)
-////        if(user.email)
-//        if(user && user.active)
-//            String newPassword = Util.getRandomPassword()
-//        user.password =newPassword
-//        EmailDTO emailDTO = new EmailDTO(to: [email], subject: "Your Link sharing New Password", view: '/email/_password', model: [newPassword: newPassword])
-//        emailService.sendMail(emailDTO)
-//        if (User.updatePassword(newPassword, email))
-//        { flash.message = "${user.password}If your Email id is valid and you are active user then you will get your new password via mail" }
-//        else { flash.error = "Please try again"
-//        }
-//    }
-//    else
-//    {
-//        flash.error = "You are not authorized user"
-//    }
-//    redirect(controller: "login", action: "index")
-//
-//
-//
-//        render(view: '/user/forgotPassword')
-//    }
+    def forgotPassword(String email) {
+        println "${email}"
+        User user = User.findByEmail(email)
+        if (user && user.active) {
+            String newPassword = Util.getRandomPassword()
+            user.password = newPassword
+            EmailDTO emailDTO = new EmailDTO(to: [email], subject: "Your Link sharing New Password", view: '/user/_newPassword', model: [newPassword: newPassword])
+            emailService.sendMail(emailDTO)
+            if (User.updatePassword(newPassword, email)) {
+                flash.message = "${user.password}If your Email id is valid and you are active user then you will get your new password via mail"
+                println "=====of forgto passwd inside ifff block"
+            } else {
+                println "====inside else block of forgot passwd"
+                flash.error = "Please try again"
+            }
+
+            redirect(controller: "login", action: "index")
+        }
+
+//        render(view: '/user/forgotPa')
+        render "hello new Password"
+    }
 
     def getScore(Long resourceId, Integer score) {
         User user = session.user
@@ -109,6 +109,7 @@ class UserController {
         List<Topic> topicsCreated = topicService.search(topicSearchCO)
         List<Topic> subscribedTopics = subscriptionService.search(topicSearchCO)
         List<Resource> posts = resourceService.search(resourceSearchCo)
+        println "${posts}====>>posts by user"
         UserVO userDetails = user.getUserDetails()
         render(view: '/user/profile', model: [topicsCreated: topicsCreated, subscribedTopics: subscribedTopics, posts: posts, userDetails: userDetails])
 
@@ -127,5 +128,40 @@ class UserController {
         }
     }
 
+    def privateProfile(ResourceSearchCo resourceSearchCo) {
+        User user = session.user
+        List<Topic> topicsCreated = Topic.findAllByCreatedBy(user)
 
+        UserVO userDetails = user.getUserDetails()
+        render(view: '/user/privateProfile', model: [userDetails: userDetails, topicsCreated: topicsCreated])
+    }
+
+    def changePasswordOfUser(String newPassword, String confirmUserPassword) {
+        User user = session.user
+        if(newPassword == confirmUserPassword){
+            if (User.executeUpdate("update User as u set password=:newPassword where id=:id",[newPassword: newPassword,id:user.id])) {
+                render "succesfully change password!!"
+                session.invalidate()
+            }
+        }
+    }
+
+    def modifyUserProfile(String firstName,String lastName,String userName){
+        User user = session.user
+        if(User.executeUpdate("update User as u set firstName=:fname,lastName=:lname,username=:uname where id=:id",[fname:firstName,lname: lastName,uname:userName,id: user.id])){
+            render "successfully registered with new details"
+        }else{
+            render "could not update details"
+        }
+
+        if(!params.pic.empty){
+            user.photo = params.pic.bytes
+            user.save(flush: true)
+            render "picc uploadeddd too!!"
+        }
+    }
+
+    def updatepassword(UpdatePasswordCO updatePasswordCO){
+
+    }
 }

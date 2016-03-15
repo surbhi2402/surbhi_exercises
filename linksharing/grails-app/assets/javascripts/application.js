@@ -11,31 +11,31 @@
 //=require bootstrap
 
 if (typeof jQuery !== 'undefined') {
-	(function($) {
-		$('#spinner').ajaxStart(function() {
-			$(this).fadeIn();
-		}).ajaxStop(function() {
-			$(this).fadeOut();
-		});
-	})(jQuery);
+    (function ($) {
+        $('#spinner').ajaxStart(function () {
+            $(this).fadeIn();
+        }).ajaxStop(function () {
+            $(this).fadeOut();
+        });
+    })(jQuery);
 }
 
 function ajaxSuccess(result) {
 
-	if (result) {
-		var jsonResponseDiv = $(".jsonResponse");
+    if (result) {
+        var jsonResponseDiv = $(".jsonResponse");
 
-		if (result.message) {
+        if (result.message) {
 
-			jsonResponseDiv.text(result.message);
-			jsonResponseDiv.addClass("alert alert-success");
-		}
-		else {
-			jsonResponseDiv.text(result.error);
-			jsonResponseDiv.addClass("alert alert-danger");
-		}
-		jsonResponseDiv.css({'display': 'block'})
-	}
+            jsonResponseDiv.text(result.message);
+            jsonResponseDiv.addClass("alert alert-success");
+        }
+        else {
+            jsonResponseDiv.text(result.error);
+            jsonResponseDiv.addClass("alert alert-danger");
+        }
+        jsonResponseDiv.css({'display': 'block'})
+    }
 }
 
 $(document).ready(function () {
@@ -70,7 +70,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             url: "/subscription/update",
-            data: {id: $(this).attr('id'),serious:$(this).val()},
+            data: {id: $(this).attr('id'), serious: $(this).val()},
             success: ajaxSuccess
         });
     });
@@ -80,7 +80,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             url: "/topic/saving",
-            data: {topicId: $(this).attr('id'),visibility:$(this).val()},
+            data: {topicId: $(this).attr('id'), visibility: $(this).val()},
             success: ajaxSuccess
         });
     });
@@ -89,13 +89,13 @@ $(document).ready(function () {
         $("#searchPostBox").val("")
     });
 
-    $("#findSearchPostBox").click(function() {
+    $("#findSearchPostBox").click(function () {
         topicId = $(this).attr('topicId');
-            //alert("yes")
+        //alert("yes")
         $.ajax({
             url: "/resource/search",
-            type : 'html',
-            method :'post',
+            type: 'html',
+            method: 'post',
             data: {q: $('#searchPostBox').val(), topicId: topicId},
             success: function (result) {
                 alert(result);
@@ -103,5 +103,123 @@ $(document).ready(function () {
             }
         });
     });
+
+
+    $(function () {
+        $('#registrationForm').validate({
+            rules: {
+                'firstName': {
+                    required: true
+                },
+                'lastName': {
+                    required: true
+                },
+                'password': {
+                    required: true,
+                    minlength: 5
+                },
+                'confirmPassword': {
+                    required: true,
+                    confirm: true,
+                    equalTo: "#password"
+                },
+                'username': {
+                    required: true,
+                    remote: {
+                        url: "/login/validateUserName",
+                        type: "post"
+                    }
+                },
+                'email': {
+                    required: true,
+                    email: true,
+                    remote: {
+                        url: "/login/validateEmail",
+                        type: "post"
+                    }
+                }
+            },
+            messages: {
+                'firstName': {
+                    required: "First name can't be blank"
+                },
+                'lastName': {
+                    required: "Last name can't be blank"
+                },
+                'password': {
+                    required: "Password can't be blank",
+                    minlength: "Password should be at least 5 character long"
+                },
+                'confirmPassword': {
+                    required: "Confirm password can't be blank",
+                    equalTo:"Confirm Password should be same as password"
+                },
+                'email': {
+                    required: "Email address can't be blank",
+                    remote: "Email address entered is already used"
+                },
+                'username': {
+                    required: "User name can't be blank",
+                    remote: "User name entered already exist"
+                }
+            }
+        });
+
+        //jQuery.validator.addMethod("confirm", function (value, element) {
+        //    var result = false;
+        //    var password = $('form#registrationForm input[id=password]').val();
+        //
+        //    if (password === value) {
+        //        result = true;
+        //    }
+        //    return result;
+        //}, "Confirm password not matched with password");
+    });
+
+
+    $(".edit-topic").on('click', function (e) {
+        e.preventDefault();
+        var topicId = $(this).attr('data-topic-id');
+        //alert(topicId)
+        $("#editForm" + topicId).css({'display': 'block'});
+    });
+
+    $(".cancelTopicNameButton").on('click', function (e) {
+        e.preventDefault();
+        var topicId = $(".edit-topic").attr('data-topic-id');
+        //alert(topicId)
+        $("#editForm" + topicId).css({'display': 'none'});
+    });
+
+    //$(".saveTopicNameButton").on('click', function (e) {
+    //    e.preventDefault();
+    //    //var topicId = $("this")
+    //    alert(topicId);
+    //    var topicId = $(this).attr('topicId');
+    //    $.ajax({
+    //        url: "/topic/titleUpdate",
+    //        data: {topicId: topicId, name: $("#name" + topicId).val()},
+    //        success: ajaxSuccess
+    //    });
+    //})
+
+    $(".saveTopicNameButton").click(function () {
+        var topicId = $(this).attr('topicId')
+        $.ajax({
+            url: "/topic/titleUpdate",
+            data: {topicId: topicId, name: $("#name" + topicId).val()},
+            success:ajaxSuccess
+        })
+    });
+
+    //$("#resourceDescriptionEditForm").change(function () {
+    //    var id = $(this).attr('id')
+    //    $.ajax({
+    //        url: "/resource/save",
+    //        data: {id: id, name: $("#description").val()},
+    //        success:ajaxSuccess
+    //    })
+    //});
+
 
 });

@@ -19,25 +19,28 @@
     <g:layoutHead/>
 </head>
 
-<body>
+<body style="background-color:#f5f5f5">
 <g:if test="${session.user}">
     <div class="container-fluid" style="height:100px">
 
-        <nav class="navbar header" style="background-color:lightsteelblue">
+        <nav class="navbar header">
             <a class="navbar-brand" href="#">Link sharing</a>
 
-            <form class="navbar-form navbar-right" role="search">
-                <span class="glyphicon glyphicon-search"></span>
-                <input type="text" class="form-control" placeholder="Search">
+            <g:form controller="resource" action="globalSearch" class="navbar-form navbar-right" role="search">
+                <g:actionSubmit action="globalSearch" value="Search" type="submit" class="form-control">
+                %{--<span class="glyphicon glyphicon-search"></span>--}%
+                </g:actionSubmit>
+                <input type="text" class="form-control" placeholder="Enter Value" name="queryString">
                 <span class="badge" class="glyphicon glyphicon-remove"></span>
-            </input>
 
-                %{--<i class="fa fa-comment" data-target="#createtopic" data-toggle="modal"></i>--}%
+
+            %{--<i class="fa fa-comment" data-target="#createtopic" data-toggle="modal"></i>--}%
                 <a href="#" data-toggle="modal" data-target="#createtopic" data-tooltip="true"
                    title="Create Topic"><i
                         class="fa fa-comment fa-fw" style="font-size:20px"></i></a>
 
-                <a href="#" data-toggle="modal" data-target="#sendInvitation" data-tooltip="true" title="Send Invitation"><i
+                <a href="#" data-toggle="modal" data-target="#sendInvitation" data-tooltip="true"
+                   title="Send Invitation"><i
                         class="fa fa-envelope fa-fw" style="font-size:20px"></i></a>
 
                 <a href="#" data-toggle="modal" data-target="#submitLink" data-tooltip="true" title="Create Resource"><i
@@ -46,25 +49,28 @@
                 <a href="#" data-toggle="modal" data-target="#submitDocument" data-tooltip="true"
                    title="Send Document"><i class="fa fa-floppy-o fa-fw" style="font-size:20px"></i></a>
 
-                <a class="glyphicon glyphicon-user" style="font-size:30px"></a>
+            %{--<a class="glyphicon glyphicon-user" style="font-size:20px"></a>--}%
 
                 <div class="dropdown" style="float:right">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${session.user.firstName}<span
+                    <button class="btn btn-primary dropdown-toggle" type="button"
+                            data-toggle="dropdown">${session.user.firstName}<span
                             class="caret">
                     </span></button>
                     <ul class="dropdown-menu">
-                        <li><g:link controller="user" action="profile" params="[id:session.user.id,topicId:0,visibility:com.ttnd.linksharing.Enum.Visibility.PUBLIC]">Profile</g:link></li>
+                        <li><g:link controller="user" action="privateProfile"
+                                    params="[id: session.user.id, topicId: 0, visibility: com.ttnd.linksharing.Enum.Visibility.PUBLIC]">Profile</g:link></li>
                         <li><g:link controller="user" action="list">Users</g:link></li>
                         <li><a href="#">Topics</a></li>
                         <li><a href="#">Posts</a></li>
                         <li><a href="/login/logout">Logout</a></li>
                     </ul>
                 </div>
-            </form>
+            </g:form>
         </nav>
     </div>
     <g:render template="/topic/createTopic"></g:render>
     <g:render template="/topic/sendInvite"></g:render>
+    <g:render template="/user/forgotPasswd"></g:render>
     <g:render template="/linkResource/submitLink"></g:render>
     <g:render template="/documentResource/submitDocument"></g:render>
 </g:if>
@@ -79,31 +85,24 @@
             <div class="col-md-8"></div>
 
             <div class="col-md-3 pull-right">
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit" style="height: 34px"><i
-                                    class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit" style="height: 34px"><i
-                                    class="glyphicon glyphicon-remove"></i></button>
-                        </div>
-
-                    </div>
-                </form>
+                <g:form controller="resource" action="globalSearch" class="navbar-form navbar-right" role="search">
+                    <g:actionSubmit action="globalSearch" value="Search" type="submit" class="form-control">
+                    </g:actionSubmit>
+                    <input type="text" class="form-control" placeholder="Enter Value" name="queryString">
+                    <span class="badge" class="glyphicon glyphicon-remove"></span>
+                </g:form>
             </div>
         </div>
     </div>
 
 </g:else>
-<div class = "container">
-    <div class = "jsonResponse" style = "display:none"></div>
+<div class="container">
+    <div class="jsonResponse" style="display:none"></div>
 </div>
 <g:layoutBody/>
 <asset:javascript src="application.js"/>
+<asset:javascript src="additional-methods.min.js"/>
+<asset:javascript src="jquery.validate.min.js"/>
 </body>
 </html>
 

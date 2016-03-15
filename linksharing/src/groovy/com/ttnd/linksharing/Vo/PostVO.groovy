@@ -15,6 +15,7 @@ class PostVO {
     String userUserName
     String userFirstName
     String userLastName
+//    Long topicID
 
     String getNameOfUser(){
         return "$userFirstName $userLastName"

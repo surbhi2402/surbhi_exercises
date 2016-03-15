@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>User Public Profile</title>
     <meta name="layout" content="main">
 </head>
 
@@ -24,7 +24,7 @@
 
     </div>
 
-    <div class="col-xs-7 pull-right">
+    <div class="col-xs-6 pull-right">
         <g:render template="/user/userPost" model="[posts:posts]"/>
     </div>
 

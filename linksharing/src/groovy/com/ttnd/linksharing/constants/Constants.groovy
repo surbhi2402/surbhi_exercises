@@ -5,7 +5,7 @@ package com.ttnd.linksharing.constants
  */
 class Constants {
 
-    static DEFAULT_PASSWORD = "surbhidhawan"
+    static DEFAULT_PASSWORD = "default"
     public static final DOCUMENT_CONTENT_TYPE = "application/pdf"
 
 }

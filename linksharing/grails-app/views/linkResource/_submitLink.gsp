@@ -36,7 +36,7 @@
                                 <label for="topic1" class="control-label col-xs-2">Topic*</label>
 
                                 <div class="col-xs-10">
-                                    <g:select name="topic1" from="${subscribeTopics}" optionKey="id"
+                                    <g:select class="form-control" name="topic1" from="${subscribeTopics}" optionKey="id"
                                               value="${subscribeTopics}" noSelection="['': 'select Topic']"/>
                                 </div>
                             </div>

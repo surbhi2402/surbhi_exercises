@@ -15,9 +15,11 @@
 
         <div class="col-xs-offset-3" class="row">
             <g:link controller="topic" action="show" params='[topicId: "${topic.id}"]'>${topic.name}</g:link>
-    <br>
+            <br>
+
             <div>
-                <a href="#" style="float:left;color:grey"><u>@${topic.createdBy.username}</u></a>
+                <g:link controller="user" action="profile" style="float: left"
+                        params="[id: session.user.id, topicId: 0, visibility: com.ttnd.linksharing.Enum.Visibility.PUBLIC]">@${topic.createdBy.username}</g:link>
 
                 <div class="col-sm-4" style="color:grey">Subscription</div>
 
@@ -25,13 +27,15 @@
 
                 <div>
                     <ls:showSubscribe id="${topic.id}"></ls:showSubscribe>
-                    <div class="col-sm-3" style="color:grey;margin-left: 70px"><ls:subscriptionCount userId="${userDetails.id}"/></div>
+                    <div class="col-sm-3" style="color:grey;margin-left: 70px"><ls:subscriptionCount
+                            userId="${userDetails.id}"/></div>
 
                     <div class="col-sm-3" style="color:grey"><ls:topicCount/></div>
                 </div>
             </div>
 
-
+            <br>
+            <br>
             <!--Drop downs of subscription panel-->
             <ls:canUpdateTopic topicId="${topic.id}"/>
         </div>

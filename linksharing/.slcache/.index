@@ -5343,3 +5343,9 @@ n:1377:java_util_Map$clear$9
 n:1423:org/apache/log4j/lf5/util/Resource
 n:3545:org/codehaus/groovy/grails/plugins/web/GroovyPagesGrailsPlugin$_closure5$_closure26
 n:2324:org/codehaus/groovy/grails/plugins/web/GroovyPagesGrailsPlugin$_closure5$_closure26$_closure27
+n:3142:BuildConfig$_run_closure1
+n:2342:BuildConfig$_run_closure1$_closure4
+n:2445:BuildConfig$_run_closure1$_closure4$_closure7
+n:2301:BuildConfig$_run_closure1$_closure4$_closure7$_closure8
+n:2400:BuildConfig$_run_closure1$_closure5
+n:2957:BuildConfig$_run_closure1$_closure6
