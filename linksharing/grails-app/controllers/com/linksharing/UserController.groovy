@@ -16,6 +16,7 @@ import com.ttnd.linksharing.Util
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
+import grails.converters.JSON
 
 class UserController {
 
@@ -138,30 +139,46 @@ class UserController {
 
     def changePasswordOfUser(String newPassword, String confirmUserPassword) {
         User user = session.user
-        if(newPassword == confirmUserPassword){
-            if (User.executeUpdate("update User as u set password=:newPassword where id=:id",[newPassword: newPassword,id:user.id])) {
+        if (newPassword == confirmUserPassword) {
+            if (User.executeUpdate("update User as u set password=:newPassword where id=:id", [newPassword: newPassword, id: user.id])) {
                 render "succesfully change password!!"
                 session.invalidate()
             }
         }
     }
 
-    def modifyUserProfile(String firstName,String lastName,String userName){
+    def modifyUserProfile(String firstName, String lastName, String userName) {
         User user = session.user
-        if(User.executeUpdate("update User as u set firstName=:fname,lastName=:lname,username=:uname where id=:id",[fname:firstName,lname: lastName,uname:userName,id: user.id])){
+        if (User.executeUpdate("update User as u set firstName=:fname,lastName=:lname,username=:uname where id=:id", [fname: firstName, lname: lastName, uname: userName, id: user.id])) {
             render "successfully registered with new details"
-        }else{
+        } else {
             render "could not update details"
         }
 
-        if(!params.pic.empty){
+        if (!params.pic.empty) {
             user.photo = params.pic.bytes
             user.save(flush: true)
             render "picc uploadeddd too!!"
         }
     }
 
-    def updatepassword(UpdatePasswordCO updatePasswordCO){
+    def updatePassword(UpdatePasswordCO updatePasswordCO) {
+        User user = updatePasswordCO.getUser()
+        Map jsonResponseMap = [:]
 
+        if (user.password == updatePasswordCO.oldPassword) {
+            user.password = updatePasswordCO.password
+            user.confirmPassword = updatePasswordCO.password
+            if (user.save(flush: true)) {
+//                jsonResponseMap.message = "Password Updated Successfully"
+                render "password updated successfully through CO"
+            } else {
+//                jsonResponseMap.error = "Password Could not be updated!"
+                render "password not updated!"
+            }
+        }
+//                render jsonResponseMap as JSON
     }
+
+
 }

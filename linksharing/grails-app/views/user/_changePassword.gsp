@@ -2,22 +2,22 @@
     <div class="panel panel-heading">Change Password</div>
 
     <div class="panel-body">
-        <g:form class="form-horizontal" id="changePassword" name="changePassword" controller="user"
-                action="changePasswordOfUser" method="post">
-
+        <g:form class="form-horizontal" id="updatePassword" name="updatePassword" controller="user"
+                action="updatePassword" method="post">
+            <input type="hidden" name="userId" value="${session.user.id}"/>
             <div class="form-group">
-                <label class="pull-left" style="margin-left:10px">Password*</label>
+                <label class="pull-left" style="margin-left:10px">Old Password*</label>
 
                 <div class="col-xs-9">
-                    <g:passwordField name="newPassword"  style="margin-left: 85px" class="form-control" id="inputPassword" placeholder="New Password"/>
+                    <g:passwordField name="oldPassword"  style="margin-left: 25px" class="form-control" id="oldPassword" placeholder="New Password"/>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="pull-left" style="margin-left: 10px">Change Password*</label>
+                <label class="pull-left" style="margin-left: 10px">New Password*</label>
 
                 <div class="col-xs-9">
-                    <g:passwordField name="confirmUserPassword" class="form-control" id="confirmPassword" style="margin-left: 30px"
+                    <g:passwordField name="password" class="form-control" id="password" style="margin-left: 20px"
                                  placeholder="Confirm Password"/>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="col-xs-9"></div>
 
                 <div class="col-xs-3">
-                    <g:actionSubmit action="changePasswordOfUser" value="Update" type="submit"
+                    <g:actionSubmit action="updatePassword" value="Update" type="submit"
                                     class="btn btn-success">Update</g:actionSubmit>
                 </div>
             </div>

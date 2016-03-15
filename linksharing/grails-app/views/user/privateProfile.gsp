@@ -15,14 +15,14 @@
 <body>
 <div class="container-fluid">
 
-    <div class="col-xs-5" style="float: left">
+    <div class="col-xs-6" style="float: left">
         <g:render template="/user/userInfo" model="[userDetails:userDetails]"/>
 
         <g:render template="/user/topics" model="[topicsCreated:topicsCreated]"/>
 
     </div>
 
-    <div class="col-xs-6 pull-right">
+    <div class="col-xs-5 pull-right">
 
         <g:render template="changeProfile"/>
         <g:render template="changePassword"/>

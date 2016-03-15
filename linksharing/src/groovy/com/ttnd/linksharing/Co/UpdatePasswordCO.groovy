@@ -8,15 +8,15 @@ import grails.validation.Validateable
  */
 @Validateable
 class UpdatePasswordCO {
+    Long userId
     String oldPassword
     String password
-    Long id
 
 
     static constraints = {
-        password(blank: false,minSize: 5)
+        password(blank: false, minSize: 5)
     }
-    User getUser(){
-        return User.get(id)
+    User getUser() {
+        return User.get(userId)
     }
 }

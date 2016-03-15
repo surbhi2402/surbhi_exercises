@@ -85,6 +85,18 @@ $(document).ready(function () {
         });
     });
 
+
+    //$("#updatePassword").change(function (e) {
+    //    //alert($(this).attr('id'));
+    //    alert("${id}");
+    //    e.preventDefault();
+    //    $.ajax({
+    //        url: "/user/updatePassword",
+    //        data: {id: $(this).attr('value'), oldPassword: $(this).attr('oldPassword'),password:$(this).attr('password')},
+    //        success: ajaxSuccess
+    //    });
+    //});
+
     $("#clearSearchPostBox").click(function () {
         $("#searchPostBox").val("")
     });
