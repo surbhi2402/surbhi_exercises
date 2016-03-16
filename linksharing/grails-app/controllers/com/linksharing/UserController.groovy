@@ -54,8 +54,9 @@ class UserController {
         if (!user?.hasErrors()) {
             user.save(flush: true, failOnError: true)
             flash.message = "User registered succesfully"
-            render flash.message
-
+            session.user = user
+            UserVO userDetails = user.getUserDetails()
+            render(view: '/user/dashboard', model: [userDetails: userDetails])
         } else {
             List<Resource> recentShares = Resource.list([sort: 'dateCreated', order: 'desc', max: 2])
             render view: '/login/home', model: [recentShares: recentShares, user: userCo]
@@ -63,7 +64,6 @@ class UserController {
     }
 
     def forgotPassword(String email) {
-        println "${email}"
         User user = User.findByEmail(email)
         if (user && user.active) {
             String newPassword = Util.getRandomPassword()
@@ -72,17 +72,12 @@ class UserController {
             emailService.sendMail(emailDTO)
             if (User.updatePassword(newPassword, email)) {
                 flash.message = "${user.password}If your Email id is valid and you are active user then you will get your new password via mail"
-                println "=====of forgto passwd inside ifff block"
             } else {
-                println "====inside else block of forgot passwd"
                 flash.error = "Please try again"
             }
-
             redirect(controller: "login", action: "index")
         }
-
-//        render(view: '/user/forgotPa')
-        render "hello new Password"
+        redirect(controller: "login", action: "index")
     }
 
     def getScore(Long resourceId, Integer score) {
@@ -110,7 +105,6 @@ class UserController {
         List<Topic> topicsCreated = topicService.search(topicSearchCO)
         List<Topic> subscribedTopics = subscriptionService.search(topicSearchCO)
         List<Resource> posts = resourceService.search(resourceSearchCo)
-        println "${posts}====>>posts by user"
         UserVO userDetails = user.getUserDetails()
         render(view: '/user/profile', model: [topicsCreated: topicsCreated, subscribedTopics: subscribedTopics, posts: posts, userDetails: userDetails])
 
@@ -150,9 +144,9 @@ class UserController {
     def modifyUserProfile(String firstName, String lastName, String userName) {
         User user = session.user
         if (User.executeUpdate("update User as u set firstName=:fname,lastName=:lname,username=:uname where id=:id", [fname: firstName, lname: lastName, uname: userName, id: user.id])) {
-            render "successfully registered with new details"
+            redirect(controller: "login", action: "index")
         } else {
-            render "could not update details"
+            render "Could not register you!"
         }
 
         if (!params.pic.empty) {
@@ -165,21 +159,20 @@ class UserController {
     def updatePassword(UpdatePasswordCO updatePasswordCO) {
         User user = updatePasswordCO.getUser()
         Map jsonResponseMap = [:]
-
         if (user.password == updatePasswordCO.oldPassword) {
             user.password = updatePasswordCO.password
             user.confirmPassword = updatePasswordCO.password
             if (user.save(flush: true)) {
 //                jsonResponseMap.message = "Password Updated Successfully"
-                render "password updated successfully through CO"
+//                render "password updated successfully through CO"
+                redirect(controller: "login", action: "index")
             } else {
 //                jsonResponseMap.error = "Password Could not be updated!"
-                render "password not updated!"
+                render "password could not be updated!"
             }
         }
 //                render jsonResponseMap as JSON
     }
-
 
 
     def toggleActive(Long id) {
@@ -200,7 +193,7 @@ class UserController {
 
     }
 
-    def subscriptions(Long  id){
+    def subscriptions(Long id) {
         TopicSearchCO topicSearchCO = new TopicSearchCO(id: id)
         User currentUser = session.user
         if (currentUser) {
@@ -216,37 +209,17 @@ class UserController {
     }
 
 
-    def topics(Long id){
-        TopicSearchCO topicSearchCO = new TopicSearchCO(id:id)
-        User currentUser =  session.user
-        if(currentUser){
-            
-        }
-    }
-  /*
     def topics(Long id) {
         TopicSearchCO topicSearchCO = new TopicSearchCO(id: id)
         User currentUser = session.user
         if (currentUser) {
             if (!(currentUser.admin || currentUser.id == id)) {
                 topicSearchCO.visibility = null
-                // topicSearchCO.visibility = Visibility.PUBLIC
+            } else {
+                topicSearchCO.visibility = Visibility.PUBLIC
             }
-        } else
-            topicSearchCO.visibility = Visibility.PUBLIC
-
-        List createdTopics = topicService.search(topicSearchCO)
-
-        render(template: '/topic/list', model: [topics: createdTopics])
-    }
-
-
-    class TopicSearchCO extends SearchCO{
-        Long id // its user id
-        Visibility visibility
-
-        User getUser(){
-            return User.get(id)
         }
-    }*/
+        List topicsCreated = subscriptionService.search(topicSearchCO)
+        render(view: '/topic/list', model: [topics: topicsCreated])
+    }
 }

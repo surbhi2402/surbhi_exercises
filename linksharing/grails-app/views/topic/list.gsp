@@ -14,7 +14,6 @@
 
 <body>
 
-
 <div class="panel panel-default">
     <div class="panel panel-heading" style="height: 40px">
         <div class="pull-left">Topics</div>
@@ -44,8 +43,6 @@
 
                 <div>
                     <ls:showSubscribe id="${topic.id}"></ls:showSubscribe>
-                    %{--<div class="col-sm-3" style="color:grey;margin-left: 70px"><ls:subscriptionCount--}%
-                    %{--userId="${userDetails.id}"/></div>--}%
 
                     <div class="col-sm-3" style="color:grey"><ls:topicCount/></div>
                 </div>
@@ -61,7 +58,5 @@
     </g:each>
 </div>
 </div>
-
-
 </body>
 </html>
