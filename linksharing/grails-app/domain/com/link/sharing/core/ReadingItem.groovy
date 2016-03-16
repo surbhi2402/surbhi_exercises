@@ -26,27 +26,10 @@ class ReadingItem {
 
     }
 
-//    static def getResourceDetails(User user){
-//        def ReadingItemList = ReadingItem.findAllByUser(user)
-//        def result = ReadingItem.createCriteria().list {
-//            projections {
-//                property('resource.id')
-//                property('isRead')
-//                'resource'{
-//                    property('url')
-//                    property('filePath')
-//                }
-//            }
-//            eq('user',user)
-//        }
-//        return result
-//    }
-
-
     static def getInboxItems(user) {
 // User currentUser = session.user
         List<PostVO> readingItemsList = [];
-        ReadingItem.findAllByUserAndIsRead(user, false).each {
+        ReadingItem.findAllByUser(user).each {
             readingItemsList.add(new PostVO(resourceID: it.resource.id, description: it.resource.description,
                     topicName: it.resource.topic.name, userUserName: it.resource.createdBy.username,
                     userFirstName: it.resource.createdBy.firstName, userLastName: it.resource.createdBy.lastName,

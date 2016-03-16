@@ -11,7 +11,7 @@ class User {
     String firstName
     String lastName
     Byte[] photo
-    Boolean admin
+    Boolean admin = false
     Boolean active = true
     String confirmPassword
     Date dateCreated

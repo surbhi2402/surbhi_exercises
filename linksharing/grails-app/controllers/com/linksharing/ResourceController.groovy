@@ -42,13 +42,9 @@ class ResourceController {
         }
         UserVO userDetails = user.getUserDetails()
         List<Resource> resources = Resource.search(co).list()
-//        render(view: '/resource/searchPage',model: [userDetails: userDetails,resources:resources])
         render(template: '/topic/viewSearch', model: [post: resources])
     }
 
-//           Resource resource = Resource.findById(id)
-//        RatingInfoVo ratingInfoVo = resource.ratingInfo
-//        render "****total votes: $ratingInfoVo.totalVotes*****average: $ratingInfoVo.averageScore***total: $ratingInfoVo.totalScore"
 
     def viewPost(Long id) {
         User user = session.user

@@ -214,6 +214,15 @@ class UserController {
         render(view: '/topic/list', model: [topics: subscribedTopics])
 
     }
+
+
+    def topics(Long id){
+        TopicSearchCO topicSearchCO = new TopicSearchCO(id:id)
+        User currentUser =  session.user
+        if(currentUser){
+            
+        }
+    }
   /*
     def topics(Long id) {
         TopicSearchCO topicSearchCO = new TopicSearchCO(id: id)

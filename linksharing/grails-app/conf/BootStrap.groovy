@@ -29,7 +29,7 @@ class BootStrap {
         User.findAllByEmailInList(["normal@tothenew.com", "admin@tothenew.com"]).each { User user ->
                 if (!user.topics?.size()) {
                     (1..5).each {
-                        Topic topic = new Topic(name: "Grails" + it, createdBy: user, visibility: Visibility.PUBLIC)
+                        Topic topic = new Topic(name: "Grails" +"${user.firstName}" + it, createdBy: user, visibility: Visibility.PUBLIC)
                         topic.save(flush: true, failOnError: true)
                         user.addToTopics(topic)
                     }

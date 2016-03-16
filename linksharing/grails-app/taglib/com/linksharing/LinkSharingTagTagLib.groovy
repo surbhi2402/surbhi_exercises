@@ -17,12 +17,12 @@ class LinkSharingTagTagLib {
 
     def markRead = { attrs, body ->
         User user = session.user
-        String link = "${createLink(controller: 'readingItem', action: 'changeIsRead', params: [id: attrs.resourceId, isRead: !attrs.isRead])}"
+        String link = "${createLink(controller: 'readingItem', action: 'changeIsRead', params: [resourceId: attrs.resourceId, isRead: !attrs.isRead])}"
         if (user) {
             if (attrs.isRead) {
-                out << "<a href=$link>Mark as Unread</a>"
+                out << "<a href=$link class='markReadingItem' resourceId=\"$attrs.resourceId\" isRead=\"$attrs.isRead\">Mark as Unread</a>"
             } else {
-                out << "<a href=$link>Mark as Read</a>"
+                out << "<a href=$link class='markReadingItem' resourceId=\"$attrs.resourceId\" isRead=\"$attrs.isRead\">Mark as Read</a>"
             }
         }
     }

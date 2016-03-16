@@ -235,6 +235,24 @@ $(document).ready(function () {
             data: {topicId: topicId, name: $("#name" + topicId).val()},
             success:ajaxSuccess
     });
-    })
+    });
+
+    $(".markReadingItem").on('click',function(e) {
+        //alert("hello");
+        e.preventDefault();
+        var isRead = $(this).attr('isRead');
+        alert(isRead);
+        var resourceId = $(this).attr('resourceId');
+        alert(resourceId);
+        $.ajax({
+            url: "/readingItem/changeIsRead",
+            data: {isRead: isRead,resourceId:resourceId},
+            success: ajaxSuccess
+        });
+        alert(resourceId);
+        alert(isRead);
+
+
+    });
 
 });
