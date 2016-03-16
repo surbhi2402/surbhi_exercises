@@ -181,4 +181,63 @@ class UserController {
     }
 
 
+
+    def toggleActive(Long id) {
+        User user = User.get(id)
+
+        if (user && (!user.admin)) {
+            user.active = !user.active
+            user.confirmPassword = user.password
+            if (user.save(flush: true)) {
+                flash.message = g.message(code: "com.linksharing.User.controller.toggle.active.success")
+            } else {
+                flash.error = g.message(code: "com.linksharing.User.controller.toggle.active.fail")
+            }
+        } else {
+            flash.error = g.message(code: "com.linksharing.User.controller.toggle.active.fail")
+        }
+        redirect(controller: 'user', action: "list")
+
+    }
+
+    def subscriptions(Long  id){
+        TopicSearchCO topicSearchCO = new TopicSearchCO(id: id)
+        User currentUser = session.user
+        if (currentUser) {
+            if (!(currentUser.admin || currentUser.id == id)) {
+                topicSearchCO.visibility = Visibility.PUBLIC
+            }
+        } else
+            topicSearchCO.visibility = Visibility.PUBLIC
+
+        List subscribedTopics = subscriptionService.search(topicSearchCO)
+        render(view: '/topic/list', model: [topics: subscribedTopics])
+
+    }
+  /*
+    def topics(Long id) {
+        TopicSearchCO topicSearchCO = new TopicSearchCO(id: id)
+        User currentUser = session.user
+        if (currentUser) {
+            if (!(currentUser.admin || currentUser.id == id)) {
+                topicSearchCO.visibility = null
+                // topicSearchCO.visibility = Visibility.PUBLIC
+            }
+        } else
+            topicSearchCO.visibility = Visibility.PUBLIC
+
+        List createdTopics = topicService.search(topicSearchCO)
+
+        render(template: '/topic/list', model: [topics: createdTopics])
+    }
+
+
+    class TopicSearchCO extends SearchCO{
+        Long id // its user id
+        Visibility visibility
+
+        User getUser(){
+            return User.get(id)
+        }
+    }*/
 }

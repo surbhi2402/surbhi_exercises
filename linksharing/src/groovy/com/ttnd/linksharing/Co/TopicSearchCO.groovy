@@ -10,7 +10,8 @@ class TopicSearchCO {
 
     Visibility visibility
     Long id
-    User getUser(){
+
+    User getUser() {
         return User.findById(id)
     }
 }

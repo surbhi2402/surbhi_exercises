@@ -85,18 +85,6 @@ $(document).ready(function () {
         });
     });
 
-
-    //$("#updatePassword").change(function (e) {
-    //    //alert($(this).attr('id'));
-    //    alert("${id}");
-    //    e.preventDefault();
-    //    $.ajax({
-    //        url: "/user/updatePassword",
-    //        data: {id: $(this).attr('value'), oldPassword: $(this).attr('oldPassword'),password:$(this).attr('password')},
-    //        success: ajaxSuccess
-    //    });
-    //});
-
     $("#clearSearchPostBox").click(function () {
         $("#searchPostBox").val("")
     });
@@ -117,6 +105,39 @@ $(document).ready(function () {
     });
 
 
+    /*
+     *
+
+     $(".saveTopicNameButton").click(function () {
+     var topicId = $(this).attr('topicId')
+     $.ajax({
+     url: "/topic/titleUpdate",
+     data: {topicId: topicId, name: $("#name" + topicId).val()},
+     success:ajaxSuccess
+     })
+     });
+     Aditi • 40 mins
+     Aditi Bhatnagar
+
+     Send a message
+     * */
+
+    //$("edit-topic").on('click',function(){
+    //    var topicId = $(this).attr
+    //});
+
+
+    //String email
+    //String username
+    //String password
+    //String firstName
+    //String lastName
+    //Byte[] photo
+    //Boolean admin
+    //Boolean active = true
+    //String confirmPassword
+    //Date dateCreated
+    //Date lastUpdated
     $(function () {
         $('#registrationForm').validate({
             rules: {
@@ -140,6 +161,7 @@ $(document).ready(function () {
                     remote: {
                         url: "/login/validateUserName",
                         type: "post"
+                        //required:true
                     }
                 },
                 'email': {
@@ -148,6 +170,7 @@ $(document).ready(function () {
                     remote: {
                         url: "/login/validateEmail",
                         type: "post"
+                        //required:true
                     }
                 }
             },
@@ -163,8 +186,8 @@ $(document).ready(function () {
                     minlength: "Password should be at least 5 character long"
                 },
                 'confirmPassword': {
-                    required: "Confirm password can't be blank",
-                    equalTo:"Confirm Password should be same as password"
+                    required: "Confirm password can't be blank"
+                    //equalTo:"This should be same as password"
                 },
                 'email': {
                     required: "Email address can't be blank",
@@ -196,42 +219,22 @@ $(document).ready(function () {
         $("#editForm" + topicId).css({'display': 'block'});
     });
 
-    $(".cancelTopicNameButton").on('click', function (e) {
+    $(".cancelTopicNameButton").on('click',function(e){
         e.preventDefault();
         var topicId = $(".edit-topic").attr('data-topic-id');
         //alert(topicId)
-        $("#editForm" + topicId).css({'display': 'none'});
+        $("#editForm"+topicId).css({'display':'none'});
     });
 
-    //$(".saveTopicNameButton").on('click', function (e) {
-    //    e.preventDefault();
-    //    //var topicId = $("this")
-    //    alert(topicId);
-    //    var topicId = $(this).attr('topicId');
-    //    $.ajax({
-    //        url: "/topic/titleUpdate",
-    //        data: {topicId: topicId, name: $("#name" + topicId).val()},
-    //        success: ajaxSuccess
-    //    });
-    //})
-
-    $(".saveTopicNameButton").click(function () {
-        var topicId = $(this).attr('topicId')
+    $(".saveTopicNameButton").on('click',function(e){
+        e.preventDefault();
+        //var topicId = $("this")
+        var topicId = $(this).attr('topicId');
         $.ajax({
             url: "/topic/titleUpdate",
             data: {topicId: topicId, name: $("#name" + topicId).val()},
             success:ajaxSuccess
-        })
     });
-
-    //$("#resourceDescriptionEditForm").change(function () {
-    //    var id = $(this).attr('id')
-    //    $.ajax({
-    //        url: "/resource/save",
-    //        data: {id: id, name: $("#description").val()},
-    //        success:ajaxSuccess
-    //    })
-    //});
-
+    })
 
 });
