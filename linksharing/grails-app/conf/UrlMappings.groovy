@@ -11,6 +11,7 @@ class UrlMappings {
       // "/topic"(controller: "topic",action: "index")
         "500"(view:'/my500')
         "404"(view:'/my404')
+        "/public/topic/show"(controller: 'topic' ,action: 'show')
 //    "/"(view: "/index")
 
 	}

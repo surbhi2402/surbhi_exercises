@@ -117,7 +117,7 @@ class User {
                     ilike("firstName", "%${userSearchCO.q}%")
                     ilike("lastName", "%${userSearchCO.q}%")
                     ilike("email", "%${userSearchCO.q}%")
-                    ilike("userName", "%${userSearchCO.q}%")
+                    ilike("username", "%${userSearchCO.q}%")
 
                 }
             }

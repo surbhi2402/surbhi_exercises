@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="searchPaginate">
     <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Post:
     </div>
     <% "${resourceList}" %>
@@ -26,6 +26,8 @@
         </div>
         <hr>
     </g:each>
+<util:remotePaginate controller="resource" action="globalSearch1" total="${total}" update="searchPaginate" params='[queryString:"${queryString}"]'/>
+
 
 </div>
 

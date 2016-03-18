@@ -50,6 +50,8 @@ class DocumentResourceController extends ResourceController {
                 response.setContentType("application/pdf")
                 response.setHeader("Content-disposition", "filename=${file.name}")
                 response.outputStream << file.bytes
+                response.outputStream.flush()
+                response.outputStream.close()
                 redirect controller: 'login' ,action: 'index'
             }
         }

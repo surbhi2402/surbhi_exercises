@@ -13,6 +13,7 @@ import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.RatingInfoVo
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
+import net.sf.ehcache.search.expression.Criteria
 
 class ResourceController {
 
@@ -136,10 +137,19 @@ class ResourceController {
 
 
     def globalSearch(String queryString){
+        println "---------${queryString}-----------"
             List<Resource> resourceList = Resource.findAllByDescriptionIlike("%${queryString}%")
-        println "List of resources---->>>>${resourceList}"
-
-        render (view: '/resource/searchPage',model: [resourceList:resourceList])
+        List<Resource> resourceList2=Resource.createCriteria().list([max:10,offset:0]){
+            ilike("description","%${queryString}%")
+        }
+        render (view: '/resource/searchPage',model: [resourceList:resourceList2,total:resourceList.size(),queryString:queryString])
+    }
+    def globalSearch1(String queryString){
+        List<Resource> resourceList = Resource.findAllByDescriptionIlike("%${queryString}%")
+        List<Resource> resourceList2=Resource.createCriteria().list([max:10,offset:params.offset]){
+            ilike("description","%${queryString}%")
+        }
+        render (template: '/resource/search',model: [resourceList:resourceList2,total:resourceList.size()])
     }
 
 }

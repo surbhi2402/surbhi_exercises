@@ -27,7 +27,7 @@ class TopicController {
         topic = Topic.read(resourceSearchCo?.topicId)
         if (!topic) {
             redirect(controller: "user", action: "index")
-            flash.error = "No topic in database"
+//            flash.error = "No topic in database"
         } else {
             if (Visibility.PUBLIC) {
                 List<Resource> resources = topic.getPost()
@@ -37,23 +37,24 @@ class TopicController {
                 def subscription = Subscription.findAllByUserAndTopic(user1, topic)
                 if (!subscription) {
                     redirect(controller: 'login', action: 'index')
-                    flash.message = "Subscription does not exists."
+//                    flash.message = "Subscription does not exists."
                 } else {
-                    render "Success"
+                    flash.message = "Success"
+                    redirect(controller: 'login', action: 'index')
                 }
             } else {
-                render "Topic not available!"
+                flash.error = "Topic not available!"
+                redirect(controller: 'login', action: 'index')
             }
         }
     }
 
     def save(String name, String visibility) {
-//        println "***inside save of topic"
         Topic topic = new Topic(name: name, createdBy: session.user, visibility: Visibility.getVisibility(visibility))
         if (topic.validate()) {
             topic.save(flush: true)
             flash.message = "Success"
-            render flash.message
+            redirect(controller: 'user', action: 'index')
         } else {
             log.error(" Could not save Topic ${topic.name}")
             flash.message = "Topic ${topic.name} does not satisfied constraints"
@@ -63,10 +64,8 @@ class TopicController {
 
     def saving(Long topicId, String visibility) {
         Topic topic = Topic.get(topicId)
-//        topic.visibility = visibility as Visibility
         Visibility visibility1 = Visibility.getVisibility(visibility)
         Map jsonResponseMap = [:]
-
         if (topic && visibility) {
             topic.visibility = visibility1
             if (topic.validate() && topic.save(flush: true))
@@ -85,9 +84,9 @@ class TopicController {
         Topic topic = Topic.findById(id)
         if (topic && user.canDeleteTopic(id)) {
             topic.delete(flush: true)
-            render "Topic and subscriptions deleted sucessfully"
+            redirect(controller: 'user', action: 'index')
         } else
-            render "cant delete topic"
+            render "Could not delete topic"
 
     }
 
@@ -132,14 +131,14 @@ class TopicController {
         Topic topic = Topic.get(topicId)
         if (topic) {
             if (Topic.executeUpdate("update Topic as t set name=:name where id=:id", [name: name, id: topic.id])) {
-                jsonResponseMap.message = "Succesfully update Topic title!"
+                jsonResponseMap.message = "Successfully update Topic title!"
             } else {
                 jsonResponseMap.error = "Sorry!! Could not update Topic title!"
             }
         }
         render jsonResponseMap as JSON
+//        redirect(controller: "login", action: 'index')
     }
-
 }
 
 

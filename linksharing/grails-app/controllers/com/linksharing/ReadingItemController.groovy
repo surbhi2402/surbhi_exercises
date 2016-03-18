@@ -15,8 +15,9 @@ class ReadingItemController {
         Resource resource = Resource.get(resourceId)
         Map jsonResponseMap = [:]
         User user = session.user
+        println("Is read or not"+isRead)
 
-        if (ReadingItem.executeUpdate("update ReadingItem as r set r.isRead=:isRead where r.resource=:resource and r.user =:user", [isRead: isRead, user: user, resource:resource]))
+        if (ReadingItem.executeUpdate("update ReadingItem as r set r.isRead=:isRead where r.resource=:resource and r.user =:user", [isRead: !isRead, user: user, resource:resource]))
         {
             jsonResponseMap.message = "Reading Item isRead successfully changed."
 //            render "Reading Item isRead successfully changed. ~SUCCESS~"

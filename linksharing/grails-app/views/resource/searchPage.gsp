@@ -25,7 +25,7 @@
 </div>
 
 <div class="col-xs-7">
-        <g:render template="/resource/search" model="[resourceList:resourceList]"></g:render>
+        <g:render template="/resource/search" model="[resourceList:resourceList,total:total,max:10,offset:0,queryString:queryString]"></g:render>
 </div>
 
 </body>

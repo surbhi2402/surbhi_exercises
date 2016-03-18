@@ -12,7 +12,7 @@
             <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
             <a href="#" style="margin-left: 180px">
                 <a href="#"><u>Download</u>
-                    %{--<ls:checkType id="${topicPost.id}" url="${topicPost.topic.}"--}%
+                    %{--<ls:checkType id="${topicPost.id}" url="${topicPost}"--}%
                     %{--filePath="${inbox.filePath}"/>--}%
                 </a></a> <a href="#"><u>View full
         site</u></a> <a href="#">

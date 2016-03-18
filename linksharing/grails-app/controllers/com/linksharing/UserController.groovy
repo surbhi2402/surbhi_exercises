@@ -75,9 +75,11 @@ class UserController {
             } else {
                 flash.error = "Please try again"
             }
-            redirect(controller: "login", action: "index")
+//            redirect(controller: "login", action: "index")
+            render "----"
         }
-        redirect(controller: "login", action: "index")
+//        redirect(controller: "login", action: "index")
+        render "---"
     }
 
     def getScore(Long resourceId, Integer score) {

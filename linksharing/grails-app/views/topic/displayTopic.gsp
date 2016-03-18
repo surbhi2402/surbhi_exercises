@@ -13,7 +13,8 @@
 </head>
 
 <body>
-<div class="col-xs-5">
+<div class="container-fluid">
+<div class="col-xs-6">
     <div class="row" style="margin:9px">
         <g:render template="/topic/showTopic" model="[topic: topic]"/>
     </div>
@@ -23,10 +24,10 @@
     </div>
 </div>
 
-<div class="col-xs-6 pull-right">
+<div class="col-xs-6">
     <g:render template="/topic/showPost" model="[post:post,topics: topic]"/>
     %{--<ls:topPosts/>--}%
 </div>
-
+</div>
 </body>
 </html>

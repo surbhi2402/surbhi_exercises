@@ -61,7 +61,7 @@
 
 
 
-<div class="panel panel-default">
+<div class="panel panel-default" id="inboxPaginate">
     <div class="panel panel-heading" data-tooltip="true" title="Unread Items">Inbox</div>
 
     <g:each in="${readingItemList}" var="inbox">
