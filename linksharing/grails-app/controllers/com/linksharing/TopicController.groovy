@@ -27,7 +27,6 @@ class TopicController {
         topic = Topic.read(resourceSearchCo?.topicId)
         if (!topic) {
             redirect(controller: "user", action: "index")
-//            flash.error = "No topic in database"
         } else {
             if (Visibility.PUBLIC) {
                 List<Resource> resources = topic.getPost()
@@ -37,7 +36,6 @@ class TopicController {
                 def subscription = Subscription.findAllByUserAndTopic(user1, topic)
                 if (!subscription) {
                     redirect(controller: 'login', action: 'index')
-//                    flash.message = "Subscription does not exists."
                 } else {
                     flash.message = "Success"
                     redirect(controller: 'login', action: 'index')

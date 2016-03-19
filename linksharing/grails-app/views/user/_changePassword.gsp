@@ -9,7 +9,7 @@
                 <label class="pull-left" style="margin-left:10px">Old Password*</label>
 
                 <div class="col-xs-9">
-                    <g:passwordField name="oldPassword"  style="margin-left: 25px" class="form-control" id="oldPassword" placeholder="New Password"/>
+                    <g:passwordField name="oldPassword"  style="margin-left: 25px" class="form-control" id="oldPassword" placeholder="Old Password"/>
                 </div>
             </div>
 
@@ -18,7 +18,7 @@
 
                 <div class="col-xs-9">
                     <g:passwordField name="password" class="form-control" id="password" style="margin-left: 20px"
-                                 placeholder="Confirm Password"/>
+                                 placeholder="New Password"/>
                 </div>
             </div>
 

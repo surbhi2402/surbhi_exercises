@@ -10,14 +10,18 @@
             <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
             <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
             <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
-            <a href="#" style="margin-left: 180px">
-                <a href="#"><u>Download</u>
-                    %{--<ls:checkType id="${topicPost.id}" url="${topicPost}"--}%
-                    %{--filePath="${inbox.filePath}"/>--}%
-                </a></a> <a href="#"><u>View full
-        site</u></a> <a href="#">
+            %{--<a href="#" style="margin-left: 180px">--}%
+                %{--<a href="#"><u>Download</u>--}%
+                    %{--<ls:checkType id="${topicPost.id}" url="${topicPost.}"--}%
+                    %{--filePath="${topicPost.filePath}"/>--}%
+                %{--</a></a> <a href="#"><u>View full--}%
+        %{--site</u></a> <a href="#">--}%
             %{--<ls:markRead isRead="${}" resourceId="${topicPost.id}"/>--}%
-        </a> <a href="#"><u>View Posts</u></a></a>
+        %{--</a>--}%
+                %{--<a href="#"><u>View Posts</u></a></a>--}%
+            <g:link controller="resource" action="viewPost"
+                    params='[id: "${topicPost.id}"]' style="float: right">View Post</g:link>
+
         </div>
     </div>
     <hr>

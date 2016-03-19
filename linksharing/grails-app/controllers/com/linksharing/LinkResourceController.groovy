@@ -21,7 +21,8 @@ class LinkResourceController extends ResourceController {
             addToReadingItems(linkResource)
             println "succesfullyy saved linkbdgyuedhbdft"
 
-            render "link saved successfully"
+//            render "link saved successfully"
+            redirect(controller: 'user',action: 'index')
         } else {
             render "link not saved!!"
         }

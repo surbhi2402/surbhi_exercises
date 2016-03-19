@@ -37,13 +37,13 @@
 
                                 <div class="col-xs-10">
                                     <g:select class="form-control" name="topic1" from="${subscribeTopics}" optionKey="id"
-                                              value="${subscribeTopics}" noSelection="['': 'select Topic']"/>
+                                              value="${subscribeTopics}"/>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="modal-footer">
-                                    <g:submitButton name="submit" value="save" type="submit"
+                                    <g:submitButton name="submit" value="Save" type="submit"
                                                     class="btn btn-primary">Save</g:submitButton>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>

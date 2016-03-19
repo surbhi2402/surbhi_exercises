@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<div class="panel panel-default panel-primary">
+<div class="panel panel-default panel-default" id="adminPaginate">
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-3">
@@ -21,27 +21,23 @@
             </div>
             <g:form controller="user" action="list">
                 <div class="col-md-3">
-                    %{--  <g:select class="btn btn-default" name="active"
-                                  from="${com.tothenew.enums.ActiveStatus.values()}"
-                                  optionKey="key"/>--}%
                     <select class="btn btn-default" name="active">
                         <option value="null">All user</option>
                         <option value="true">Active</option>
                         <option value="false">In active</option>
-
                     </select>
                 </div>
 
                 <div class="col-sm-3">
-                    <div id="custom-search-input" style="margin: 1px;">
-                        <div class="input-group col-md-12">
-                            <input type="text" id="topic-post-search-textbox" name="q" class="form-control input-lg"
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-10">
+                            <input type="text" id="topic-post-search-textbox" name="q" class="form-control"
                                    placeholder="Search.."/>
                             <span class="input-group-btn">
-                                <button class="btn btn-info btn-lg" type="submit">
+                                <button class="btn btn-info" type="submit">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
-                                <button class="btn btn-info btn-lg" id="topic-post-search-clear-button" type="button">
+                                <button class="btn btn-info" id="topic-post-search-clear-button" type="button">
                                     <i class="glyphicon glyphicon-remove"></i>
                                 </button>
                             </span>
@@ -95,6 +91,8 @@
                     </tr>
                 </g:each>
             </table>
+            <util:remotePaginate controller="user" action="list" total="${total}" update="adminPaginate" params="[userSearchCO:userSearchCO]"/>
+
         </div>
     </div>
 </div>

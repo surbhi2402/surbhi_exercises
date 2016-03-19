@@ -17,7 +17,7 @@ class ApplicationFilters {
         loginCheck(controller: 'login|topic', invert: true) {
             before = {
                 println "======session.user=====${session.user}"
-                if (!session.user && (!(controllerName == "user" && actionName == "register"))) {
+                if (!session.user && (!(controllerName == "user" && actionName == "register")) && (!(controllerName == "resource" && actionName == "globalSearch"))) {
                     redirect(controller: 'login', action: 'index')
                 }
             }

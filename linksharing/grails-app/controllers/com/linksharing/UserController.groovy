@@ -115,11 +115,11 @@ class UserController {
     def list(UserSearchCO userSearchCO) {
         List<UserVO> userVOList = []
         if (session.user?.admin) {
-            User.search(userSearchCO).list([sort: userSearchCO.sort, order: userSearchCO.order]).each { user ->
+            User.search(userSearchCO).list([sort: userSearchCO.sort, order: userSearchCO.order,max:1,offset:0]).each { user ->
                 userVOList.add(new UserVO(id: user.id, username: user.username, email: user.email, fname: user.firstName,
                         lname: user.lastName, isActive: user.active))
             }
-            render(view: 'list', model: [users: userVOList])
+            render(view: 'list', model: [users: userVOList,total:userVOList.size(),max:2,offset:0,userSearchCO:userSearchCO ])
         } else {
             redirect(controller: 'login', action: 'index')
         }

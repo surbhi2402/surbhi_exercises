@@ -97,8 +97,8 @@ class ResourceController {
 
                 if (isUpdated) {
                     resource.refresh()
-                    flash.message = "Resource Description Updated!"
-                    render flash.message
+//                    flash.message = "Resource Description Updated!"
+                    redirect(controller:'user',action: 'index')
                 } else {
                     flash.error = "Resource Description is not Updated"
                     render flash.error

@@ -8,18 +8,14 @@
                 <div style="float:left;font-size:60px" class="glyphicon glyphicon-user"></div>
 
                 <div class="col-xs-offset-2">
-
                     <h4>${user.username}<i style="color: grey">@${topic.createdBy.username} 5pm</i></h4>
 
                     <p>${topic.name}</p>
                     <br>
-                    <br>
                     <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
                     <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
                     <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
-
                 </div>
-
                 <hr>
             </g:each>
         </div>

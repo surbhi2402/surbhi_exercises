@@ -24,7 +24,7 @@
     <div class="container-fluid" style="height:100px">
 
         <nav class="navbar header">
-            <a class="navbar-brand" href="#">Link sharing</a>
+            <a class="navbar-brand" href="#"><g:link controller="user" action="index" style="font-size: x-large">Link sharing</g:link></a>
 
             <g:form controller="resource" action="globalSearch" class="navbar-form navbar-right" role="search">
                 <g:actionSubmit action="globalSearch" value="Search" type="submit" class="form-control">
@@ -78,7 +78,7 @@
     <div class="container-fluid" style="height: 100px">
         <div class="row">
             <div class="col-md-2">
-                <a class="navbar-brand" href="#">Link sharing</a>
+                <a class="navbar-brand" href="#"><g:link controller="login" action="index" style="font-size: x-large">Link sharing</g:link></a>
 
             </div>
 

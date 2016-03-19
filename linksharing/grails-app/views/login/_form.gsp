@@ -10,7 +10,7 @@
                     <label class="control-label col-xs-3">Username</label>
 
                     <div class="col-xs-9">
-                        <g:textField name="username" class="form-control" placeholder="Name"/>
+                        <g:textField name="username" class="form-control" placeholder="Username"/>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                         %{--<g:render template="/user/forgotPasswd"></g:render>--}%
                     %{--<g:actionSubmit value="forgot paswword"--}%
                         %{--<g:link controller="user" action="forgotPassword">Forgot Password</g:link>--}%
-                        <g:actionSubmit value="login" type="submit" action="login" controller="login"
+                        <g:actionSubmit value="Login" type="submit" action="login" controller="login"
                                         class="btn btn-primary" style="float:right">Login</g:actionSubmit>
                     </div>
                 </div>

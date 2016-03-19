@@ -54,7 +54,7 @@
                     <label class="control-label col-xs-3">Username*</label>
 
                     <div class="col-xs-9">
-                        <g:textField name="username" class="form-control" id="inputUname" placeholder="User Name"/>
+                        <g:textField name="username" class="form-control" id="inputUname" placeholder="Username"/>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
 
                     <div class="col-xs-9">
                         <g:passwordField name="confirmPassword" class="form-control" id="inputConfirm"
-                                         placeholder="*****"/>
+                                         placeholder="******"/>
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@
                     <div class="col-xs-9"></div>
 
                     <div class="col-xs-3">
-                        <g:actionSubmit action="register" value="submit" type="submit"
+                        <g:actionSubmit action="register" value="Register" type="submit"
                                         class="btn btn-success">Submit</g:actionSubmit>
                     </div>
                 </div>

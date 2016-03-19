@@ -8,14 +8,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><g:if env="development">Runtime Exception</g:if><g:else>Error</g:else></title>
+    <title><g:if env="development">Internal Server Error</g:if><g:else>Error</g:else></title>
     <meta name="layout" content="main">
     <g:if env="development"><asset:stylesheet src="errors.css"/></g:if>
 </head>
 <body>
 
 
-<p style="text-align: center">Content not available!</p>
+<p align="center">
+    <asset:image src="uh_oh_1x.png" width="500" height="500"/>
+</p>
 
 <g:if env="development">
     <g:renderException exception="${exception}" />

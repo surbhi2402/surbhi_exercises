@@ -15,22 +15,18 @@
 <body>
 
 <a href="#" data-toggle="modal" data-target="#editResource" data-tooltip="true"
-   title="Create Topic"></a>
+   title="Edit Resource Description"></a>
 
-<div class="container-fluid">
 
     <div class="col-xs-6" style="float: left">
-        %{--<div class="row" style="margin:9px">--}%
         <g:render template="viewResource" model="[readingItemList: readingItemList, resource: resource]"/>
-        <g:render template="/resource/edit" model="[post:resource]"/>
-        %{--</div>--}%
+        <g:render template="/resource/edit" model="[post: resource]"/>
     </div>
 
-    <div class="col-xs-5" style="float: right">
-        %{--<g:render template="/user/trendingTopics"/>--}%
+    %{--<div class="col-xs-6">--}%
         <ls:trendingTopics/>
-    </div>
-</div>
+    %{--</div>--}%
+
 
 </body>
 </html>

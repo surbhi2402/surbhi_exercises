@@ -24,10 +24,10 @@
 
                     <div class="form-group row">
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Close</button>
                         </div>
 
-                        <div class="col-sm-8">
+                        <div class="col-sm-4">
                             <g:submitButton type="submit" name="submit" class="btn btn-primary btn-block"
                                             value="Save"/>
                         </div>

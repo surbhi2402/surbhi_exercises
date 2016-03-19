@@ -15,7 +15,9 @@
 <body>
 
 
-<p>RESOURCE NOT FOUND</p>
+<p align="center">
+<asset:image src="404-error.jpg" width="500" height="500"/>
+</p>
 
 <g:if env="development">
     <g:renderException exception="${exception}" />

@@ -11,28 +11,21 @@ import grails.converters.JSON
 
 class SubscriptionController {
 
-//    static transactional = false
-
     def index() {}
 
     def delete(Long topicId) {
-        println "==topicId-->>>${topicId}"
         Map jsonResponseMap = [:]
         Topic topic = Topic.get(topicId)
         println "===${topic.createdBy}"
         User user = session.user
         if (user.isSubscribed(topicId)) {
-
             Subscription subscription = Subscription.findByUserAndTopic(user, topic)
             subscription.delete(flush: true)
-            jsonResponseMap.message = "subscription deleted!!"
-            //redirect(controller: 'user', action: 'index')
-        }
-        else  if(user.equals(topic.createdBy)) {
+            jsonResponseMap.message = "You have been successfully unsubscribed from ${topic.name}!"
+        } else if (user.equals(topic.createdBy)) {
             println "inside if user is created by of topic"
             flash.error = "you cannot unsubscribe from topic!"
-        }
-        else{
+        } else {
             flash.error = "subscription not found!"
             jsonResponseMap.error = "Subscription not found!!"
         }
@@ -49,8 +42,7 @@ class SubscriptionController {
             Subscription subscription = new Subscription(topic: topic, user: session.user, seriousness: Seriousness.SERIOUS)
             if (subscription.save(flush: true)) {
                 List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-//                render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems])
-              jsonResponseMap.message = "Subscription Saved Sucessfully!"
+                jsonResponseMap.message = "Subscription Saved Sucessfully!"
             } else {
                 jsonResponseMap.error = "Subscription not saved"
             }

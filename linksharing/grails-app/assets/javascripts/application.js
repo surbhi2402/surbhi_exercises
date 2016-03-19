@@ -41,9 +41,6 @@ function ajaxSuccess(result) {
 $(document).ready(function () {
 
     $(".subscription").click(function (e) {
-
-        //console.log($(this).attr('topicId'));
-
         e.preventDefault();
         $.ajax({
             url: "/subscription/delete",
@@ -53,9 +50,6 @@ $(document).ready(function () {
     });
 
     $(".subscribe").click(function (e) {
-
-        //console.log($(this).attr('topicId'));
-
         e.preventDefault();
         $.ajax({
             url: "/subscription/save",
@@ -103,41 +97,6 @@ $(document).ready(function () {
             }
         });
     });
-
-
-    /*
-     *
-
-     $(".saveTopicNameButton").click(function () {
-     var topicId = $(this).attr('topicId')
-     $.ajax({
-     url: "/topic/titleUpdate",
-     data: {topicId: topicId, name: $("#name" + topicId).val()},
-     success:ajaxSuccess
-     })
-     });
-     Aditi • 40 mins
-     Aditi Bhatnagar
-
-     Send a message
-     * */
-
-    //$("edit-topic").on('click',function(){
-    //    var topicId = $(this).attr
-    //});
-
-
-    //String email
-    //String username
-    //String password
-    //String firstName
-    //String lastName
-    //Byte[] photo
-    //Boolean admin
-    //Boolean active = true
-    //String confirmPassword
-    //Date dateCreated
-    //Date lastUpdated
     $(function () {
         $('#registrationForm').validate({
             rules: {
@@ -199,16 +158,6 @@ $(document).ready(function () {
                 }
             }
         });
-
-        //jQuery.validator.addMethod("confirm", function (value, element) {
-        //    var result = false;
-        //    var password = $('form#registrationForm input[id=password]').val();
-        //
-        //    if (password === value) {
-        //        result = true;
-        //    }
-        //    return result;
-        //}, "Confirm password not matched with password");
     });
 
 
@@ -219,40 +168,33 @@ $(document).ready(function () {
         $("#editForm" + topicId).css({'display': 'block'});
     });
 
-    $(".cancelTopicNameButton").on('click',function(e){
+    $(".cancelTopicNameButton").on('click', function (e) {
         e.preventDefault();
         var topicId = $(".edit-topic").attr('data-topic-id');
         //alert(topicId)
-        $("#editForm"+topicId).css({'display':'none'});
+        $("#editForm" + topicId).css({'display': 'none'});
     });
 
-    $(".saveTopicNameButton").on('click',function(e){
+    $(".saveTopicNameButton").on('click', function (e) {
         e.preventDefault();
         //var topicId = $("this")
         var topicId = $(this).attr('topicId');
         $.ajax({
             url: "/topic/titleUpdate",
             data: {topicId: topicId, name: $("#name" + topicId).val()},
-            success:ajaxSuccess
-    });
-    });
-
-    $(".markReadingItem").on('click',function(e) {
-        //alert("hello");
-        e.preventDefault();
-        var isRead = $(this).attr('isRead');
-        alert(isRead);
-        var resourceId = $(this).attr('resourceId');
-        alert(resourceId);
-        $.ajax({
-            url: "/readingItem/changeIsRead",
-            data: {isRead: isRead,resourceId:resourceId},
             success: ajaxSuccess
         });
-        alert(resourceId);
-        alert(isRead);
+    });
 
-
+    $(".markReadingItem").on('click', function (e) {
+        e.preventDefault();
+        var isRead = $(this).attr('isRead');
+        var resourceId = $(this).attr('resourceId');
+        $.ajax({
+            url: "/readingItem/changeIsRead",
+            data: {isRead: isRead, resourceId: resourceId},
+            success: ajaxSuccess
+        });
     });
 
 });

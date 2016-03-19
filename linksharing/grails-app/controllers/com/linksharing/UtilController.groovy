@@ -4,7 +4,7 @@ class UtilController {
 
 
     def mailService
-
+    def demoBean2
 
 
     //def grailsApplication
@@ -27,6 +27,12 @@ class UtilController {
         //log.fatal("testing log fatal")
         //log.error("testing log error")
         //log.trace("testing log trace")
+
+    }
+
+    def testBean(){
+
+        render demoBean2.properties
 
     }
 

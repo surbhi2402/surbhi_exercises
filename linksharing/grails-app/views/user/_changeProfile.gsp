@@ -9,7 +9,7 @@
                 <label class="pull-left" style="margin-left: 10px">First Name*</label>
 
                 <div class="col-xs-9">
-                    <g:textField style="margin-left: 50px" name="firstName" class="form-control" id="inputFname" placeholder="First Name"/>
+                    <g:textField style="margin-left: 50px" name="firstName" class="form-control" id="inputFname" placeholder="${session.user.firstName}"/>
                 </div>
             </div>
 
@@ -17,7 +17,7 @@
                 <label class="pull-left" style="margin-left: 10px">Last Name*</label>
 
                 <div class="col-xs-9">
-                    <g:textField name="lastName" style="margin-left: 52px" class="form-control" id="inputLname" placeholder="Last Name"/>
+                    <g:textField name="lastName" style="margin-left: 52px" class="form-control" id="inputLname" placeholder="${session.user.lastName}"/>
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
                 <label class="pull-left" style="margin-left: 10px">Username*</label>
 
                 <div class="col-xs-9">
-                    <g:textField name="userName" style="margin-left: 55px" class="form-control" id="inputUsername" placeholder="User Name"/>
+                    <g:textField name="userName" style="margin-left: 55px" class="form-control" id="inputUsername" placeholder="${session.user.username}"/>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                 <div class="col-xs-9"></div>
 
                 <div class="col-xs-3">
-                    <g:actionSubmit action="modifyUserProfile" value="Submit" type="submit"
+                    <g:actionSubmit action="modifyUserProfile" value="Update" type="submit"
                     class="btn btn-success">Submit</g:actionSubmit>
                 </div>
             </div>
