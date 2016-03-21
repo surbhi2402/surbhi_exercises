@@ -1,42 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="2" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="TopicControllerSpec" package="com.linksharing" skipped="0" tests="4" time="6.419" timestamp="2016-03-09T10:56:38">
+  <testsuite errors="1" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="UserControllerSpec" package="com.linksharing" skipped="0" tests="1" time="7.169" timestamp="2016-03-21T15:32:35">
       <properties />
 
-      <testcase classname="com.linksharing.TopicControllerSpec" name="testing show action if topic not found" time="5.483" />
-
-      <testcase classname="com.linksharing.TopicControllerSpec" name="testing show action of Topic" time="0.189">
-          <error message="Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly." type="java.lang.IllegalStateException">java.lang.IllegalStateException: Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
-	at com.link.sharing.core.Topic.getSubscribedUsers(Topic.groovy:71)
-	at org.springsource.loaded.ri.ReflectiveInterceptor.jlrMethodInvoke(ReflectiveInterceptor.java:1426)
-	at com.linksharing.TopicController.show(TopicController.groovy:25)
-	at com.linksharing.TopicControllerSpec.testing show action of Topic(TopicControllerSpec.groovy:57)
+      <testcase classname="com.linksharing.UserControllerSpec" name="testing user controller index action" time="7.032">
+          <error message="Cannot invoke method getUserDetails() on null object" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke method getUserDetails() on null object
+	at com.linksharing.UserController.index(UserController.groovy:40)
+	at com.linksharing.UserControllerSpec.testing user controller index action(UserControllerSpec.groovy:45)
 </error>
 
       </testcase>
 
-      <testcase classname="com.linksharing.TopicControllerSpec" name="topic show if visibility is private" time="0.276">
-          <error message="Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly." type="java.lang.IllegalStateException">java.lang.IllegalStateException: Method on class [com.link.sharing.core.Subscription] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
-	at com.link.sharing.core.Topic.getSubscribedUsers(Topic.groovy:71)
-	at org.springsource.loaded.ri.ReflectiveInterceptor.jlrMethodInvoke(ReflectiveInterceptor.java:1426)
-	at com.linksharing.TopicController.show(TopicController.groovy:25)
-	at com.linksharing.TopicControllerSpec.topic show if visibility is private(TopicControllerSpec.groovy:80)
-</error>
-
-      </testcase>
-
-      <testcase classname="com.linksharing.TopicControllerSpec" name="testing save action" time="0.25" />
-
-      <system-out><![CDATA[--Output from testing show action if topic not found--
---Output from testing show action of Topic--
---Output from topic show if visibility is private--
---Output from testing save action--
+      <system-out><![CDATA[--Output from testing user controller index action--
 ]]></system-out>
 
-      <system-err><![CDATA[--Output from testing show action if topic not found--
---Output from testing show action of Topic--
---Output from topic show if visibility is private--
---Output from testing save action--
+      <system-err><![CDATA[--Output from testing user controller index action--
 ]]></system-err>
 
   </testsuite>

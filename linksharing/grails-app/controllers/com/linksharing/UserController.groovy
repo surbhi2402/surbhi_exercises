@@ -53,7 +53,7 @@ class UserController {
         user.validate()
         if (!user?.hasErrors()) {
             user.save(flush: true, failOnError: true)
-            flash.message = "User registered succesfully"
+            flash.message = "User registered successfully"
             session.user = user
             UserVO userDetails = user.getUserDetails()
             render(view: '/user/dashboard', model: [userDetails: userDetails])
