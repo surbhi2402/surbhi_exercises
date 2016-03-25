@@ -33,7 +33,6 @@ class DocumentResourceController extends ResourceController {
             } else {
                 flash.error = "Resource not Saved -- ${documentResource.errors.allErrors}"
             }
-            //addToReadingItems(documentResource)
         }
         redirect(controller: 'login', action: 'index')
     }

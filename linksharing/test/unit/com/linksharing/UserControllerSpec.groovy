@@ -1,22 +1,26 @@
 package com.linksharing
 
+import com.link.sharing.core.LinkResource
 import com.link.sharing.core.ReadingItem
 import com.link.sharing.core.Resource
 import com.link.sharing.core.Subscription
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
 import com.ttnd.linksharing.Co.UserCo
+import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.UserVO
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.IgnoreRest
 import spock.lang.Specification
+import spock.util.mop.ConfineMetaClassChanges
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
 @TestFor(UserController)
-@Mock([User, Resource,ReadingItem,Subscription])
+@Mock([User, Resource, ReadingItem, Subscription])
+@ConfineMetaClassChanges([User, ReadingItem])
 class UserControllerSpec extends Specification {
 
     def setup() {
@@ -25,20 +29,21 @@ class UserControllerSpec extends Specification {
     def cleanup() {
     }
 
-    @IgnoreRest
     void "testing user controller index action"() {
         given:
+
         User user = new User(username: "surbhi", password: "abcdefhgh", confirmPassword: "abcdefhgh", email: "newuser@tothenew.com", firstName: "surbhi", lastName: "dhawan")
         user.save(validate: false)
+        controller.session.user = user
 
-        user.metaClass.getSubscribeTopics ={
+        user.metaClass.getUserDetails = {
+            new UserVO()
+        }
+        user.metaClass.getSubscribeTopics = {
             [new Topic()]
         }
-        ReadingItem.metaClass.getInboxItems ={
-            [new ReadingItem()]
-        }
-        user.metaClass.getUserDetails ={
-            [new UserVO()]
+        ReadingItem.metaClass.static.getInboxItems = { User user1 ->
+            [new PostVO()]
         }
 
         when:
@@ -46,61 +51,60 @@ class UserControllerSpec extends Specification {
 
         then:
         model.subscribeTopics.size() == 1
-        model.readingItems.size() == 1
-        model.userDetails.size() == 1
+        model.readingItemList.size() == 1
         view == "/user/dashboard"
-
-    }
-
-
-
-
-    void "testing register action if user is already registered"() {
-        setup:
-        session.user = true
-
-        and:
-        UserCo userCo = new UserCo()
-
-        when:
-        controller.register(userCo)
-
-        then:
-        response.contentAsString == "You are already Registered-----"
     }
 
 
     void "testing register action for new user"() {
         setup:
         User user = new User(username: "surbhi", password: "abcdefhgh", confirmPassword: "abcdefhgh", email: "newuser@tothenew.com", firstName: "surbhi", lastName: "dhawan")
-        user.save(validate: false)
+        user.save(validate: false, flush: true)
 
-        user.metaClass.userDetails ={
-            [user]
+        user.metaClass.getUserDetails = {
+            new UserVO()
         }
+        controller.session.user = user
 
         and:
-        UserCo userCo = new UserCo(pic: "123".getBytes())
+        UserCo userCo = new UserCo(username: "surbhi", password: "abcdefhgh", confirmPassword: "abcdefhgh", email: "newuser1@tothenew.com", firstName: "surbhi", lastName: "dhawan")
 
         when:
         controller.register(userCo)
 
         then:
-//        controller.session.user == user
-        model.userDetails.size() == 1
+//        model.userDetails.size() == 1
         view == "/user/dashboard"
     }
 
-//    void "testing register action for unsuccessful registration"() {
-//        setup:
-//        UserCo userCo = new UserCo()
-//        userCo.validate()
-//        when:
-//        controller.register(userCo)
-//
-//        then:
-//        response.contentAsString == "validation succeeded-----"
-//    }
+    void "testing registration when user not saved successfully"() {
+        setup:
+        UserCo userCo = new UserCo(username: "surbhi", password: "abfhgh", confirmPassword: "abcdefhgh", email: "newuser@tothenew.com", firstName: "surbhi", lastName: "dhawan")
+
+        when:
+        controller.register(userCo)
+
+        then:
+        view == "/login/home"
+    }
+
+    void "testing getScore"() {
+        given:
+        Resource resource = new LinkResource(url: "https://www.google.com")
+        resource.save(validate: false,flush: true)
+
+        when:
+        controller.getScore()
+
+        /*
+        * def getScore(Long resourceId, Integer score) {
+        User user = session.user
+        Integer value = ResourceRating.executeUpdate("update ResourceRating r set r.score=:score where r.resource.id=:resourceId and r.user.id = :userId", [score: score, resourceId: resourceId, userId: user.id])
+
+        render value
+    }
+        * */
+    }
 
     void "testing forgot password template"() {
         when:
@@ -108,4 +112,6 @@ class UserControllerSpec extends Specification {
         then:
         view == '/user/forgotPassword'
     }
+
+
 }

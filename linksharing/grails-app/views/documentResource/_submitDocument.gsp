@@ -23,9 +23,6 @@
 
                                 </div>
 
-                                %{--<div class="col-xs-5">--}%
-                                    %{--<button type="submit" class="btn btn-primary">Browse</button>--}%
-                                %{--</div>--}%
                             </div>
                             <!--row 2-->
                             <div class="form-group">

@@ -47,7 +47,7 @@ class UserController {
 
         User user = new User()
         user.properties = userCo.properties
-        if (!params.pic.empty) {
+        if (params.pic&&!params.pic.empty) {
             user.photo = params.pic.bytes
         }
         user.validate()

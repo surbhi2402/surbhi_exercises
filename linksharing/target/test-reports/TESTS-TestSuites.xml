@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="1" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="UserControllerSpec" package="com.linksharing" skipped="0" tests="1" time="7.169" timestamp="2016-03-21T15:32:35">
+  <testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" id="0" name="UserControllerSpec" package="com.linksharing" skipped="0" tests="1" time="3.824" timestamp="2016-03-22T07:59:34">
       <properties />
 
-      <testcase classname="com.linksharing.UserControllerSpec" name="testing user controller index action" time="7.032">
-          <error message="Cannot invoke method getUserDetails() on null object" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke method getUserDetails() on null object
-	at com.linksharing.UserController.index(UserController.groovy:40)
-	at com.linksharing.UserControllerSpec.testing user controller index action(UserControllerSpec.groovy:45)
-</error>
+      <testcase classname="com.linksharing.UserControllerSpec" name="testing registration when user not saved successfully" time="3.756" />
 
-      </testcase>
-
-      <system-out><![CDATA[--Output from testing user controller index action--
+      <system-out><![CDATA[--Output from testing registration when user not saved successfully--
 ]]></system-out>
 
-      <system-err><![CDATA[--Output from testing user controller index action--
+      <system-err><![CDATA[--Output from testing registration when user not saved successfully--
 ]]></system-err>
 
   </testsuite>
