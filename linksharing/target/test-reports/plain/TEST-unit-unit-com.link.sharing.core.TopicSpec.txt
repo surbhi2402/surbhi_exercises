@@ -1,0 +1,44 @@
+Testsuite: com.link.sharing.core.TopicSpec
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.128 sec
+------------- Standard Output ---------------
+--Output from testing topic--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing topic--
+------------- ---------------- ---------------
+
+Testcase: testing topic took 0.082 sec
+	FAILED
+Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+true   |  false
+       false
+
+junit.framework.AssertionFailedError: Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+true   |  false
+       false
+
+	at com.link.sharing.core.TopicSpec.testing topic(TopicSpec.groovy:29)
+
+	FAILED
+Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+true   |  false
+       false
+
+junit.framework.AssertionFailedError: Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+true   |  false
+       false
+
+	at com.link.sharing.core.TopicSpec.testing topic(TopicSpec.groovy:29)
+

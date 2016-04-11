@@ -17,7 +17,6 @@ class UserSpec extends Specification {
     def cleanup() {
     }
 
-
     @Unroll("#description")
     def "testing user spec"() {
 
@@ -28,7 +27,6 @@ class UserSpec extends Specification {
         Boolean result = user.validate()
 
         then:
-        //user.hasErrors()
         result == expectedOutput
 
         where:

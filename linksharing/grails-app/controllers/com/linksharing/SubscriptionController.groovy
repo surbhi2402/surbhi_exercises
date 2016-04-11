@@ -8,15 +8,17 @@ import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class SubscriptionController {
 
     def index() {}
 
+
     def delete(Long topicId) {
         Map jsonResponseMap = [:]
         Topic topic = Topic.get(topicId)
-        println "===${topic.createdBy}"
         User user = session.user
         if (user.isSubscribed(topicId)) {
             Subscription subscription = Subscription.findByUserAndTopic(user, topic)

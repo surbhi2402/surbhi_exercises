@@ -23,7 +23,7 @@
     </div>
 
     <div class="col-xs-6 pull-right">
-        <g:render template="/login/form"/>
+        <g:render template="/login/form" model="[postUrl:postUrl, rememberMeParameter: rememberMeParameter]"/>
 
         <g:render template="/user/forgotPasswd"></g:render>
 

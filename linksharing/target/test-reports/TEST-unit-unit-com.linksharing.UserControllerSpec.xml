@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.UserControllerSpec" skipped="0" tests="3" time="0.663" timestamp="2016-04-02T16:58:35">
+  <properties />
+  <testcase classname="com.linksharing.UserControllerSpec" name="testing user controller index action" time="0.343" />
+  <testcase classname="com.linksharing.UserControllerSpec" name="testing register action for new user" time="0.199" />
+  <testcase classname="com.linksharing.UserControllerSpec" name="testing registration when user not saved successfully" time="0.092" />
+  <system-out><![CDATA[--Output from testing user controller index action--
+--Output from testing register action for new user--
+--Output from testing registration when user not saved successfully--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing user controller index action--
+--Output from testing register action for new user--
+--Output from testing registration when user not saved successfully--
+]]></system-err>
+</testsuite>

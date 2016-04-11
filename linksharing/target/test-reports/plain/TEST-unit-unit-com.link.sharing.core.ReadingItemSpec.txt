@@ -1,0 +1,10 @@
+Testsuite: com.link.sharing.core.ReadingItemSpec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.146 sec
+------------- Standard Output ---------------
+--Output from testing reading item class--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing reading item class--
+------------- ---------------- ---------------
+
+Testcase: testing reading item class took 0.138 sec

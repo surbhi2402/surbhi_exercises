@@ -85,6 +85,8 @@ grails.project.dependency.resolution = {
         compile "org.grails.plugins:console:1.5.7"
         compile "org.grails.plugins:codenarc:0.25.1"
 
+        compile ':spring-security-core:2.0.0'
+
         runtime ':twitter-bootstrap:3.3.5'
 
         compile "org.grails.plugins:quartz:1.0.2"

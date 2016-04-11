@@ -94,7 +94,7 @@
                         <li><g:link controller="user" action="list">Users</g:link></li>
                         <li><a href="#">Topics</a></li>
                         <li><a href="#">Posts</a></li>
-                        <li><a href="/login/logout">Logout</a></li>
+                        <li><a href="/j_spring_security_logout">Logout</a></li>
                     </ul>
                 </div>
             </g:form>

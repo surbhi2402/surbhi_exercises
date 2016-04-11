@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.DocumentResourceControllerSpec" skipped="0" tests="2" time="0.358" timestamp="2016-04-02T16:58:36">
+  <properties />
+  <testcase classname="com.linksharing.DocumentResourceControllerSpec" name="testing index action" time="0.278" />
+  <testcase classname="com.linksharing.DocumentResourceControllerSpec" name="testing save action" time="0.057">
+    <error message="No signature of method: com.linksharing.DocumentResourceController.save() is applicable for argument types: (java.lang.String, java.lang.String, java.lang.Integer) values: [/some/path, it&apos;s a file, 1]&#xa;Possible solutions: save(), save(), save(java.lang.Long, java.lang.String), save(com.link.sharing.core.DocumentResource), wait(), any()" type="groovy.lang.MissingMethodException">groovy.lang.MissingMethodException: No signature of method: com.linksharing.DocumentResourceController.save() is applicable for argument types: (java.lang.String, java.lang.String, java.lang.Integer) values: [/some/path, it&apos;s a file, 1]
+Possible solutions: save(), save(), save(java.lang.Long, java.lang.String), save(com.link.sharing.core.DocumentResource), wait(), any()
+	at com.linksharing.DocumentResourceControllerSpec.testing save action(DocumentResourceControllerSpec.groovy:37)
+</error>
+  </testcase>
+  <system-out><![CDATA[--Output from testing index action--
+--Output from testing save action--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing index action--
+--Output from testing save action--
+]]></system-err>
+</testsuite>

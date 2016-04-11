@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.ResourceControllerSpec" skipped="0" tests="1" time="0.316" timestamp="2016-04-02T16:58:35">
+  <properties />
+  <testcase classname="com.linksharing.ResourceControllerSpec" name="deleting resource-when resource is not there" time="0.29">
+    <error message="Cannot invoke method canDeleteResource() on null object" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke method canDeleteResource() on null object
+	at com.linksharing.ResourceController.delete(ResourceController.groovy:27)
+	at com.linksharing.ResourceControllerSpec.deleting resource-when resource is not there(ResourceControllerSpec.groovy:24)
+</error>
+  </testcase>
+  <system-out><![CDATA[--Output from deleting resource-when resource is not there--
+]]></system-out>
+  <system-err><![CDATA[--Output from deleting resource-when resource is not there--
+]]></system-err>
+</testsuite>

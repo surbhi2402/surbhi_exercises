@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.link.sharing.core.LinkResourceSpec" skipped="0" tests="1" time="0.13" timestamp="2016-04-02T16:58:38">
+  <properties />
+  <testcase classname="com.link.sharing.core.LinkResourceSpec" name="testing link resource file" time="0.12" />
+  <system-out><![CDATA[--Output from testing link resource file--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing link resource file--
+]]></system-err>
+</testsuite>

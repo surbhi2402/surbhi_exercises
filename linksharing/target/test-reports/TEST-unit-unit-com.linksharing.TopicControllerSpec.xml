@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="2" failures="1" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.TopicControllerSpec" skipped="0" tests="4" time="0.43" timestamp="2016-04-02T16:58:36">
+  <properties />
+  <testcase classname="com.linksharing.TopicControllerSpec" name="testing show action if topic not found" time="0.282">
+    <failure message="Condition not satisfied:&#xa;&#xa;flash.error == &quot;No topic in database&quot;&#xa;|     |     |&#xa;[:]   null  false&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Condition not satisfied:
+
+flash.error == &quot;No topic in database&quot;
+|     |     |
+[:]   null  false
+
+	at com.linksharing.TopicControllerSpec.testing show action if topic not found(TopicControllerSpec.groovy:45)
+</failure>
+  </testcase>
+  <testcase classname="com.linksharing.TopicControllerSpec" name="testing show action of Topic" time="0.053">
+    <error message="Method on class [com.link.sharing.core.Resource] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly." type="java.lang.IllegalStateException">java.lang.IllegalStateException: Method on class [com.link.sharing.core.Resource] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
+	at com.link.sharing.core.Topic.getPost(Topic.groovy:105)
+	at com.linksharing.TopicController.show(TopicController.groovy:32)
+	at com.linksharing.TopicControllerSpec.testing show action of Topic(TopicControllerSpec.groovy:57)
+</error>
+  </testcase>
+  <testcase classname="com.linksharing.TopicControllerSpec" name="topic show if visibility is private" time="0.032">
+    <error message="Method on class [com.link.sharing.core.Resource] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly." type="java.lang.IllegalStateException">java.lang.IllegalStateException: Method on class [com.link.sharing.core.Resource] was used outside of a Grails application. If running in the context of a test using the mocking API or bootstrap Grails correctly.
+	at com.link.sharing.core.Topic.getPost(Topic.groovy:105)
+	at com.linksharing.TopicController.show(TopicController.groovy:32)
+	at com.linksharing.TopicControllerSpec.topic show if visibility is private(TopicControllerSpec.groovy:80)
+</error>
+  </testcase>
+  <testcase classname="com.linksharing.TopicControllerSpec" name="testing save action" time="0.048" />
+  <system-out><![CDATA[--Output from testing show action if topic not found--
+--Output from testing show action of Topic--
+--Output from topic show if visibility is private--
+--Output from testing save action--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing show action if topic not found--
+--Output from testing show action of Topic--
+--Output from topic show if visibility is private--
+--Output from testing save action--
+]]></system-err>
+</testsuite>

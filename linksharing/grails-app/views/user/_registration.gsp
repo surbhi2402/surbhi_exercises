@@ -105,6 +105,7 @@
                     <div class="col-xs-3">
                         <g:actionSubmit action="register" value="Register" type="submit"
                                         class="btn btn-success">Submit</g:actionSubmit>
+
                     </div>
                 </div>
             </g:form>

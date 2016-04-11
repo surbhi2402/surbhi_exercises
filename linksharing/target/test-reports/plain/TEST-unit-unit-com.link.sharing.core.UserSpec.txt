@@ -1,0 +1,62 @@
+Testsuite: com.link.sharing.core.UserSpec
+Tests run: 7, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.23 sec
+------------- Standard Output ---------------
+--Output from passed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from email id of user should be unique--
+--Output from test name property that is transient--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from passed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from email id of user should be unique--
+--Output from test name property that is transient--
+------------- ---------------- ---------------
+
+Testcase: passed took 0.062 sec
+	FAILED
+Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+false  |  true
+       false
+
+junit.framework.AssertionFailedError: Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+false  |  true
+       false
+
+	at com.link.sharing.core.UserSpec.testing user spec(UserSpec.groovy:30)
+
+Testcase: failed took 0.016 sec
+Testcase: failed took 0.02 sec
+Testcase: failed took 0.017 sec
+Testcase: failed took 0.022 sec
+Testcase: email id of user should be unique took 0.039 sec
+	FAILED
+Condition not satisfied:
+
+user.count() == 1
+|    |       |
+|    0       false
+com.link.sharing.core.User : (unsaved)
+
+junit.framework.AssertionFailedError: Condition not satisfied:
+
+user.count() == 1
+|    |       |
+|    0       false
+com.link.sharing.core.User : (unsaved)
+
+	at com.link.sharing.core.UserSpec.email id of user should be unique(UserSpec.groovy:52)
+
+Testcase: test name property that is transient took 0.04 sec

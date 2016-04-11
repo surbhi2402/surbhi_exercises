@@ -29,7 +29,7 @@
                 (document, 'script', 'twitter-wjs');</script>
                 %{--<a href="#"><i class="fa fa-twitter fa-fw"></i></a>--}%
 
-                e<a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+                <a href="https://plus.google.com/share?url={https://plus.google.com/share}" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
                         src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>
 

@@ -4,6 +4,9 @@ import com.link.sharing.core.ReadingItem
 import com.link.sharing.core.Resource
 import com.link.sharing.core.User
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 
 class ReadingItemController {
 

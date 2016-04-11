@@ -19,7 +19,7 @@
 
             <div>
                 <g:link controller="user" action="profile" style="float: left"
-                        params="[id: session.user.id, topicId: 0, visibility: com.ttnd.linksharing.Enum.Visibility.PUBLIC]">@${topic.createdBy.username}</g:link>
+                        params="[id: session.user.id, topicId: 0, visibility: com.ttnd.linksharing.Enum.Visibility.PUBLIC]">@${topic.createdBy.firstName}</g:link>
 
                 <div class="col-sm-4" style="color:grey">Subscription</div>
 

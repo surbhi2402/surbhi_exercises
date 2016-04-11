@@ -4,6 +4,7 @@ import com.ttnd.linksharing.Enum.Visibility
 import com.ttnd.linksharing.constants.Constants
 
 class BootStrap {
+    def utilService
 
     def init = { servletContext ->
         createUsers()
@@ -14,26 +15,42 @@ class BootStrap {
         List<ResourceRating> resourceRatings = createResourceRatings()
     }
 
+    List<Role> createRoles() {
+        Role adminRole = Role.findOrSaveWhere(authority: 'ROLE_ADMIN')
+        Role userRole = Role.findOrSaveWhere(authority: 'ROLE_USER')
+        List<Role> roles = []
+        roles.add(adminRole)
+        roles.add(userRole)
+
+        return roles
+    }
 
     void createUsers() {
-        User normalUser = new User(email: "normal@tothenew.com", password: Constants.DEFAULT_PASSWORD, firstName: "Jitin", admin: false, username: "jitin", lastName: "Dominic", confirmPassword: "default", active: true)
-        User adminUser = new User(email: "admin@tothenew.com", password: "surbhi", firstName: "Surbhi", admin: true, username: "surbhi", lastName: "Dhawan", confirmPassword: "surbhi",active: true)
+        String password = utilService.fetchEncodedPassword("default")
+        User normalUser = new User(email: "jitin.dominic@tothenew.com", password: password,
+                firstName: "Jitin", username: "jitin.dominic@tothenew.com", lastName: "Dominic", confirmPassword: password)
+
+        String password1 = utilService.fetchEncodedPassword("surbhi")
+        User adminUser = new User(email: "surbhi.dhawan@tothenew.com", password: password1, firstName: "Surbhi",
+                username: "surbhi.dhawan@tothenew.com", lastName: "Dhawan", confirmPassword: password1)
 
         if (User.count() == 0) {
             normalUser.save()
+            UserRole.create(normalUser, createRoles()[1], true)
             adminUser.save()
+            UserRole.create(adminUser, createRoles()[0], true)
         }
     }
 
     void createTopic() {
-        User.findAllByEmailInList(["normal@tothenew.com", "admin@tothenew.com"]).each { User user ->
-                if (!user.topics?.size()) {
-                    (1..5).each {
-                        Topic topic = new Topic(name: "Grails" +"${user.firstName}" + it, createdBy: user, visibility: Visibility.PUBLIC)
-                        topic.save(flush: true, failOnError: true)
-                        user.addToTopics(topic)
-                    }
+        User.findAllByEmailInList(["jitin.dominic@tothenew.com", "surbhi.dhawan@tothenew.com"]).each { User user ->
+            if (!user.topics?.size()) {
+                (1..5).each {
+                    Topic topic = new Topic(name: "Grails" + "${user.firstName}" + it, createdBy: user, visibility: Visibility.PUBLIC)
+                    topic.save(flush: true, failOnError: true)
+                    user.addToTopics(topic)
                 }
+            }
         }
     }
 
@@ -42,7 +59,7 @@ class BootStrap {
         topics.each { Topic topic ->
             if (!topic.resources?.size()) {
                 2.times {
-                    Resource documentResource = new DocumentResource(description: "${topic.name} : Doc ${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path" ,contentType: "application/pdf")
+                    Resource documentResource = new DocumentResource(description: "${topic.name} : Doc ${it}", topic: topic, createdBy: topic.createdBy, filePath: "some/file/path", contentType: "application/pdf")
                     Resource linkResource = new LinkResource(description: "${topic.name} : Link ${it}", topic: topic, createdBy: topic.createdBy, url: "http://www.someurl.com")
                     if (documentResource.save(flush: true, failOnError: true) && linkResource.save(flush: true, failOnError: true)) {
                         topic.addToResources(documentResource)

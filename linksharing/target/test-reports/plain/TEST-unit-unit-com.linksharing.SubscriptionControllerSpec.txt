@@ -1,0 +1,17 @@
+Testsuite: com.linksharing.SubscriptionControllerSpec
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.643 sec
+------------- Standard Output ---------------
+--Output from testing update action when subsription is not found--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing update action when subsription is not found--
+------------- ---------------- ---------------
+
+Testcase: testing update action when subsription is not found took 0.607 sec
+	Caused an ERROR
+No signature of method: com.linksharing.SubscriptionController.update() is applicable for argument types: (java.lang.Long, java.lang.String) values: [1, VERY_SERIOUS]
+Possible solutions: update(), update(java.lang.Integer, java.lang.String), delete(), save(), delete(java.lang.Long), save(java.lang.Long)
+groovy.lang.MissingMethodException: No signature of method: com.linksharing.SubscriptionController.update() is applicable for argument types: (java.lang.Long, java.lang.String) values: [1, VERY_SERIOUS]
+Possible solutions: update(), update(java.lang.Integer, java.lang.String), delete(), save(), delete(java.lang.Long), save(java.lang.Long)
+	at com.linksharing.SubscriptionControllerSpec.testing update action when subsription is not found(SubscriptionControllerSpec.groovy:25)
+

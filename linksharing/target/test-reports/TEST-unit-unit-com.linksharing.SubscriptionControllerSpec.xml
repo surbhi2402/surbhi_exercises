@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.SubscriptionControllerSpec" skipped="0" tests="1" time="0.643" timestamp="2016-04-02T16:58:34">
+  <properties />
+  <testcase classname="com.linksharing.SubscriptionControllerSpec" name="testing update action when subsription is not found" time="0.624">
+    <error message="No signature of method: com.linksharing.SubscriptionController.update() is applicable for argument types: (java.lang.Long, java.lang.String) values: [1, VERY_SERIOUS]&#xa;Possible solutions: update(), update(java.lang.Integer, java.lang.String), delete(), save(), delete(java.lang.Long), save(java.lang.Long)" type="groovy.lang.MissingMethodException">groovy.lang.MissingMethodException: No signature of method: com.linksharing.SubscriptionController.update() is applicable for argument types: (java.lang.Long, java.lang.String) values: [1, VERY_SERIOUS]
+Possible solutions: update(), update(java.lang.Integer, java.lang.String), delete(), save(), delete(java.lang.Long), save(java.lang.Long)
+	at com.linksharing.SubscriptionControllerSpec.testing update action when subsription is not found(SubscriptionControllerSpec.groovy:25)
+</error>
+  </testcase>
+  <system-out><![CDATA[--Output from testing update action when subsription is not found--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing update action when subsription is not found--
+]]></system-err>
+</testsuite>

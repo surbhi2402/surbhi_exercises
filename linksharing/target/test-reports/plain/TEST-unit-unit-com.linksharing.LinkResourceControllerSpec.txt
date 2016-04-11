@@ -1,0 +1,13 @@
+Testsuite: com.linksharing.LinkResourceControllerSpec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.317 sec
+------------- Standard Output ---------------
+--Output from testing index action--
+--Output from testing save action--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing index action--
+--Output from testing save action--
+------------- ---------------- ---------------
+
+Testcase: testing index action took 0.594 sec
+Testcase: testing save action took 0.689 sec

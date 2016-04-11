@@ -2,49 +2,86 @@ package com.link.sharing.core
 
 import com.ttnd.linksharing.Co.UserSearchCO
 import com.ttnd.linksharing.Vo.UserVO
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
 
-class User {
+@EqualsAndHashCode(includes='username')
+@ToString(includes='username', includeNames=true, includePackage=false)
+class User implements Serializable {
 
+	private static final long serialVersionUID = 1
+
+	transient springSecurityService
+
+	String username
+	String password
     String email
-    String username
-    String password
     String firstName
     String lastName
     Byte[] photo
-    Boolean admin = false
-    Boolean active = true
     String confirmPassword
     Date dateCreated
     Date lastUpdated
+	boolean enabled = true
+	boolean accountExpired
+	boolean accountLocked
+	boolean passwordExpired
 
-    static hasMany = [topics: Topic, subscriptions: Subscription, readingItems: ReadingItem, resources: Resource]
+	User(String username, String password) {
+		this()
+		this.username = username
+		this.password = password
+	}
 
-    static constraints = {
+	Set<Role> getAuthorities() {
+		UserRole.findAllByUser(this)*.role
+	}
+
+//	def beforeInsert() {
+//		encodePassword()
+//	}
+//
+//	def beforeUpdate() {
+//		if (isDirty('password')) {
+//			encodePassword()
+//		}
+//	}
+
+//	protected void encodePassword() {
+//		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+//	}
+
+	static transients = ['springSecurityService', 'name', 'confirmPassword', 'subscribeTopics']
+
+	static constraints = {
+		username blank: false, unique: true
+		password blank: false
         email(unique: true, blank: false, nullable: false, email: true)
         password(nullable: false, blank: false, minSize: 5, validator: { value, object -> if (value.size() < 5) return false })
-        confirmPassword nullable: true, blank: true, minSize: 5, bindable: true,
-                validator: { val, obj ->
-//                    !obj.id &&
-                    if (val != obj.password) {
-                        // return "object.password.not.match"
-                        return false
-                    } else {
-                        return true
-                    }
+//        confirmPassword nullable: true, blank: true, minSize: 5, bindable: true,
+//                validator: { val, obj ->
+////                    !obj.id &&
+//                    if (val != obj.password) {
+//                        // return "object.password.not.match"
+//                        return false
+//                    } else {
+//                        return true
+//                    }
 
-                }
+//                }
         firstName(nullable: false, blank: false)
         photo(nullable: true)
-        admin(nullable: true)
-        active(nullable: true)
+
     }
 
-    static transients = ['name', 'confirmPassword', 'subscribeTopics']
-
-    static mapping = {
+	static mapping = {
+		password column: '`password`'
         photo(sqlType: 'blob')
         sort id: 'desc'
-    }
+	}
+
+
+    static hasMany = [topics: Topic, subscriptions: Subscription, readingItems: ReadingItem, resources: Resource]
 
     String getName() {
 
@@ -78,7 +115,7 @@ class User {
     Boolean canDeleteResource(Long id) {
         Resource resource = Resource.read(id)
         println "=====${resource.id}================"
-        if (this.admin || resource.createdBy.id == this.id) {
+        if ( resource.createdBy.id == this.id) {
             return true
         } else {
             return false
@@ -103,11 +140,9 @@ class User {
         }
     }
 
-
-
     static namedQueries = {
         search { UserSearchCO userSearchCO ->
-            eq('admin', false)
+//            eq('admin', false)
             if (userSearchCO.active != null) {
                 eq("active", userSearchCO.active)
             }
@@ -125,7 +160,7 @@ class User {
     }
 
     UserVO getUserDetails() {
-        return new UserVO(id:id,email: email, username: username, fname: firstName, lname: lastName, photo: photo, isAdmin: admin, isActive: active)
+        return new UserVO(id:id,email: email, username: username, fname: firstName, lname: lastName, photo: photo)
     }
 
 
@@ -134,8 +169,8 @@ class User {
         return Subscription.findByUserAndTopic(this,topic)
     }
 
-   public Boolean equals(Long userId){
-       User user = User.get(userId)
+    public Boolean equals(Long userId){
+        User user = User.get(userId)
         if(this == user){
             return true
         }
@@ -159,4 +194,12 @@ class User {
             eq('isRead', false)
         }
     }
+
+    Boolean isAdmin(){
+        if( this.authorities.contains(Role.findByAuthority('ROLE_ADMIN')))
+            return true
+        else
+            false
+          }
+
 }

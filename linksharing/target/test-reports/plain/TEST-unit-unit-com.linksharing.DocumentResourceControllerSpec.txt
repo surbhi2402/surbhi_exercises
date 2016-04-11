@@ -1,0 +1,20 @@
+Testsuite: com.linksharing.DocumentResourceControllerSpec
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.358 sec
+------------- Standard Output ---------------
+--Output from testing index action--
+--Output from testing save action--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing index action--
+--Output from testing save action--
+------------- ---------------- ---------------
+
+Testcase: testing index action took 0.278 sec
+Testcase: testing save action took 0.054 sec
+	Caused an ERROR
+No signature of method: com.linksharing.DocumentResourceController.save() is applicable for argument types: (java.lang.String, java.lang.String, java.lang.Integer) values: [/some/path, it's a file, 1]
+Possible solutions: save(), save(), save(java.lang.Long, java.lang.String), save(com.link.sharing.core.DocumentResource), wait(), any()
+groovy.lang.MissingMethodException: No signature of method: com.linksharing.DocumentResourceController.save() is applicable for argument types: (java.lang.String, java.lang.String, java.lang.Integer) values: [/some/path, it's a file, 1]
+Possible solutions: save(), save(), save(java.lang.Long, java.lang.String), save(com.link.sharing.core.DocumentResource), wait(), any()
+	at com.linksharing.DocumentResourceControllerSpec.testing save action(DocumentResourceControllerSpec.groovy:37)
+

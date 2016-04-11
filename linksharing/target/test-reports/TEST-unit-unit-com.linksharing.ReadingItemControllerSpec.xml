@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.ReadingItemControllerSpec" skipped="0" tests="1" time="4.108" timestamp="2016-04-02T16:58:29">
+  <properties />
+  <testcase classname="com.linksharing.ReadingItemControllerSpec" name="testing index action" time="4.003" />
+  <system-out><![CDATA[--Output from testing index action--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing index action--
+]]></system-err>
+</testsuite>

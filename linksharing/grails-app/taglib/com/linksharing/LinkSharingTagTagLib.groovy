@@ -109,7 +109,7 @@ class LinkSharingTagTagLib {
         Topic topic = Topic.get(topicId)
         User user = session.user
         if (user) {
-            if (user.id == topic.createdBy.id || user.admin) {
+            if (user.id == topic.createdBy.id || user.isAdmin()) {
                 out << render(template: '/subscription/tags', model: [topicId: attrs.topicId])
             } else {
                 out << render(template: '/user/mySubscribedTopics', model: [topicId: topicId])

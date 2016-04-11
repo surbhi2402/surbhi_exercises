@@ -1,0 +1,16 @@
+Testsuite: com.linksharing.ResourceControllerSpec
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.316 sec
+------------- Standard Output ---------------
+--Output from deleting resource-when resource is not there--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from deleting resource-when resource is not there--
+------------- ---------------- ---------------
+
+Testcase: deleting resource-when resource is not there took 0.288 sec
+	Caused an ERROR
+Cannot invoke method canDeleteResource() on null object
+java.lang.NullPointerException: Cannot invoke method canDeleteResource() on null object
+	at com.linksharing.ResourceController.delete(ResourceController.groovy:27)
+	at com.linksharing.ResourceControllerSpec.deleting resource-when resource is not there(ResourceControllerSpec.groovy:24)
+

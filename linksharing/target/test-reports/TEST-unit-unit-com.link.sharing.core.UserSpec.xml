@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="2" hostname="surbhi-TravelMate-P257-M" name="com.link.sharing.core.UserSpec" skipped="0" tests="7" time="0.23" timestamp="2016-04-02T16:58:37">
+  <properties />
+  <testcase classname="com.link.sharing.core.UserSpec" name="passed" time="0.063">
+    <failure message="Condition not satisfied:&#xa;&#xa;result == expectedOutput&#xa;|      |  |&#xa;false  |  true&#xa;       false&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+false  |  true
+       false
+
+	at com.link.sharing.core.UserSpec.testing user spec(UserSpec.groovy:30)
+</failure>
+  </testcase>
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.016" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.02" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.017" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="failed" time="0.022" />
+  <testcase classname="com.link.sharing.core.UserSpec" name="email id of user should be unique" time="0.04">
+    <failure message="Condition not satisfied:&#xa;&#xa;user.count() == 1&#xa;|    |       |&#xa;|    0       false&#xa;com.link.sharing.core.User : (unsaved)&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Condition not satisfied:
+
+user.count() == 1
+|    |       |
+|    0       false
+com.link.sharing.core.User : (unsaved)
+
+	at com.link.sharing.core.UserSpec.email id of user should be unique(UserSpec.groovy:52)
+</failure>
+  </testcase>
+  <testcase classname="com.link.sharing.core.UserSpec" name="test name property that is transient" time="0.04" />
+  <system-out><![CDATA[--Output from passed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from email id of user should be unique--
+--Output from test name property that is transient--
+]]></system-out>
+  <system-err><![CDATA[--Output from passed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from failed--
+--Output from email id of user should be unique--
+--Output from test name property that is transient--
+]]></system-err>
+</testsuite>

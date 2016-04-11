@@ -4,7 +4,9 @@ import com.link.sharing.core.LinkResource
 import com.link.sharing.core.Resource
 import com.link.sharing.core.Topic
 import com.link.sharing.core.User
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 
 class LinkResourceController extends ResourceController {
 

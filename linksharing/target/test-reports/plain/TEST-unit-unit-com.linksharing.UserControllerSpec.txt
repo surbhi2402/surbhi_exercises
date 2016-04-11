@@ -1,0 +1,16 @@
+Testsuite: com.linksharing.UserControllerSpec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.663 sec
+------------- Standard Output ---------------
+--Output from testing user controller index action--
+--Output from testing register action for new user--
+--Output from testing registration when user not saved successfully--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing user controller index action--
+--Output from testing register action for new user--
+--Output from testing registration when user not saved successfully--
+------------- ---------------- ---------------
+
+Testcase: testing user controller index action took 0.343 sec
+Testcase: testing register action for new user took 0.199 sec
+Testcase: testing registration when user not saved successfully took 0.092 sec

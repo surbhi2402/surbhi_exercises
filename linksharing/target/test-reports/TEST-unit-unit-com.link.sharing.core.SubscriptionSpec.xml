@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.link.sharing.core.SubscriptionSpec" skipped="0" tests="1" time="0.085" timestamp="2016-04-02T16:58:37">
+  <properties />
+  <testcase classname="com.link.sharing.core.SubscriptionSpec" name="testing subscripton class" time="0.079" />
+  <system-out><![CDATA[--Output from testing subscripton class--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing subscripton class--
+]]></system-err>
+</testsuite>

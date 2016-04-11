@@ -1,0 +1,3 @@
+--Output from testing user controller index action--
+--Output from testing register action for new user--
+--Output from testing registration when user not saved successfully--

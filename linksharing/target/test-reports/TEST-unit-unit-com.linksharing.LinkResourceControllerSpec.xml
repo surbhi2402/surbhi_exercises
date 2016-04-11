@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="surbhi-TravelMate-P257-M" name="com.linksharing.LinkResourceControllerSpec" skipped="0" tests="2" time="1.317" timestamp="2016-04-02T16:58:33">
+  <properties />
+  <testcase classname="com.linksharing.LinkResourceControllerSpec" name="testing index action" time="0.594" />
+  <testcase classname="com.linksharing.LinkResourceControllerSpec" name="testing save action" time="0.689" />
+  <system-out><![CDATA[--Output from testing index action--
+--Output from testing save action--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing index action--
+--Output from testing save action--
+]]></system-err>
+</testsuite>

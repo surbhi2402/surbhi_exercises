@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="1" hostname="surbhi-TravelMate-P257-M" name="com.link.sharing.core.DocumentResourceSpec" skipped="0" tests="1" time="0.15" timestamp="2016-04-02T16:58:38">
+  <properties />
+  <testcase classname="com.link.sharing.core.DocumentResourceSpec" name="testing document resource class" time="0.14">
+    <failure message="Condition not satisfied:&#xa;&#xa;result == expectedOutput&#xa;|      |  |&#xa;false  |  true&#xa;       false&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+false  |  true
+       false
+
+	at com.link.sharing.core.DocumentResourceSpec.testing document resource class(DocumentResourceSpec.groovy:27)
+</failure>
+  </testcase>
+  <system-out><![CDATA[--Output from testing document resource class--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing document resource class--
+]]></system-err>
+</testsuite>

@@ -1,0 +1,6 @@
+--Output from when session is set, user is forwarded to user index--
+--Output from testing logout action--
+--Output from testing Login Action--
+--Output from testing Login action when user is not active--
+--Output from testing Login action when user is not found--
+--Output from testing Logout action--

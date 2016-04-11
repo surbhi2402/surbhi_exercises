@@ -116,6 +116,9 @@ grails {
     }
 }
 
+
+//grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/user/index"
+
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:
@@ -143,3 +146,20 @@ log4j.main = {
 	//	grails.test = "local"
 
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.link.sharing.core.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.link.sharing.core.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.link.sharing.core.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                ['permitAll'],
+	'/index':           ['permitAll'],
+	'/index.gsp':       ['permitAll'],
+	'/assets/**':       ['permitAll'],
+	'/**/js/**':        ['permitAll'],
+	'/**/css/**':       ['permitAll'],
+	'/**/images/**':    ['permitAll'],
+	'/**/favicon.ico':  ['permitAll']
+]
+

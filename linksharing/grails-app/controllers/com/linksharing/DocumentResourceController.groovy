@@ -3,7 +3,10 @@ package com.linksharing
 import com.link.sharing.core.DocumentResource
 import com.link.sharing.core.Resource
 import com.link.sharing.core.Topic
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 
 class DocumentResourceController extends ResourceController {
 

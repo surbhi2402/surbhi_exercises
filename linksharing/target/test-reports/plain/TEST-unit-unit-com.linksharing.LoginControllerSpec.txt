@@ -1,0 +1,25 @@
+Testsuite: com.linksharing.LoginControllerSpec
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.295 sec
+------------- Standard Output ---------------
+--Output from when session is set, user is forwarded to user index--
+--Output from testing logout action--
+--Output from testing Login Action--
+--Output from testing Login action when user is not active--
+--Output from testing Login action when user is not found--
+--Output from testing Logout action--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from when session is set, user is forwarded to user index--
+--Output from testing logout action--
+--Output from testing Login Action--
+--Output from testing Login action when user is not active--
+--Output from testing Login action when user is not found--
+--Output from testing Logout action--
+------------- ---------------- ---------------
+
+Testcase: when session is set, user is forwarded to user index took 0.177 sec
+Testcase: testing logout action took 0.021 sec
+Testcase: testing Login Action took 0.029 sec
+Testcase: testing Login action when user is not active took 0.022 sec
+Testcase: testing Login action when user is not found took 0.014 sec
+Testcase: testing Logout action took 0.02 sec

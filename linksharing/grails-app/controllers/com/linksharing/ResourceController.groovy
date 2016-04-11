@@ -13,7 +13,10 @@ import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.RatingInfoVo
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
+import grails.plugin.springsecurity.annotation.Secured
 import net.sf.ehcache.search.expression.Criteria
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 
 class ResourceController {
 

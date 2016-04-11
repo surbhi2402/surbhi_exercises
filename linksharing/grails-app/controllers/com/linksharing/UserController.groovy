@@ -17,7 +17,9 @@ import com.ttnd.linksharing.Vo.PostVO
 import com.ttnd.linksharing.Vo.TopicVo
 import com.ttnd.linksharing.Vo.UserVO
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['permitAll'])
 class UserController {
 
     def userService
@@ -26,6 +28,11 @@ class UserController {
     def resourceService
     def topicService
     def emailService
+    def springSecurityService
+
+
+
+    static defaultAction = "index"
 
     def saving() {
         if (userService.save())
@@ -36,11 +43,29 @@ class UserController {
 
 
     def index() {
-        User user = session.user
-        UserVO userDetails = user.getUserDetails()
-        List<PostVO> readingItems = ReadingItem.getInboxItems(user)
-        render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems, userDetails: userDetails])
+        println "---------Inside user index--------"
+        if (springSecurityService.isLoggedIn()) {
+            println "---------Inside user index if--------"
+            User user = session.user = User.read(springSecurityService.currentUserId as Long)
+            springSecurityService.reauthenticate(user.username)
+            UserVO userDetails = user.getUserDetails()
+            List<PostVO> readingItems = ReadingItem.getInboxItems(user)
+
+            flash.message = "Login successful..!!"
+            render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics,readingItemList:readingItems, userDetails: userDetails])
+        } else {
+            println "---------Inside user index else--------"
+            flash.error = "Unsuccessful Login..!!"
+            redirect(controller: 'login', action: 'index')
+        }
     }
+
+//    def index() {
+//        User user = session.user
+//        UserVO userDetails = user.getUserDetails()
+//        List<PostVO> readingItems = ReadingItem.getInboxItems(user)
+//        render(view: '/user/dashboard', model: [subscribeTopics: user.subscribeTopics, readingItemList: readingItems, userDetails: userDetails])
+//    }
 
 
     def register(UserCo userCo) {

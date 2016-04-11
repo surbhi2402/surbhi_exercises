@@ -1,0 +1,10 @@
+Testsuite: com.link.sharing.core.SubscriptionSpec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 sec
+------------- Standard Output ---------------
+--Output from testing subscripton class--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing subscripton class--
+------------- ---------------- ---------------
+
+Testcase: testing subscripton class took 0.079 sec

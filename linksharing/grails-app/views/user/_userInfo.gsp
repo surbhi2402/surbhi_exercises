@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-offset-3">
 
-        <div style="color:black">${userDetails.username}</div>
+        <div style="color:black">${userDetails.fname}</div>
         <div style="color:grey">@${userDetails.fname}</div>
 
         <inline>

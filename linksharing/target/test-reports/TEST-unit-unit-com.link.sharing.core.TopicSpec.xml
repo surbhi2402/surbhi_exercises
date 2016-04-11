@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="1" hostname="surbhi-TravelMate-P257-M" name="com.link.sharing.core.TopicSpec" skipped="0" tests="1" time="0.128" timestamp="2016-04-02T16:58:38">
+  <properties />
+  <testcase classname="com.link.sharing.core.TopicSpec" name="testing topic" time="0.118">
+    <failure message="Condition not satisfied:&#xa;&#xa;result == expectedOutput&#xa;|      |  |&#xa;true   |  false&#xa;       false&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+true   |  false
+       false
+
+	at com.link.sharing.core.TopicSpec.testing topic(TopicSpec.groovy:29)
+</failure>
+    <failure message="Condition not satisfied:&#xa;&#xa;result == expectedOutput&#xa;|      |  |&#xa;true   |  false&#xa;       false&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Condition not satisfied:
+
+result == expectedOutput
+|      |  |
+true   |  false
+       false
+
+	at com.link.sharing.core.TopicSpec.testing topic(TopicSpec.groovy:29)
+</failure>
+  </testcase>
+  <system-out><![CDATA[--Output from testing topic--
+]]></system-out>
+  <system-err><![CDATA[--Output from testing topic--
+]]></system-err>
+</testsuite>

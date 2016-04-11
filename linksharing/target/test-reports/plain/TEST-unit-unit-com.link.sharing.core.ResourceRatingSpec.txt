@@ -1,0 +1,10 @@
+Testsuite: com.link.sharing.core.ResourceRatingSpec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.21 sec
+------------- Standard Output ---------------
+--Output from testing resource rating--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testing resource rating--
+------------- ---------------- ---------------
+
+Testcase: testing resource rating took 0.204 sec
